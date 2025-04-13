@@ -1,11 +1,12 @@
 // import React from 'react'
 import { Link } from "react-router-dom";
+import GoogleTranslate from "../pages/GoogleTranslate";
 
 const Header = () => {
   return (
     <div>
       <header className="header">
-        <div className="header-top bg-theme-colored sm-text-center">
+        {/* <div className="header-top bg-theme-colored sm-text-center">
           <div className="container">
             <div className="row">
               <div className="col-md-2">
@@ -41,13 +42,13 @@ const Header = () => {
                       {" "}
                       <i className="fa fa-phone text-white"></i>{" "}
                       <a className="text-white" href="#">
-                        123-456-789
+                       91733-3390
                       </a>{" "}
                     </li>
                     <li className="text-white m-0 pl-10 pr-10">
                       {" "}
-                      <i className="fa fa-clock-o text-white"></i> Mon-Fri 8:00
-                      to 2:00{" "}
+                      <i className="fa fa-clock-o text-white"></i> Mon-Sun 8:00
+                      to 8:00{" "}
                     </li>
                     <li className="m-0 pl-10 pr-10">
                       {" "}
@@ -57,7 +58,7 @@ const Header = () => {
                           className="__cf_email__"
                           data-cfemail="71121e1f0510120531081e0403151e1c10181f5f121e1c"
                         >
-                          [email&#160;protected]
+                            info@jlkmparty.org
                         </span>
                       </a>{" "}
                     </li>
@@ -68,7 +69,7 @@ const Header = () => {
                 <div className="widget no-border m-0">
                   <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
                     <li className="mt-sm-10 mb-sm-10">
-                      {/* <!-- Modal: Appointment Starts --> */}
+                      {/* <!-- Modal: Appointment Starts --> 
                       <a
                         className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10 ajaxload-popup"
                         href="ajax-load/donation-form.html"
@@ -89,10 +90,22 @@ const Header = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="header-nav">
-          <div className="header-nav-wrapper navbar-scrolltofixed bg-silver-light">
-            <div className="container">
+        </div> */}
+        <div className="header-nav"  >
+          <div
+            className="header-nav-wrapper navbar-scrolltofixed bg-silver-light scroll-to-fixed-fixed scroll-to-fixed-fixed"
+            style={{
+              zIndex: 1000,
+              position: "fixed",
+              top: 0,
+              marginLeft: 0,
+              width: "1513px",
+              left: 0,
+
+            }}
+          >
+
+            <div className="container" >
               <nav id="menuzord-right" className="menuzord default no-bg">
                 <Link className="menuzord-brand pull-left flip" to="/">
                   <img src="images/logo-wide.png" alt="" />
@@ -104,27 +117,43 @@ const Header = () => {
                   <li>
                     <Link to="/about">About</Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/causes">Causes</Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/team">Volunteer</Link>
                   </li>
                   <li>
                     <Link to="/gallery">Gallery</Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/blog">Blog</Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/contact">Contact</Link>
                   </li>
+                  {/* <li>
+                    <Link to="/contact">Contact</Link>
+                  </li> */}
+                  <li>
+                    <Link to="/donationpage">Donate Us</Link>
+                  </li>
+                  <li>
+                    <Link to="/memberjoin">Join Us</Link>
+                  </li>
                 </ul>
+
+
               </nav>
+              <div style={{ position: 'fixed', top: 10, right: 10, zIndex: 999 }}>
+                <GoogleTranslate />
+              </div>
+
             </div>
           </div>
         </div>
       </header>
+      \
     </div>
   );
 };

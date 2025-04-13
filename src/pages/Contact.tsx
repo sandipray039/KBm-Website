@@ -9,9 +9,8 @@ const Contact = () => {
                 Contact Us
               </h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                autem
-                <br /> voluptatem obcaecati!
+                
+               
               </p>
             </div>
           </div>
@@ -35,6 +34,7 @@ const Contact = () => {
                       type="text"
                       placeholder="Enter Name"
                       required
+                      
                     />
                   </div>
                 </div>

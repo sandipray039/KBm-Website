@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import About from "./About";
 // import Gallery from "./Gallery";
-import Cause from "./Cause";
+
 import Volunter from "./Volunter";
-import Blog from "./Blog";
 import Contact from "./Contact";
 import Gallery from "./Gallery";
+import { Outlet } from "react-router-dom";
+import HomeBox from "./HomeBox";
 
 // Extend the Window interface to include the $ property for jQuery
 declare global {
@@ -44,7 +45,7 @@ const Home = () => {
                   data-easein="default"
                   data-easeout="default"
                   data-masterspeed="default"
-                  data-thumb="/images/bg/bg20.jpg"
+                  data-thumb=""
                   data-rotate="0"
                   data-saveperformance="off"
                   data-title="Slide 2"
@@ -52,7 +53,7 @@ const Home = () => {
                 >
                   {/* <!-- MAIN IMAGE --> */}
                   <img
-                    src="/images/bg/bg20.jpg"
+                    src="/images/"
                     alt=""
                     data-bgposition="center center"
                     data-bgfit="cover"
@@ -186,7 +187,7 @@ const Home = () => {
                   >
                     <a
                       className="btn btn-colored btn-lg btn-theme-colored pl-20 pr-20"
-                      href="#"
+                      href="/donationpage"
                     >
                       Donate Now
                     </a>
@@ -225,7 +226,7 @@ const Home = () => {
                 >
                   {/* <!-- MAIN IMAGE --> */}
                   <img
-                    src="/images/bg/bg24.jpg"
+                    src="/images/about/kbm1.jpg"
                     alt=""
                     data-bgposition="top 30%"
                     data-bgfit="cover"
@@ -359,7 +360,7 @@ const Home = () => {
                   >
                     <a
                       className="btn btn-colored btn-lg btn-flat btn-theme-colored pl-20 pr-20"
-                      href="#"
+                      href="/donationpage"
                     >
                       Donate Now
                     </a>
@@ -502,7 +503,7 @@ const Home = () => {
                 >
                   <a
                     className="btn btn-default btn-circled btn-transparent pl-20 pr-20"
-                    href="#"
+                    href="/donationpage"
                   >
                     Donate Now
                   </a>
@@ -512,24 +513,28 @@ const Home = () => {
             {/* <!-- end .rev_slider --> */}
           </div>
           {/* <!--  Revolution slider scriopt --> */}
-          <script
+          {/* <script
             data-cfasync="false"
             src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-          ></script>
+          ></script> */}
+
+<a className="scrollToTop" href="#"><i className="fa fa-angle-up"></i></a>
         </div>
       </section>
+      <HomeBox/>
 
       <About />
 
-      <Cause />
+      
 
       <Volunter />
 
       <Gallery />
 
-      <Blog />
+    
 
       <Contact />
+      <Outlet/>
     </div>
   );
 };
