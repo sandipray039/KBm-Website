@@ -17,6 +17,20 @@ const About: React.FC = () => {
                       alt="KBM image 1"
                     />
                   </div>
+                  <div className="img-hover-border mt-sm-40">
+                    <img
+                      className="img-fullwidth"
+                      src="images/team/team4.jpg"
+                      alt="KBM image 1"
+                    />
+                  </div>
+                  <div className="img-hover-border mt-sm-40">
+                    <img
+                      className="img-fullwidth"
+                      src="images/team/team5.jpg"
+                      alt="KBM image 1"
+                    />
+                  </div>
                 </div>
                 <div className="col-md-6 col-sm-6 pl-0 pr-0">
                   <div className="img-hover-border mt-sm-30">
@@ -39,33 +53,36 @@ const About: React.FC = () => {
             <div className="col-md-6">
               <div className="about-details">
                 <h2 className="font-36 mt-0">
-                  Welcome to{" "}
-                  <span className="text-theme-colored">KBM</span> Please Raise
-                  your Helping Hand
+                  Welcome to <span className="text-theme-colored">KBM</span>{" "}
+                  Please Raise your Helping Hand
                 </h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Aliquam, odioserunt provident maiores consectetur adipisicing
-                  elit. Aliquam odio dese runtesseu provident maiores libero
-                  porro dolorem est. Velit necessitatibus fugiat error incidunt
-                  excepturi doloribus officia aspernatur quod libero Velit
-                  necessitatibus fugiat error incidunt excepturi doloribus
-                  officia
+                <p className="ml-5" style={{ fontSize: "1vw" }}>
+                  The Khatiyani BuddhiJiwi Manch (Intellectual Forum) was
+                  started in 2010 from a small village, Nichitpur (Galagi),
+                  which is located in the Dumri block of Giridih district in
+                  Jharkhand. The environment of this village was very poor. The
+                  people were far from education, the health conditions were
+                  very bad, and there were no means of employment. Social evils
+                  like dowry system, black magic, witchcraft, and frequent
+                  fights were common. The elderly, young people, and even the
+                  elderly did not respect each other. Everyone was addicted to
+                  drugs, and forests were being exploited, with small trees
+                  being cut down and even fires being set in the forests. Seeing
+                  all these problems, the intellectuals of the village came
+                  together to form a group. They raised the slogan for complete
+                  social change, focusing on education, health, environment,
+                  employment, sports, de-addiction, and the eradication of all
+                  social evils. The collective vow was taken to transform this
+                  village into an ideal village.
                 </p>
                 <div className="singnature mt-20">
                   <img src="images/signature.png" alt="Signature" />
                 </div>
                 <Link
-                  to="/about/aboutpage"
+                  to="/about/details"
                   className="btn btn-flat btn-colored btn-theme-colored mt-15 mr-15"
                 >
                   Read More
-                </Link>
-                <Link
-                  to="/quote"
-                  className="btn btn-flat btn-colored btn-default btn-theme-colored mt-15"
-                >
-                  Get a Quote
                 </Link>
               </div>
             </div>

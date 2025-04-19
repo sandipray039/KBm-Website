@@ -1,136 +1,197 @@
-const Contact = () => {
-  return (
-    <section id="contact" className="divider bg-silver-light">
-      <div className="container pt-60 pb-60">
-        <div className="section-title text-center">
-          <div className="row">
-            <div className="col-md-8 col-md-offset-2">
-              <h2 className="text-uppercase line-bottom-center mt-0">
-                Contact Us
-              </h2>
-              <p>
-                
-               
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="row pt-10">
-          <div className="col-md-10 col-md-offset-1">
-            {/* <!-- Contact Form --> */}
-            <form
-              id="contact_form"
-              name="contact_form"
-              className=""
-              action="includes/sendmail.php"
-              method="post"
-            >
-              <div className="row">
-                <div className="col-sm-6">
-                  <div className="form-group mb-30">
-                    <input
-                      name="form_name"
-                      className="form-control"
-                      type="text"
-                      placeholder="Enter Name"
-                      required
-                      
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="form-group mb-30">
-                    <input
-                      name="form_email"
-                      className="form-control required email"
-                      type="email"
-                      placeholder="Enter Email"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-6">
-                  <div className="form-group mb-30">
-                    <input
-                      name="form_subject"
-                      className="form-control required"
-                      type="text"
-                      placeholder="Enter Subject"
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="form-group mb-30">
-                    <input
-                      name="form_phone"
-                      className="form-control"
-                      type="text"
-                      placeholder="Enter Phone"
-                    />
-                  </div>
-                </div>
-              </div>
+import React, { useState, useEffect } from 'react';
+import { ContactFormData } from '../Services/ApiService';
+import Map from './Map';
 
-              <div className="form-group">
-                <textarea
-                  name="form_message"
-                  className="form-control required"
-                  rows={5}
-                  placeholder="Enter Message"
-                ></textarea>
-              </div>
-              <div className="form-group">
-                <input
-                  name="form_botcheck"
-                  className="form-control"
-                  type="hidden"
-                  value=""
-                />
-                <button
-                  type="submit"
-                  className="btn btn-flat btn-theme-colored text-uppercase mt-10 mb-sm-30 border-left-theme-color-2-4px"
-                  data-loading-text="Please wait..."
-                >
-                  Send your message
-                </button>
-                <button
-                  type="reset"
-                  className="btn btn-flat btn-theme-colored text-uppercase mt-10 mb-sm-30 border-left-theme-color-2-4px"
-                >
-                  Reset
-                </button>
-              </div>
-            </form>
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  phoneNo: string;
+  message: string;
+}
 
-            {/* <!-- Contact Form Validation--> */}
-            {/* <script type="text/javascript">
-  $("#contact_form").validate({
-    submitHandler: function(form) {
-      var form_btn = $(form).find('button[type="submit"]');
-      var form_result_div = '#form-result';
-      $(form_result_div).remove();
-      form_btn.before('<div id="form-result" className="alert alert-success" role="alert" style="display: none;"></div>');
-      var form_btn_old_msg = form_btn.html();
-      form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-      $(form).ajaxSubmit({
-        dataType:  'json',
-        success: function(data) {
-          if( data.status == 'true' ) {
-            $(form).find('.form-control').val('');
-          }
-          form_btn.prop('disabled', false).html(form_btn_old_msg);
-          $(form_result_div).html(data.message).fadeIn('slow');
-          setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
-        }
-      });
-    }
+const Contact: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    subject: '',
+    phoneNo: '',
+    message: '',
   });
-                </script> */}
+  const [statusMessage, setStatusMessage] = useState<string>(''); 
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        phoneNo: formData.phoneNo,
+        message: formData.message,
+      };
+
+      const response = await ContactFormData(payload);
+      console.log('API response=>', response);
+
+      if (response.isSuccess) {
+        setStatusMessage('Message sent successfully! We will reach out to you soon.');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          phoneNo: '',
+          message: '',
+        });
+      } else {
+        setStatusMessage('Form submission failed. Please try again.');
+      }
+    } catch (err) {
+      setStatusMessage('Something went wrong during submission.');
+      console.error('Submission error:', err);
+    }
+  };
+
+  const handleCloseMessage = () => {
+    setStatusMessage(''); 
+  };
+
+  // Automatically fade out the success message after 3 seconds
+  useEffect(() => {
+    if (statusMessage && statusMessage.includes('success')) {
+      const timer = setTimeout(() => {
+        setStatusMessage('');
+      }, 3000); // 3 seconds timeout to clear message
+      return () => clearTimeout(timer); // Cleanup the timeout on component unmount
+    }
+  }, [statusMessage]);
+
+  return (
+<div>
+    <Map/>
+    <div className="container my-5" style={{ marginTop: '80px' }}>
+      <h2 className="text-center fw-bold mt-10 mb-4">CONTACT US</h2>
+      
+      {statusMessage && (
+        <div
+          className={`alert ${statusMessage.includes('success') ? 'alert-success' : 'alert-danger'} position-relative fadeInAlert`}
+          role="alert"
+        >
+          {statusMessage}
+          
+          <button
+            type="button"
+            className="btn-close position-absolute top-0 end-0 m-2"
+            aria-label="Close"
+            onClick={handleCloseMessage}
+            style={{ position: 'absolute', top: '10px', right: '10px' }}
+          >
+            ×
+          </button>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <div className="row mb-3">
+          <div className="col-md-6 mb-3 mb-md-0">
+            <label htmlFor="name" className="form-label">
+              Name <span className="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              className="form-control border border-1 rounded-0 mb-15"
+              id="name"
+              placeholder="Enter Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="email" className="form-label">
+              Email <span className="text-danger">*</span>
+            </label>
+            <input
+              type="email"
+              className="form-control border border-1 rounded-0 mb-15"
+              id="email"
+              placeholder="Enter Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
         </div>
-      </div>
-    </section>
+
+        <div className="row mb-3">
+          <div className="col-md-6 mb-3 mb-md-0">
+            <label htmlFor="subject" className="form-label">
+              Subject <span className="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              className="form-control border border-1 rounded-0 mb-15"
+              id="subject"
+              placeholder="Enter Subject"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="phoneNo" className="form-label">
+              Phone <span className="text-danger">*</span>
+            </label>
+            <input
+              type="number"
+              className="form-control border border-1 rounded-0 mb-15"
+              id="phoneNo"
+              placeholder="Enter Phone"
+              name="phoneNo"
+              value={formData.phoneNo}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="message" className="form-label">
+            Message <span className="text-danger">*</span>
+          </label>
+          <textarea
+            className="form-control border border-1 rounded-5 mb-15"
+            id="message"
+            rows={5}
+            placeholder="Enter Message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+
+        <div className="d-flex">
+          <button type="submit" className="btn btn-primary px-4 me-2" style={{ borderRadius: 5 }}>
+            SEND YOUR MESSAGE
+          </button>
+        </div>
+      </form>
+    </div>
+    </div>
   );
 };
 

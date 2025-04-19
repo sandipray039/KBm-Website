@@ -18,14 +18,14 @@ const Volunter = () => {
     },
     {
       id: 2,
-      name: "Jerin Jacson",
-      image: "/images/team/team3.jpg",
+      name: "Naresh Kumar",
+      image: "/images/team/nareshpic.jpg",
       bio: "Jerin supports food distribution and local community work.",
     },
     {
       id: 3,
-      name: "Alex Jacobson",
-      image: "/images/team/team2.jpg",
+      name: "DR Dindyal Mahto",
+      image: "/images/team/Dindyalpic.jpg",
       bio: "Alex manages events and volunteers for major outreach programs.",
     },
   ]);
@@ -63,7 +63,7 @@ const Volunter = () => {
                       <img
                         src={vol.image}
                         alt={vol.name}
-                        className="img-fullwidth"
+                        style={{height:'35vh',width:'100%'}}
                       />
                       <div className="overlay">
                         <div className="content"></div>

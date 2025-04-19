@@ -20,14 +20,15 @@ const VolunteerDetails = () => {
     },
     {
       id: 2,
-      name: "Jerin Jacson",
-      image: "/images/team/team3.jpg",
+      name: "Naresh Kumar",
+      image: "/images/team/nareshpic.jpg",
       bio: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
     },
     {
       id: 3,
-      name: "Alex Jacobson",
-      image: "/images/team/team2.jpg",
+      name: "DR Dindyal Mahto",
+      image: "/images/team/Dindyalpic.jpg",
+     
       bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
     },
   ]);
@@ -37,7 +38,7 @@ const VolunteerDetails = () => {
   if (!volunteer) return <p>Volunteer not found</p>;
 
   return (
-    <div className="container py-5">
+    <div className="container py-5" style={{marginTop:'80px',marginBottom:'40px'}}>
       <div className="row">
         <div className="col-md-5">
           <img src={volunteer.image} alt={volunteer.name} className="img-fluid rounded" />

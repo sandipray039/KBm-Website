@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GoogleTranslate = () => {
+const Dashboard = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const GoogleTranslate = () => {
   )
 }
 
-export default GoogleTranslate
+export default Dashboard;

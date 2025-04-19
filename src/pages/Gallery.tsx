@@ -1,54 +1,15 @@
 import React, { useState } from "react";
+import VideoGallery from "./VideoGallery";
 
 const galleryImages = [
-  {
-    thumb: "/images/about/kbm.jpg",
-    full: "/images/about/kbm2.jpg",
-  },
-  {
-    thumb: "images/about/kbm3.jpg",
-    full: "images/kbm-1/one.jpg",
-  },
-  {
-    thumb: "images/gallery/gallery-md3.jpg",
-    full: "images/kbm-1/two.jpg",
-  },
-  {
-    thumb:  "images/gallery/gallery-md3.jpg",
-    full: "images/kbm-1/three.jpg",
-  },
-  {
-    thumb: "images/kbm-1/four.jpg",
-    full: "images/kbm-1/four.jpg",
-  },
-  {
-    thumb: "images/kbm-1/five.jpg",
-    full: "images/kbm-1/five.jpg",
-  },
-  {
-    thumb: "images/gallery/gallery-md7.jpg",
-    full: "images/gallery/gallery-lg7.jpg",
-  },
-  {
-    thumb: "images/gallery/gallery-md8.jpg",
-    full: "images/gallery/gallery-lg8.jpg",
-  },
-  {
-    thumb: "images/gallery/gallery-md9.jpg",
-    full: "images/gallery/gallery-lg9.jpg",
-  },
-  {
-    thumb: "images/gallery/gallery-md10.jpg",
-    full: "images/gallery/gallery-lg10.jpg",
-  },
-  {
-    thumb: "images/gallery/gallery-md11.jpg",
-    full: "images/gallery/gallery-lg11.jpg",
-  },
-  {
-    thumb: "images/gallery/gallery-md12.jpg",
-    full: "images/gallery/gallery-lg12.jpg",
-  },
+  { thumb: "/images/team/team4.jpg", full: "/images/team/team4.jpg" },
+  { thumb: "images/about/kbm3.jpg", full: "images/about/kbm3.jpg" },
+  { thumb: "images/team/team5.jpg", full: "images/team/team5.jpg" },
+  { thumb: "images/team/team6.jpg", full: "images/team/team6.jpg" },
+  { thumb: "images/kbm-1/four.jpg", full: "images/kbm-1/four.jpg" },
+  { thumb: "images/team/team7.jpg", full: "images/team/team7.jpg" },
+  { thumb: "images/team/team8.jpg", full: "images/team/team8.jpg" },
+  { thumb: "images/team/team9.jpg", full: "images/team/team9.jpg" },
 ];
 
 const Gallery = () => {
@@ -75,65 +36,133 @@ const Gallery = () => {
   };
 
   return (
-    <section id="gallery" className="bg-silver-light">
-      <div className="container">
-        <div className="section-title text-center">
-          <div className="row">
-            <div className="col-md-10 col-md-offset-1">
-              <h2 className="text-uppercase line-bottom-center mt-0">
-                <span className="text-theme-colored font-weight-600">Gallery</span>
-              </h2>
-              <div className="title-icon">
-                <i className="flaticon-charity-hand-holding-a-heart"></i>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                autem voluptatem obcaecati! <br />
-                ipsum dolor sit Rem autem voluptatem obcaecati
-              </p>
-            </div>
+    <section style={{ backgroundColor: "#f9f9f9", padding: "40px 20px" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: "40px" }}>
+          <h2 style={{ textTransform: "uppercase", marginBottom: "10px" }}>
+            <span style={{ color: "#00A4EF", fontWeight: "600" }}>Photo Gallery</span>
+          </h2>
+          <div>
+            <i className="flaticon-charity-hand-holding-a-heart"></i>
           </div>
         </div>
 
-        <div className="section-content">
-          <div className="row">
-            <div className="col-md-12">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: "15px",
+          }}
+        >
+          {galleryImages.map((img, index) => (
+            <div
+              key={index}
+              onClick={() => openLightbox(index)}
+              style={{ cursor: "pointer", position: "relative", overflow: "hidden" }}
+            >
+              <img
+                src={img.thumb}
+                alt={`project-${index + 1}`}
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                  display: "block",
+                }}
+              />
               <div
-                className="gallery-isotope grid-4 gutter-small clearfix"
-                data-lightbox="gallery"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  opacity: 0,
+                  transition: "opacity 0.3s",
+                }}
+                className="overlay"
               >
-                {galleryImages.map((img, index) => (
-                  <div className="gallery-item" key={index}>
-                    <div className="thumb" onClick={() => openLightbox(index)} style={{ cursor: 'pointer' }}>
-                      <img
-                        alt={`project-${index + 1}`}
-                        src={img.thumb}
-                        className="img-fullwidth"
-                      />
-                      <div className="overlay-shade"></div>
-                      <div className="icons-holder">
-                        <div className="icons-holder-inner">
-                          <div className="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <i className="fa fa-picture-o"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                <i
+                  className="fa fa-picture-o"
+                  style={{ color: "white", fontSize: "24px" }}
+                ></i>
               </div>
-
-            
-              {selectedIndex !== null && (
-                <div className="custom-lightbox">
-                  <span className="lightbox-close" onClick={closeLightbox}>×</span>
-                  <span className="lightbox-prev" onClick={showPrev}>‹</span>
-                  <img src={galleryImages[selectedIndex].full} alt="Zoomed" className="lightbox-image" />
-                  <span className="lightbox-next" onClick={showNext}>›</span>
-                </div>
-              )}
             </div>
+          ))}
+        </div>
+
+        {selectedIndex !== null && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 9999,
+              flexDirection: "column",
+            }}
+          >
+            <span
+              onClick={closeLightbox}
+              style={{
+                position: "absolute",
+                top: "20px",
+                right: "30px",
+                fontSize: "32px",
+                color: "white",
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </span>
+            <span
+              onClick={showPrev}
+              style={{
+                position: "absolute",
+                left: "20px",
+                fontSize: "32px",
+                color: "white",
+                cursor: "pointer",
+              }}
+            >
+              ‹
+            </span>
+            <img
+              src={galleryImages[selectedIndex].full}
+              alt="Zoomed"
+              style={{
+                maxHeight: "80vh",
+                maxWidth: "90vw",
+                borderRadius: "10px",
+              }}
+            />
+            <span
+              onClick={showNext}
+              style={{
+                position: "absolute",
+                right: "20px",
+                fontSize: "32px",
+                color: "white",
+                cursor: "pointer",
+              }}
+            >
+              ›
+            </span>
           </div>
+        )}
+
+        <div style={{ marginTop: "40px" }}>
+          <VideoGallery />
         </div>
       </div>
     </section>

@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import About from "./About";
-// import Gallery from "./Gallery";
+
 
 import Volunter from "./Volunter";
 import Contact from "./Contact";
 import Gallery from "./Gallery";
 import { Outlet } from "react-router-dom";
-import HomeBox from "./HomeBox";
+import BlackBox from "./BlackBox";
+import MissionSection from "./MissionSection";
 
-// Extend the Window interface to include the $ property for jQuery
+
+
 declare global {
   interface Window {
     $: any;
@@ -32,7 +34,7 @@ const Home = () => {
   return (
     <div>
       <section id="home">
-        <div className="container-fluid p-0">
+        <div className="container-fluid p-0 ">
           {/* <!-- Slider Revolution Start --> */}
           <div className="rev_slider_wrapper">
             <div className="rev_slider rev_slider_default" data-version="5.0">
@@ -53,7 +55,27 @@ const Home = () => {
                 >
                   {/* <!-- MAIN IMAGE --> */}
                   <img
-                    src="/images/"
+                    src="/images/team/team4.jpg"
+                    alt=""
+                    data-bgposition="center center"
+                    data-bgfit="cover"
+                    data-bgrepeat="no-repeat"
+                    className="rev-slidebg"
+                    data-bgparallax="10"
+                    data-no-retina
+                  />
+                  <img
+                    src="/images/team/team6.jpg"
+                    alt=""
+                    data-bgposition="center center"
+                    data-bgfit="cover"
+                    data-bgrepeat="no-repeat"
+                    className="rev-slidebg"
+                    data-bgparallax="10"
+                    data-no-retina
+                  />
+                  <img
+                    src="/images/team/team4.jpg"
                     alt=""
                     data-bgposition="center center"
                     data-bgfit="cover"
@@ -64,7 +86,7 @@ const Home = () => {
                   />
                   {/* <!-- LAYERS --> */}
                   {/* <!-- LAYER NR. 1 --> */}
-                  <div
+                  {/* <div
                     className="tp-caption tp-resizeme text-uppercase text-white font-raleway"
                     id="rs-1-layer-1"
                     data-x="['left']"
@@ -92,10 +114,10 @@ const Home = () => {
                     }}
                   >
                     Donate
-                  </div>
+                  </div> */}
 
                   {/* <!-- LAYER NR. 2 --> */}
-                  <div
+                  {/* <div
                     className="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent pl-20 pr-20"
                     id="rs-1-layer-2"
                     data-x="['left']"
@@ -123,10 +145,10 @@ const Home = () => {
                     }}
                   >
                     For the poor children
-                  </div>
+                  </div> */}
 
                   {/* <!-- LAYER NR. 3 --> */}
-                  <div
+                  {/* <div
                     className="tp-caption tp-resizeme text-white"
                     id="rs-1-layer-3"
                     data-x="['left']"
@@ -157,10 +179,10 @@ const Home = () => {
                     Every day we bring hope to millions of children in the
                     world's
                     <br /> hardest places as a sign of God's unconditional love.
-                  </div>
+                  </div> */}
 
                   {/* <!-- LAYER NR. 4 --> */}
-                  <div
+                  {/* <div
                     className="tp-caption tp-resizeme"
                     id="rs-1-layer-4"
                     data-x="['left']"
@@ -191,7 +213,7 @@ const Home = () => {
                     >
                       Donate Now
                     </a>
-                  </div>
+                  </div> */}
                 </li>
 
                 {/* <!-- SLIDE 2 --> */}
@@ -208,6 +230,17 @@ const Home = () => {
                   data-title="Slide 1"
                   data-description=""
                 />
+                <img
+                  src="/images/team/team7.jpg"
+                  alt=""
+                  data-bgposition="center center"
+                  data-bgfit="cover"
+                  data-bgrepeat="no-repeat"
+                  className="rev-slidebg"
+                  data-no-retina
+                  style={{width:'100vw'}}
+                />
+
                 <li />
 
                 {/* <!-- SLIDE 3 --> */}
@@ -218,15 +251,16 @@ const Home = () => {
                   data-easein="default"
                   data-easeout="default"
                   data-masterspeed="default"
-                  data-thumb="/images/bg/bg24.jpg"
+                  data-thumb="/images/team/team7.jpg"
                   data-rotate="0"
                   data-saveperformance="off"
                   data-title="Slide 3"
                   data-description=""
+                  style={{width:'100vw'}}
                 >
                   {/* <!-- MAIN IMAGE --> */}
                   <img
-                    src="/images/about/kbm1.jpg"
+                    src="/images/team/team7.jpg"
                     alt=""
                     data-bgposition="top 30%"
                     data-bgfit="cover"
@@ -234,6 +268,7 @@ const Home = () => {
                     className="rev-slidebg"
                     data-bgparallax="10"
                     data-no-retina
+                    style={{width:'100vw'}}
                   />
                   {/* <!-- LAYERS -->
                           <!-- LAYER NR. 1 --> */}
@@ -368,11 +403,11 @@ const Home = () => {
                 </li>
                 {/* <!-- MAIN IMAGE --> */}
                 <img
-                  src="/images/bg/bg23.jpg"
+                  src="/images/"
                   alt=""
                   data-bgposition="center center"
                   data-bgfit="cover"
-                  data-bgrepeat="no-repeat"
+                  data-bgrepeat="repeat"
                   className="rev-slidebg"
                   data-bgparallax="10"
                   data-no-retina
@@ -518,23 +553,21 @@ const Home = () => {
             src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
           ></script> */}
 
-<a className="scrollToTop" href="#"><i className="fa fa-angle-up"></i></a>
+          <a className="scrollToTop" href="#">
+            <i className="fa fa-angle-up"></i>
+          </a>
         </div>
       </section>
-      <HomeBox/>
 
       <About />
 
-      
-
       <Volunter />
-
+    <BlackBox/>
+    <MissionSection/>
       <Gallery />
 
-    
-
       <Contact />
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };

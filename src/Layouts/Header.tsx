@@ -1,12 +1,57 @@
 // import React from 'react'
 import { Link } from "react-router-dom";
-import GoogleTranslate from "../pages/GoogleTranslate";
+// import GoogleTranslate from "../pages/GoogleTranslate";
+import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 
 const Header = () => {
+
+  const headerRef=useRef<HTMLDivElement | null>(null);
+  const [sticky,setSticky]=useState<boolean>(false);
+
+
+ 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      if (scrollY > 15 && !sticky) {
+        setSticky(true);
+        header.style.position = 'fixed';
+        header.style.top = '0';
+        header.style.left = '0';
+        header.style.width = '100%';
+        header.style.background = '#ffffff'; 
+        header.style.zIndex = '9999';
+        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)'; 
+        gsap.fromTo(header, { y: -100 }, { y: 0, duration: 0.4, ease: 'power2.out' });
+      } else if (scrollY <= 0 && sticky) {
+        gsap.to(header, {
+          y: -100,
+          duration: 0.3,
+          ease: 'power2.in',
+          onComplete: () => {
+            if (!header) return;
+            header.style.position = 'relative';
+            header.style.top = 'unset';
+            setSticky(false);
+            gsap.set(header, { y: 0 });
+          }
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sticky]);
+
   return (
     <div>
       <header className="header">
-        {/* <div className="header-top bg-theme-colored sm-text-center">
+        <div className="header-top bg-theme-colored sm-text-center">
           <div className="container">
             <div className="row">
               <div className="col-md-2">
@@ -69,18 +114,18 @@ const Header = () => {
                 <div className="widget no-border m-0">
                   <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
                     <li className="mt-sm-10 mb-sm-10">
-                      {/* <!-- Modal: Appointment Starts --> 
+                       {/* <!-- Modal: Appointment Starts -->  */}
                       <a
-                        className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10 ajaxload-popup"
-                        href="ajax-load/donation-form.html"
+                        className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10"
+                        href="/donationpage"
                       >
                         Donate Now
                       </a>
                     </li>
                     <li className="mt-sm-10 mb-sm-10">
                       <a
-                        className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10 ajaxload-popup"
-                        href="ajax-load/volunteer-apply-form.html"
+                        className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10"
+                        href="memberjoin"
                       >
                         Join Us
                       </a>
@@ -90,25 +135,26 @@ const Header = () => {
               </div>
             </div>
           </div>
-        </div> */}
-        <div className="header-nav"  >
+        </div>
+        <div ref={headerRef}
+        
+         className="header-nav "   >
           <div
-            className="header-nav-wrapper navbar-scrolltofixed bg-silver-light scroll-to-fixed-fixed scroll-to-fixed-fixed"
-            style={{
-              zIndex: 1000,
-              position: "fixed",
-              top: 0,
-              marginLeft: 0,
-              width: "1513px",
-              left: 0,
-
-            }}
+            className="header-nav-wrapper navbar-scrolltofixed  scroll-to-fixed-fixed "
+            style={{backgroundColor:'aqua'}}
           >
 
             <div className="container" >
-              <nav id="menuzord-right" className="menuzord default no-bg">
+              <nav id="menuzord-right" className="menuzord default no-bg" style={{backgroundColor:'#14468C'}}>
                 <Link className="menuzord-brand pull-left flip" to="/">
-                  <img src="images/logo-wide.png" alt="" />
+                <div
+                 style={{display:'flex ', gap:'10px'}}>
+                <img src="/images/kbm-slider/logo.png.png" alt=""
+                style={{height:"60px"}}
+                />
+             <p>खतियानी बुद्धिजीवी मंच</p>
+                </div>
+                 
                 </Link>
                 <ul className="menuzord-menu onepage-nav">
                   <li className="active">
@@ -145,17 +191,16 @@ const Header = () => {
 
 
               </nav>
-              <div style={{ position: 'fixed', top: 10, right: 10, zIndex: 999 }}>
+              {/* <div style={{ position: 'fixed', top: 10, right: 10, zIndex: 999 }}>
                 <GoogleTranslate />
-              </div>
+              </div> */}
 
             </div>
           </div>
         </div>
       </header>
-      \
     </div>
   );
 };
 
-export default Header;
+export default Header; 
