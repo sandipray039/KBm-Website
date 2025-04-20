@@ -77,7 +77,7 @@ const TablesPage: React.FC = () => {
   const paymentColumns = [
       {
     name: "Sl. No.",
-    cell: (row: PaymentData, index: number) => index + 1,
+    cell: (_: PaymentData, index: number) => index + 1,
     width: "80px",
     sortable: false,
   },
@@ -133,7 +133,7 @@ const TablesPage: React.FC = () => {
   const personalColumns = [
     {
       name: "Sl. No.",
-      cell: (row: PersonalData, index: number) => index + 1,
+      cell: (_: PersonalData, index: number) => index + 1,
       width: "80px",
       sortable: false,
     },

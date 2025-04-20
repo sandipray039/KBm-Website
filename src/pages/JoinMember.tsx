@@ -130,77 +130,77 @@ const JoinMember: React.FC = () => {
     }
   };
 
-  const styles = {
-    wrapper: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "20px",
-      maxWidth: "1200px",
-      margin: "40px auto",
-      alignItems: "flex-start" as const,
-    },
-    formContainer: {
-      backgroundColor: "#fff",
-      padding: " 30px",
-      borderRadius: "8px",
-      boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-    },
-    heading: {
-      textAlign: "center" as const,
-      color: "white",
-      backgroundColor: "#00A4EF",
-      borderRadius: "10px",
-    },
-    form: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "10px 20px",
-    },
-    fullWidth: {
-      gridColumn: "1 / -1",
-    },
-    fieldWrapper: {
-      display: "flex",
-      flexDirection: "column" as const,
-    },
-    input: {
-      padding: "12px",
-      border: "1px solid #ccc",
-      borderRadius: "6px",
-      fontSize: "16px",
-    },
-    errorText: {
-      color: "red",
-      fontSize: "13px",
-      marginTop: "4px",
-    },
-    button: {
-      backgroundColor: "#00A4EF",
-      color: "#fff",
-      padding: "14px",
-      border: "none",
-      fontSize: "16px",
-      borderRadius: "6px",
-      cursor: "pointer",
-      width: "100%",
-    },
-    image: {
-      width: "100%",
-      height: "auto",
-      borderRadius: "10px",
-      boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-    },
-    label: {
-      fontWeight: "bold" as const,
-      marginBottom: "5px",
-    },
-    required: {
-      color: "red",
-      fontSize: "18px",
-    },
+  // const styles = {
+  //   wrapper: {
+  //     display: "grid",
+  //     gridTemplateColumns: "1fr 1fr",
+  //     gap: "20px",
+  //     maxWidth: "1200px",
+  //     margin: "40px auto",
+  //     alignItems: "flex-start" as const,
+  //   },
+  //   formContainer: {
+  //     backgroundColor: "#fff",
+  //     padding: " 30px",
+  //     borderRadius: "8px",
+  //     boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+  //   },
+  //   heading: {
+  //     textAlign: "center" as const,
+  //     color: "white",
+  //     backgroundColor: "#00A4EF",
+  //     borderRadius: "10px",
+  //   },
+  //   form: {
+  //     display: "grid",
+  //     gridTemplateColumns: "1fr 1fr",
+  //     gap: "10px 20px",
+  //   },
+  //   fullWidth: {
+  //     gridColumn: "1 / -1",
+  //   },
+  //   fieldWrapper: {
+  //     display: "flex",
+  //     flexDirection: "column" as const,
+  //   },
+  //   input: {
+  //     padding: "12px",
+  //     border: "1px solid #ccc",
+  //     borderRadius: "6px",
+  //     fontSize: "16px",
+  //   },
+  //   errorText: {
+  //     color: "red",
+  //     fontSize: "13px",
+  //     marginTop: "4px",
+  //   },
+  //   button: {
+  //     backgroundColor: "#00A4EF",
+  //     color: "#fff",
+  //     padding: "14px",
+  //     border: "none",
+  //     fontSize: "16px",
+  //     borderRadius: "6px",
+  //     cursor: "pointer",
+  //     width: "100%",
+  //   },
+  //   image: {
+  //     width: "100%",
+  //     height: "auto",
+  //     borderRadius: "10px",
+  //     boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+  //   },
+  //   label: {
+  //     fontWeight: "bold" as const,
+  //     marginBottom: "5px",
+  //   },
+  //   required: {
+  //     color: "red",
+  //     fontSize: "18px",
+  //   },
     
     
-  };
+  // };
   return (
     <div className="container">
       <div className="row">

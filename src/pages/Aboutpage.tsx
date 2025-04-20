@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 
-interface Member {
-  id: number;
-  name: string;
-  title: string;
-  img: string;
-  desc: string;
-}
+
+// interface Member {
+//   id: number;
+//   name: string;
+//   title: string;
+//   img: string;
+//   desc: string;
+// }
 
 const Aboutpage = () => {
   // const [members] = useState<Member[]>([
