@@ -16,6 +16,7 @@ const DonationPage: React.FC = () => {
     countryName: string;
     phoneCode: string;
   }[]>([]);
+ 
 
   const [selectedPhoneCode, setSelectedPhoneCode] = useState<string>('+91'); //for India
 
@@ -104,6 +105,7 @@ const DonationPage: React.FC = () => {
     marginTop: '4px',
   };
 
+
   return (
     <div
       style={{
@@ -116,12 +118,14 @@ const DonationPage: React.FC = () => {
         padding:'.85vw 0vw'
       }}
     >
-      
-      <form
+      <div className="container ms-lg-900">
+  <div className="row ">
+    <div className="col-12 col-lg-8 "
+  >
+    <form
         onSubmit={handleSubmit}
         style={{
-          maxWidth: '750px',
-          margin: '0rem auto 2rem 44%',
+         
           padding: '0rem 2rem 2.5rem',
           border: '1px solid #ddd',
           borderRadius: '8px',
@@ -303,6 +307,12 @@ const DonationPage: React.FC = () => {
           Donate
         </button>
       </form>
+    </div>
+  </div>
+</div>
+
+      
+    
     </div>
   );
 };

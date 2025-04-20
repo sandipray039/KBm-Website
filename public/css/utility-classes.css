@@ -1017,4 +1017,10 @@ footer.bg-deep {
   }
 }
 
+@media (min-width: 992px) {
+  .ms-lg-900 {
+    margin-left: 750px !important;
+  }
+}
+
 /*# sourceMappingURL=utility-classes.css.map */

@@ -9,36 +9,36 @@ interface Member {
 }
 
 const Aboutpage = () => {
-  const [members] = useState<Member[]>([
-    {
-      id: 1,
-      name: 'Vijay Kumar Mahto',
-      title: 'Member',
-      img: '/images/kbm2/bijaykumarmahto.jpeg',
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-    },
-    {
-      id: 2,
-      name: 'Amlesh Kumar Mahto',
-      title: 'Member',
-      img: '/images/kbm2/man.jpg',
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-    },
-    {
-      id: 3,
-      name: 'Birju Mahto',
-      title: 'Member',
-      img: '/images/kbm2/birjumahto.jpeg',
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-    },
-    {
-      id: 4,
-      name: 'Pradeep Kumar',
-      title: 'Member',
-      img: '/images/kbm2/pradeepkumar.jpeg',
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-    },
-  ]);
+  // const [members] = useState<Member[]>([
+  //   {
+  //     id: 1,
+  //     name: 'Vijay Kumar Mahto',
+  //     title: 'Member',
+  //     img: '/images/kbm2/bijaykumarmahto.jpeg',
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Amlesh Kumar Mahto',
+  //     title: 'Member',
+  //     img: '/images/kbm2/man.jpg',
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Birju Mahto',
+  //     title: 'Member',
+  //     img: '/images/kbm2/birjumahto.jpeg',
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'Pradeep Kumar',
+  //     title: 'Member',
+  //     img: '/images/kbm2/pradeepkumar.jpeg',
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
+  //   },
+  // ]);
 
   return (
     <div className="about-container">

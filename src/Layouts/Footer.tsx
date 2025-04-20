@@ -1,41 +1,41 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 
 const Footer = () => {
 
-  const [email, setEmail] = useState('');
-  const [responseMessage, setResponseMessage] = useState('');
-  const [responseType, setResponseType] = useState<'success' | 'error' | ''>('');
+  // const [email, setEmail] = useState('');
+  // const [responseMessage, setResponseMessage] = useState('');
+  // const [responseType, setResponseType] = useState<'success' | 'error' | ''>('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    // Simulate an API call to Mailchimp
-    const url =
-      '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&id=49d6d30e1e';
+  //   // Simulate an API call to Mailchimp
+  //   const url =
+  //     '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&id=49d6d30e1e';
 
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: new URLSearchParams({ EMAIL: email }),
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: 'POST',
+  //       body: new URLSearchParams({ EMAIL: email }),
+  //       headers: {
+  //         'Content-Type': 'application/x-www-form-urlencoded',
+  //       },
+  //     });
 
-      const result = await response.json();
+  //     const result = await response.json();
 
-      if (result.result === 'success') {
-        setResponseType('success');
-        setResponseMessage(result.msg);
-      } else {
-        setResponseType('error');
-        setResponseMessage(result.msg);
-      }
-    } catch (error) {
-      setResponseType('error');
-      setResponseMessage('An error occurred. Please try again.');
-    }
-  };
+  //     if (result.result === 'success') {
+  //       setResponseType('success');
+  //       setResponseMessage(result.msg);
+  //     } else {
+  //       setResponseType('error');
+  //       setResponseMessage(result.msg);
+  //     }
+  //   } catch (error) {
+  //     setResponseType('error');
+  //     setResponseMessage('An error occurred. Please try again.');
+  //   }
+  // };
 
   return (
     <div>

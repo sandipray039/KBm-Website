@@ -5,6 +5,7 @@ import {
   getAssemblies,
   submitJoinMemberForm,
 } from "../Services/ApiService";
+import './JoinMember.css';
 
 interface FormData {
   name: string;
@@ -197,182 +198,194 @@ const JoinMember: React.FC = () => {
       color: "red",
       fontSize: "18px",
     },
+    
+    
   };
-
   return (
-    <div style={styles.wrapper}>
-      <div>
-        <img
-          src="/images/photos/v1.png"
-          alt="Volunteer"
-          style={{ marginLeft: 70 }}
-        />
-      </div>
-      <div>
-        <h2 style={styles.heading}>Become a Member</h2>
-        <div style={styles.formContainer}>
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.fieldWrapper}>
-            <label style={styles.label}>
-              Name <span style={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              style={styles.input}
-              required
-            />
-            {errors.name && <span style={styles.errorText}>{errors.name}</span>}
-          </div>
-          <div style={styles.fieldWrapper}>
-            <label style={styles.label}>
-              Age <span style={styles.required}>*</span>
-            </label>
-            <input
-              type="number"
-              name="age"
-              placeholder="Age"
-              value={formData.age}
-              onChange={handleChange}
-              style={styles.input}
-              required
-            />
-            {errors.age && <span style={styles.errorText}>{errors.age}</span>}
-          </div>
-          <div style={styles.fieldWrapper}>
-            <label style={styles.label}>
-              Phone/Whatsapp number <span style={styles.required}>*</span>
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone/Whatsapp number"
-              value={formData.phone}
-              onChange={handleChange}
-              style={styles.input}
-              required
-            />
-            {errors.phone && (
-              <span style={styles.errorText}>{errors.phone}</span>
-            )}
-          </div>
-          <div style={styles.fieldWrapper}>
-            <label style={styles.label}>
-              Job with Location <span style={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              name="jobLocation"
-              placeholder="Job with Location"
-              value={formData.jobLocation}
-              onChange={handleChange}
-              style={styles.input}
-              required
-            />
-            {errors.jobLocation && (
-              <span style={styles.errorText}>{errors.jobLocation}</span>
-            )}
-          </div>
-          <div style={styles.fieldWrapper}>
-            <label style={styles.label}>
-              District <span style={styles.required}>*</span>
-            </label>
-            <select
-              name="district"
-              value={formData.district}
-              onChange={handleChange}
-              style={styles.input}
-              required
-            >
-              <option value="">Select District</option>
-              {districts.map((d) => (
-                <option key={d.id} value={d.id}>
-                  {d.name}
-                </option>
-              ))}
-            </select>
-            {errors.district && (
-              <span style={styles.errorText}>{errors.district}</span>
-            )}
-          </div>
-          <div style={styles.fieldWrapper}>
-            <label style={styles.label}>
-              Block <span style={styles.required}>*</span>
-            </label>
-            <select
-              name="block"
-              value={formData.block}
-              onChange={handleChange}
-              style={styles.input}
-              disabled={!formData.district}
-              required
-            >
-              <option value="">Select Block</option>
-              {blocks.map((b) => (
-                <option key={b.id} value={b.id}>
-                  {b.name}
-                </option>
-              ))}
-            </select>
-            {errors.block && (
-              <span style={styles.errorText}>{errors.block}</span>
-            )}
-          </div>
-          <div style={styles.fieldWrapper}>
-            <label style={styles.label}>
-              Assembly <span style={styles.required}>*</span>
-            </label>
-            <select
-              name="assembly"
-              value={formData.assembly}
-              onChange={handleChange}
-              style={styles.input}
-              disabled={!formData.block}
-              required
-            >
-              <option value="">Select Assembly</option>
-              {assemblies.map((a) => (
-                <option key={a.id} value={a.id}>
-                  {a.name}
-                </option>
-              ))}
-            </select>
-            {errors.assembly && (
-              <span style={styles.errorText}>{errors.assembly}</span>
-            )}
-          </div>
-       
-          <div style={{ ...styles.fieldWrapper, ...styles.fullWidth }}>
-            <label style={styles.label}>
-              Permanent Address <span style={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              name="address"
-              placeholder="Permanent Address"
-              value={formData.address}
-              onChange={handleChange}
-              style={styles.input}
-              required
-            />
-            {errors.address && (
-              <span style={styles.errorText}>{errors.address}</span>
-            )}
-          </div>
-      
-          <div style={styles.fullWidth}>
-            <button type="submit" style={styles.button}>
-              Apply Now
-            </button>
-          </div>
-        </form>
+    <div className="container">
+      <div className="row">
+        {/* Left Div (Image) */}
+        <div className="col-12 col-md-6">
+          <img
+            src="/images/photos/v1.png"
+            alt="Volunteer"
+            className="img-fluid"
+          />
+        </div>
+  
+        {/* Right Div (Form) */}
+        <div className="col-12 col-md-6">
+          <h2 className="text-white bg-primary text-center py-3 rounded">
+            Become a Member
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              {/* Name Input */}
+              <div className="col-12 col-md-6 mb-3">
+                <label className="form-label">
+                  Name <span className="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="form-control rounded"
+                  required
+                />
+                {errors.name && <span className="text-danger">{errors.name}</span>}
+              </div>
+  
+              {/* Age Input */}
+              <div className="col-12 col-md-6 mb-3">
+                <label className="form-label">
+                  Age <span className="text-danger">*</span>
+                </label>
+                <input
+                  type="number"
+                  name="age"
+                  placeholder="Age"
+                  value={formData.age}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+                {errors.age && <span className="text-danger">{errors.age}</span>}
+              </div>
+            </div>
+  
+            {/* Phone Input */}
+            <div className="mb-3">
+              <label className="form-label">
+                Phone/Whatsapp number <span className="text-danger">*</span>
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone/Whatsapp number"
+                value={formData.phone}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+              {errors.phone && <span className="text-danger">{errors.phone}</span>}
+            </div>
+  
+            {/* Job Location Input */}
+            <div className="mb-3">
+              <label className="form-label">
+                Job with Location <span className="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                name="jobLocation"
+                placeholder="Job with Location"
+                value={formData.jobLocation}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+              {errors.jobLocation && <span className="text-danger">{errors.jobLocation}</span>}
+            </div>
+  
+            {/* District Select */}
+            <div className="mb-3">
+              <label className="form-label">
+                District <span className="text-danger">*</span>
+              </label>
+              <select
+                name="district"
+                value={formData.district}
+                onChange={handleChange}
+                className="form-control"
+                required
+              >
+                <option value="">Select District</option>
+                {districts.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.name}
+                  </option>
+                ))}
+              </select>
+              {errors.district && <span className="text-danger">{errors.district}</span>}
+            </div>
+  
+            {/* Block Select */}
+            <div className="mb-3">
+              <label className="form-label">
+                Block <span className="text-danger">*</span>
+              </label>
+              <select
+                name="block"
+                value={formData.block}
+                onChange={handleChange}
+                className="form-control"
+                disabled={!formData.district}
+                required
+              >
+                <option value="">Select Block</option>
+                {blocks.map((b) => (
+                  <option key={b.id} value={b.id}>
+                    {b.name}
+                  </option>
+                ))}
+              </select>
+              {errors.block && <span className="text-danger">{errors.block}</span>}
+            </div>
+  
+            {/* Assembly Select */}
+            <div className="mb-3">
+              <label className="form-label">
+                Assembly <span className="text-danger">*</span>
+              </label>
+              <select
+                name="assembly"
+                value={formData.assembly}
+                onChange={handleChange}
+                className="form-control"
+                disabled={!formData.block}
+                required
+              >
+                <option value="">Select Assembly</option>
+                {assemblies.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.name}
+                  </option>
+                ))}
+              </select>
+              {errors.assembly && <span className="text-danger">{errors.assembly}</span>}
+            </div>
+  
+            {/* Permanent Address Input */}
+            <div className="mb-3">
+              <label className="form-label">
+                Permanent Address <span className="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                name="address"
+                placeholder="Permanent Address"
+                value={formData.address}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+              {errors.address && <span className="text-danger">{errors.address}</span>}
+            </div>
+  
+            {/* Submit Button */}
+            <div className="mb-3">
+              <button type="submit" className="btn btn-primary w-100 col-12 mt-5">
+                Join Now
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   );
+  
 };
 
 export default JoinMember;

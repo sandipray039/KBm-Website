@@ -141,7 +141,7 @@ const Header = () => {
          className="header-nav "   >
           <div
             className="header-nav-wrapper navbar-scrolltofixed  scroll-to-fixed-fixed "
-            style={{backgroundColor:'aqua'}}
+            style={{backgroundColor:'#003C72'}}
           >
 
             <div className="container" >
@@ -152,40 +152,40 @@ const Header = () => {
                 <img src="/images/kbm-slider/logo.png.png" alt=""
                 style={{height:"60px"}}
                 />
-             <p>खतियानी बुद्धिजीवी मंच</p>
+             <p className="text-white">खतियानी बुद्धिजीवी मंच</p>
                 </div>
                  
                 </Link>
                 <ul className="menuzord-menu onepage-nav">
-                  <li className="active">
-                    <Link to="/home">Home</Link>
+                  <li className="text-white">
+                    <Link className="text-white" to="/home">Home</Link>
                   </li>
-                  <li>
-                    <Link to="/about">About</Link>
+                  <li className="text-white">
+                    <Link className="text-white" to="/about">About</Link>
                   </li>
                   {/* <li>
                     <Link to="/causes">Causes</Link>
                   </li> */}
-                  <li>
-                    <Link to="/team">Volunteer</Link>
+                  <li className="text-white">
+                    <Link className="text-white" to="/team">Volunteer</Link>
                   </li>
-                  <li>
-                    <Link to="/gallery">Gallery</Link>
+                  <li className="text-white">
+                    <Link className="text-white" to="/gallery">Gallery</Link>
                   </li>
                   {/* <li>
                     <Link to="/blog">Blog</Link>
                   </li> */}
-                  <li>
-                    <Link to="/contact">Contact</Link>
+                  <li className="text-white">
+                    <Link className="text-white" to="/contact">Contact</Link>
                   </li>
                   {/* <li>
                     <Link to="/contact">Contact</Link>
                   </li> */}
-                  <li>
-                    <Link to="/donationpage">Donate Us</Link>
+                  <li className="text-white">
+                    <Link className="text-white" to="/donationpage">Donate Us</Link>
                   </li>
-                  <li>
-                    <Link to="/memberjoin">Join Us</Link>
+                  <li >
+                    <Link className="text-white" to="/memberjoin">Join Us</Link>
                   </li>
                 </ul>
 
