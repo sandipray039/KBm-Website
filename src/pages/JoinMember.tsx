@@ -204,8 +204,8 @@ const JoinMember: React.FC = () => {
   return (
     <div className="container">
       <div className="row">
-        {/* Left Div (Image) */}
-        <div className="col-12 col-md-6">
+        
+        <div className="col-12 col-md-6 mt-30" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
           <img
             src="/images/photos/v1.png"
             alt="Volunteer"
@@ -213,14 +213,13 @@ const JoinMember: React.FC = () => {
           />
         </div>
   
-        {/* Right Div (Form) */}
+      
         <div className="col-12 col-md-6">
           <h2 className="text-white bg-primary text-center py-3 rounded">
             Become a Member
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="row">
-              {/* Name Input */}
               <div className="col-12 col-md-6 mb-3">
                 <label className="form-label">
                   Name <span className="text-danger">*</span>
@@ -255,8 +254,8 @@ const JoinMember: React.FC = () => {
               </div>
             </div>
   
-            {/* Phone Input */}
-            <div className="mb-3">
+      <div className="row">
+            <div className="mb-3 col-md-6">
               <label className="form-label">
                 Phone/Whatsapp number <span className="text-danger">*</span>
               </label>
@@ -273,7 +272,7 @@ const JoinMember: React.FC = () => {
             </div>
   
             {/* Job Location Input */}
-            <div className="mb-3">
+            <div className="mb-3 col-md-6">
               <label className="form-label">
                 Job with Location <span className="text-danger">*</span>
               </label>
@@ -287,6 +286,7 @@ const JoinMember: React.FC = () => {
                 required
               />
               {errors.jobLocation && <span className="text-danger">{errors.jobLocation}</span>}
+            </div>
             </div>
   
             {/* District Select */}
@@ -376,7 +376,7 @@ const JoinMember: React.FC = () => {
   
             {/* Submit Button */}
             <div className="mb-3">
-              <button type="submit" className="btn btn-primary w-100 col-12 mt-5">
+              <button type="submit" className="btn btn-primary w-100 col-12 mt-5 border-gray" style={{width:'100%'}}>
                 Join Now
               </button>
             </div>

@@ -114,7 +114,7 @@ const Header = () => {
                 <div className="widget no-border m-0">
                   <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
                     <li className="mt-sm-10 mb-sm-10">
-                       {/* <!-- Modal: Appointment Starts -->  */}
+                       
                       <a
                         className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10"
                         href="/donationpage"

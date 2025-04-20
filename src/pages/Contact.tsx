@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
   return (
     <div>
       <Map />
-      <div className="container my-5" style={{ marginTop: '80px' }}>
+      <div className="container my-5" style={{ marginTop: '80px' ,}}>
         <h2 className="text-center fw-bold mt-10 mb-4">CONTACT US</h2>
 
         {statusMessage && (

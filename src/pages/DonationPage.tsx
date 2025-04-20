@@ -48,6 +48,7 @@ const DonationPage: React.FC = () => {
     if (!email.trim()) newErrors.email = 'This field is required';
     if (!phone.trim()) newErrors.phone = 'This field is required';
     if (!address.trim()) newErrors.address = 'This field is required';
+    if (!country.trim()) newErrors.countryerr = 'This field is required';
     if (isPanRequired && !pan.trim()) newErrors.pan = 'This field is required';
 
     setErrors(newErrors);
@@ -107,20 +108,19 @@ const DonationPage: React.FC = () => {
 
 
   return (
-    <div
+    <div className='container-fluid'
       style={{
         backgroundImage: 'url("/images/bg/bg24.jpg")',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         minHeight: '80vh',
-        position:'relative',
         padding:'.85vw 0vw'
       }}
     >
-      <div className="container ms-lg-900">
-  <div className="row ">
-    <div className="col-12 col-lg-8 "
+  <div className="d-flex justify-content-center">
+    <div className="col-md-8 col-lg-6 offset-md-3 mg  "
+   //
   >
     <form
         onSubmit={handleSubmit}
@@ -135,7 +135,7 @@ const DonationPage: React.FC = () => {
       >
         <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'#28A745',color:'white' }}>Donate Now</h2>
 
-        {/* Amount Input */}
+      
         <div style={{ marginBottom: '1rem' }}>
           <label>Amount (INR) <span style={{ color: 'red' }}>*</span></label>
           <input
@@ -171,7 +171,7 @@ const DonationPage: React.FC = () => {
 
           <div className='row'>
 
-               {/* Country Select */}
+              
         <div className='col-md-6' style={{ marginBottom: '1rem', position: 'relative' }}>
           <label>
             Country <span style={{ color: 'red' }}>*</span>
@@ -181,12 +181,15 @@ const DonationPage: React.FC = () => {
             onChange={handleCountryChange}
             style={inputStyle}
           >
+             
             {data.map((country) => (
               <option key={country.id} value={country.countryName}>
                 {country.countryName}
               </option>
             ))}
           </select>
+          {errors.countryerr && <p style={{ color: 'red' }}>{errors.countryerr}</p>}
+         
         </div>
 
         {/* Donor Name */}
@@ -313,7 +316,6 @@ const DonationPage: React.FC = () => {
 
       
     
-    </div>
   );
 };
 
