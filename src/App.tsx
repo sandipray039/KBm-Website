@@ -16,7 +16,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import TablesPage from "./pages/TablesPage";
 import VideoGallery from "./pages/VideoGallery";
-import Donation from "./pages/Donation";
+
 
 const App = () => {
   const location = useLocation();
