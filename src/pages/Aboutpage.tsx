@@ -1,44 +1,58 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
-// interface Member {
+// interface Volunteer {
 //   id: number;
 //   name: string;
-//   title: string;
-//   img: string;
-//   desc: string;
+//   image: string;
+//   bio: string;
 // }
 
+
 const Aboutpage = () => {
-  // const [members] = useState<Member[]>([
-  //   {
-  //     id: 1,
-  //     name: 'Vijay Kumar Mahto',
-  //     title: 'Member',
-  //     img: '/images/kbm2/bijaykumarmahto.jpeg',
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Amlesh Kumar Mahto',
-  //     title: 'Member',
-  //     img: '/images/kbm2/man.jpg',
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Birju Mahto',
-  //     title: 'Member',
-  //     img: '/images/kbm2/birjumahto.jpeg',
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'Pradeep Kumar',
-  //     title: 'Member',
-  //     img: '/images/kbm2/pradeepkumar.jpeg',
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. In dignissimos minima excepturi blanditiis obcaecati totam necessitatibus modi consectetur, pariatur soluta, vel dolorum quod repellendus est cupiditate, reprehenderit magni doloremque quidem id! Laborum dolores ipsum, corrupti aut totam labore non, perferendis quo excepturi ad porro! Totam ad architecto vel voluptatem dolorum ducimus laboriosam tempora temporibus! Saepe nemo blanditiis harum cumque consequatur aliquid velit sint beatae veniam sit. Animi fugiat earum, quam dolores alias odio, quibusdam exercitationem, molestias minima ipsum nihil reiciendis!"
-  //   },
-  // ]);
+//  const [volunteers] = useState<Volunteer[]>([
+//       {
+//         id: 1,
+//         name: "Sujit Kumar",
+//         image: "/images/about/sujit.jpg",
+//         bio: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+//       },
+//       {
+//         id: 2,
+//         name: "Naresh Kumar",
+//         image: "/images/team/nareshpic.jpg",
+//         bio: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+//       },
+//       {
+//         id: 3,
+//         name: "DR Dindyal Mahto",
+//         image: "/images/team/Dindyalpic.jpg",
+       
+//         bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+//       },
+//       {
+//         id: 4,
+//         name: "Vijay Kumar Mahto",
+//         image: "/images/kbm2/bijaykumarmahto.jpeg",
+       
+//         bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+//       },
+//       {
+//         id: 5,
+//         name: "Birju Mahto",
+//         image: "/images/kbm2/birjumahto.jpeg",
+       
+//         bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+//       },
+//       {
+//         id: 6,
+//         name: "DR Dindyal Mahto",
+//         image: "/images/kbm2/pradeepkumar.jpeg",
+       
+//         bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+//       },
+//     ]);
 
   return (
     <div className="about-container">
@@ -164,21 +178,68 @@ const Aboutpage = () => {
         </div>
       </div>
 
-      {/* <div className="about-members">
-        <h2 className="section-heading">Our Core Members</h2>
-        <div className="member-grid">
-          {members.map((member) => (
-            <div key={member.id} className="member-card">
-              <img src={member.img} alt={member.name} className="member-image" />
-              <h4 className="member-name">{member.name}</h4>
-              <p className="member-title">{member.title}</p>
-              <p className="member-desc">{member.desc}</p>
-              <button className="more-btn">More Info</button>
-            </div>
-          ))}
+{/* <div className="mt-30">
+<h2 style={{textAlign:'center',marginBottom:'15px'}}>Our Core Members</h2>
+
+
+<div className="section-content">
+          <div className="row multi-row-clearfix">
+            {volunteers.map((vol) => (
+              <div key={vol.id} className="col-xs-12 col-sm-6 col-md-4 mb-30">
+                <div className="team-member clearfix">
+                  <Link to={`/volunteer/${vol.id}`} style={{ textDecoration: "none" }}>
+                    <div className="team-thumb">
+                      <img
+                        src={vol.image}
+                        alt={vol.name}
+                        style={{height:'35vh',width:'100%',borderRadius:'20px'}}
+                      />
+                      <div className="overlay">
+                        <div className="content"></div>
+                      </div>
+                    </div>
+                  </Link>
+
+                  <div className="team-info bg-theme-colored " style={{borderRadius:'70px'}} >
+                    <h3 className="mt-0 text-white">{vol.name}</h3>
+                    <ul className="styled-icons icon-circled icon-theme-colored">
+                      <li>
+                        <a
+                          href="https://facebook.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fa fa-facebook"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://twitter.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fa fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://dribbble.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fa fa-dribbble"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div> */}
-    </div>
+
+</div> */}
+</div>
   );
 };
 

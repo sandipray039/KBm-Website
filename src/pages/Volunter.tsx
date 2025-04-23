@@ -17,17 +17,21 @@ const Volunter = () => {
       bio: "Sujit is a passionate social worker who helps children and the elderly.",
     },
     {
-      id: 2,
-      name: "Naresh Kumar",
-      image: "/images/team/nareshpic.jpg",
-      bio: "Jerin supports food distribution and local community work.",
+      id: 5,
+      name: "Birju Mahto",
+      image: "/images/kbm2/birjumahto.jpeg",
+     
+      bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
     },
     {
       id: 3,
-      name: "DR Dindyal Mahto",
+      name: "DR.Dindyal Mahto",
       image: "/images/team/Dindyalpic.jpg",
       bio: "Alex manages events and volunteers for major outreach programs.",
     },
+
+    
+    
   ]);
 
   return (
@@ -57,13 +61,13 @@ const Volunter = () => {
             {volunteers.map((vol) => (
               <div key={vol.id} className="col-xs-12 col-sm-6 col-md-4 mb-30">
                 <div className="team-member clearfix">
-                  {/* Only the image section is clickable */}
+               
                   <Link to={`/volunteer/${vol.id}`} style={{ textDecoration: "none" }}>
                     <div className="team-thumb">
                       <img
                         src={vol.image}
                         alt={vol.name}
-                        style={{height:'35vh',width:'100%'}}
+                        style={{height:'35vh',width:'100%',borderRadius:"15px"}}
                       />
                       <div className="overlay">
                         <div className="content"></div>
@@ -71,9 +75,13 @@ const Volunter = () => {
                     </div>
                   </Link>
 
-                  <div className="team-info bg-theme-colored">
-                    <h3 className="mt-0 text-white">{vol.name}</h3>
-                    <ul className="styled-icons icon-circled icon-theme-colored">
+                  <div className=" bg-theme-colored"
+                  style={{position:'relative',borderRadius:'20px',marginTop:'-30px',textAlign:'center',padding:'2px 0px'}}
+                  >
+                    <h3 className="mt-5 text-white" 
+                    
+                    >{vol.name}</h3>
+                    {/* <ul className="styled-icons icon-circled icon-theme-colored">
                       <li>
                         <a
                           href="https://facebook.com"
@@ -101,7 +109,7 @@ const Volunter = () => {
                           <i className="fa fa-dribbble"></i>
                         </a>
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                 </div>
               </div>

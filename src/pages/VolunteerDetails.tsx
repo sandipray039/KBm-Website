@@ -31,6 +31,27 @@ const VolunteerDetails = () => {
      
       bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
     },
+    {
+      id: 4,
+      name: "Vijay Kumar Mahto",
+      image: "/images/kbm2/bijaykumarmahto.jpeg",
+     
+      bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+    },
+    {
+      id: 5,
+      name: "Birju Mahto",
+      image: "/images/kbm2/birjumahto.jpeg",
+     
+      bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+    },
+    {
+      id: 6,
+      name: "DR Dindyal Mahto",
+      image: "/images/kbm2/pradeepkumar.jpeg",
+     
+      bio:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi a assumenda doloribus, ipsum perferendis ad sunt mollitia debitis, ratione aspernatur aliquid. Perspiciatis aliquid quibusdam accusantium. Voluptate beatae qui, porro expedita dolores suscipit numquam repudiandae deserunt minus reiciendis ipsum? Dolores nostrum facilis laudantium cupiditate esse ipsam, ipsum ut architecto, reiciendis mollitia sapiente delectus debitis vero nemo laboriosam unde temporibus repellendus? Iusto quis soluta voluptates, vero consectetur, quaerat facilis debitis dicta harum perspiciatis rerum quo exercitationem, commodi enim? Ullam laborum alias quam assumenda enim? Eius assumenda repellat similique reiciendis, in dicta dolore iste corporis explicabo, nihil eum id cumque sequi eligendi ratione."
+    },
   ]);
 
   const volunteer = volunteers.find((v) => v.id === Number(id));
@@ -40,10 +61,17 @@ const VolunteerDetails = () => {
   return (
     <div className="container py-5" style={{marginTop:'80px',marginBottom:'40px'}}>
       <div className="row">
-        <div className="col-md-5">
-          <img src={volunteer.image} alt={volunteer.name} className="img-fluid rounded" />
-        </div>
-        <div className="col-md-7">
+      <div className="col-md-5 p-20" style={{display:'flex',justifyContent:'center',alignItems:'center',border:"3px solid #00A4EF",borderRadius:'20px'}}>
+
+    <img 
+      src={volunteer.image} 
+      alt={volunteer.name} 
+      className="img-fluid rounded h-100 w-100" 
+      style={{ objectFit: "cover",borderRadius:'20px',height:'350px',width:'400px' }} 
+    />
+  
+</div>
+        <div className="col-md-7 ml-2">
           <h2>{volunteer.name}</h2>
           <p>{volunteer.bio}</p>
         </div>

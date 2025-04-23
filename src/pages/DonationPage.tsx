@@ -10,6 +10,9 @@ const DonationPage: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    const [statusMessage, setStatusMessage] = useState<string>('');
+    const [Step,setStep]=useState<number>(1);
+    const [upiNo,setUpiNo]=useState<string>('');
   const [data, setData] = useState<{
     id: number;
     countryCode: string;
@@ -46,32 +49,81 @@ const DonationPage: React.FC = () => {
     if (!amount) newErrors.amount = 'This field is required';
     if (!donorName.trim()) newErrors.donorName = 'This field is required';
     if (!email.trim()) newErrors.email = 'This field is required';
-    if (!phone.trim()) newErrors.phone = 'This field is required';
+    if (!phone.trim()) {
+      newErrors.phone = 'Phone number is required.';
+    } else if (!/^\d{10}$/.test(phone)) {
+      newErrors.phone = 'Phone number must be exactly 10 digits.';
+    }
+    
     if (!address.trim()) newErrors.address = 'This field is required';
     if (!country.trim()) newErrors.countryerr = 'This field is required';
+   //if (!upiNo.trim()) newErrors.upiNo = 'This field is required';
     if (isPanRequired && !pan.trim()) newErrors.pan = 'This field is required';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const validateFormTwo = () => {
+    const newErrors: { [key: string]: string } = {};
+
+    if (!amount) newErrors.amount = 'This field is required';
+    if (!donorName.trim()) newErrors.donorName = 'This field is required';
+   // if (!email.trim()) newErrors.email = 'This field is required';
+    if (!phone.trim()) newErrors.phone = 'This field is required';
+    if (!address.trim()) newErrors.address = 'This field is required';
+    if (!country.trim()) newErrors.countryerr = 'This field is required';
+    if (!upiNo.trim()) newErrors.upiNo = 'TransactionId is required';
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+
+if (isPanRequired) {
+  if (!pan.trim()) {
+    newErrors.pan = 'This field is required';
+  } else if (!panRegex.test(pan.trim())) {
+    newErrors.pan = 'Enter a valid PAN number (e.g., ABCDE1234F)';
+  }
+}
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNext=(e:any)=>{
     e.preventDefault();
     if (!validateForm()) return;
+    if(validateForm() &&  Step===1){
+      setStep(2);
+    }
+
+  };
+  const handlePrevious=()=>{
+    if(Step===2){
+      setStep(1);
+    }
+  }
+
+  
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateFormTwo()) return;
     const formData = {
       amount: Number(amount),
       countryName: country,
       name: donorName,
-      mobileNo: selectedPhoneCode + phone,
+      mobileNo: `${selectedPhoneCode}-${phone}`,
       email,
       address,
       panNo: isPanRequired ? pan : null,
+      TransactionId:upiNo
     };
 
     try {
+      console.log("formdata-->",formData);
       const response = await submitDonationForm(formData);
+      console.log(response);
       if (response?.isSuccess) {
-        alert('Donation submitted successfully!');
+        setStatusMessage('Donation made successfully! We will reach out to you soon.');
         setAmount('');
         setCountry('India');
         setDonorName('');
@@ -79,12 +131,12 @@ const DonationPage: React.FC = () => {
         setEmail('');
         setAddress('');
         setPan('');
+        setUpiNo('');
         setErrors({});
-      } else {
-        alert('Submission failed. Please try again.');
+      } else { setStatusMessage('Form submission failed. Please try again.');
       }
     } catch (err: any) {
-      alert(err?.message || 'Something went wrong!');
+      setStatusMessage('Something went wrong during submission.');
     }
   };
 
@@ -96,6 +148,9 @@ const DonationPage: React.FC = () => {
     if (countryData) {
       setSelectedPhoneCode(countryData.phoneCode);
     }
+  };
+  const handleCloseMessage = () => {
+    setStatusMessage('');
   };
 
   const inputStyle = {
@@ -109,23 +164,242 @@ const DonationPage: React.FC = () => {
 
   return (
     <div className='container-fluid'
-      style={{
-        backgroundImage: 'url("/images/bg/bg24.jpg")',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        minHeight: '80vh',
-        padding:'.85vw 0vw'
-      }}
+      // style={{
+      //   backgroundImage: 'url("/images/bg/d.jpg")',
+      //   backgroundSize: 'cover',
+      //   backgroundRepeat: 'no-repeat',
+      //   backgroundPosition: 'center',
+      //   minHeight: '80vh',
+      //   padding:'.85vw 0vw'
+      // }}
     >
-  <div className="d-flex justify-content-center">
-    <div className="col-md-8 col-lg-6 offset-md-3 mg  "
+      <div className='row'>
+
+     
+
+<div className="col-12 col-md-7 col-lg-5 mt-60" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+          <img
+            src="/images/bg/d2.jpg"
+            alt="Volunteer"
+            className="img-fluid"
+          />
+        </div>
+
+
+    <div className="col-md-8  col-md-6   "
    //
   >
-    <form
-        onSubmit={handleSubmit}
-        style={{
+     {statusMessage && (
+          <div
+            className={`alert ${statusMessage.includes('success') ? 'alert-success' : 'alert-danger'} position-relative fadeInAlert mt-10`}
+            role="alert"
+          >
+            {statusMessage}
+            <button
+              type="button"
+              className="btn-close position-absolute top-0 end-0 m-2"
+              aria-label="Close"
+              onClick={handleCloseMessage}
+              style={{ position: 'absolute', top: '10px', right: '10px' }}
+            >
+              ×
+            </button>
+          </div>
+        )}
+      {Step===1 && (
+           <form
+           onSubmit={handleNext}
+           style={{
+            
+             padding: '0rem 2rem 2.5rem',
+             border: '1px solid #ddd',
+             borderRadius: '8px',
+             boxShadow: '0 0 10px rgba(0,0,0,0.05)',
+             background: '#fff',
+           }}
+         >
+           <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'#00A4EF',color:'white',borderRadius:'10px' }}>Personal Details</h2>
+   
          
+           <div style={{ marginBottom: '1rem' }}>
+             <label>Amount (INR) <span style={{ color: 'red' }}>*</span></label>
+             <input
+               type="number"
+               value={amount}
+               onChange={(e) => setAmount(Number(e.target.value))}
+               placeholder="Enter amount"
+               style={inputStyle}
+             />
+             {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
+   
+             <div style={{ marginTop: '0.5rem' }}>
+               {[500, 1000, 1500, 2000].map((val) => (
+                 <button
+                   key={val}
+                   type="button"
+                   onClick={() => handlePresetClick(val)}
+                   style={{
+                     margin: '4px',
+                     padding: '8px 12px',
+                     background: '#f0f0f0',
+                     border: '1px solid #ccc',
+                     borderRadius: '4px',
+                     cursor: 'pointer',
+                   }}
+                 >
+                   ₹{val}
+                 </button>
+               ))}
+             </div>
+           </div>
+   
+   
+             <div className='row'>
+   
+                 
+           <div className='col-md-6' style={{ marginBottom: '1rem', position: 'relative' }}>
+             <label>
+               Country <span style={{ color: 'red' }}>*</span>
+             </label>
+             <select
+               value={country}
+               onChange={handleCountryChange}
+               style={inputStyle}
+             >
+                
+               {data.map((country) => (
+                 <option key={country.id} value={country.countryName}>
+                   {country.countryName}
+                 </option>
+               ))}
+             </select>
+             {errors.countryerr && <p style={{ color: 'red' }}>{errors.countryerr}</p>}
+            
+           </div>
+   
+       
+           <div className='col-md-6' style={{ marginBottom: '1rem' }}>
+             <label>
+               Your Name <span style={{ color: 'red' }}>*</span>
+             </label>
+             <input
+               type="text"
+               value={donorName}
+               onChange={(e) => setDonorName(e.target.value)}
+               placeholder="Enter your name"
+               style={inputStyle}
+             />
+             {errors.donorName && <p style={{ color: 'red' }}>{errors.donorName}</p>}
+           </div>
+             </div>
+           <div className='row'>
+               
+               
+          
+           <div className='col-md-6' style={{ marginBottom: '1rem', position: 'relative' }}>
+             <label>
+               Phone Number <span style={{ color: 'red' }}>*</span>
+             </label>
+             <div style={{ position: 'relative' }}>
+               <span
+                 style={{
+                   position: 'absolute',
+                   top: '50%',
+                   left: '10px',
+                   transform: 'translateY(-50%)',
+                   backgroundColor: '#f2f2f2',
+                   padding: '4px 8px',
+                   borderRadius: '4px',
+                   fontSize: '14px',
+                   pointerEvents: 'none',
+                 }}
+               >
+                 {selectedPhoneCode}
+               </span>
+               <input
+                 type="tel"
+                 value={phone}
+                 onChange={(e) => setPhone(e.target.value)}
+                 placeholder="Enter your phone number"
+                 style={{
+                   width: '100%',
+                   padding: '8px 8px 8px 70px', 
+                   border: '1px solid #ccc',
+                   borderRadius: '4px',
+                   fontSize: '14px',
+                 }}
+               />
+             </div>
+             {errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>}
+           </div>
+   
+           {/* Email */}
+           <div className='col-md-6' style={{ marginBottom: '1rem' }}>
+             <label>
+               Email 
+             </label>
+             <input
+               type="email"
+               value={email}
+               onChange={(e) => setEmail(e.target.value)}
+               placeholder="Enter your email"
+               style={inputStyle}
+             />
+             {/* {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>} */}
+           </div>
+           </div>
+   
+           {/* Address */}
+           <div style={{ marginBottom: '1rem' }}>
+             <label>Address<span style={{ color: 'red' }}>*</span></label>
+             <textarea
+               value={address}
+               onChange={(e) => setAddress(e.target.value)}
+               placeholder="Enter your address"
+               style={inputStyle}
+             />
+              {errors.address && <p style={{ color: 'red' }}>{errors.address}</p>}
+           </div>
+   
+           {/* PAN */}
+           {isPanRequired && (
+             <div style={{ marginBottom: '1rem' }}>
+               <label>
+                 PAN Number <span style={{ color: 'red' }}>*</span>
+               </label>
+               <input
+                 type="text"
+                 value={pan}
+                 onChange={(e) => setPan(e.target.value)}
+                 placeholder="Enter PAN number"
+                 style={inputStyle}
+               />
+               {errors.pan && <p style={{ color: 'red' }}>{errors.pan}</p>}
+             </div>
+           )}
+   
+           {/* Submit Button */}
+           <button
+             type="submit"
+             style={{
+               padding: '10px 20px',
+               background: '#00A4EF',
+               color: '#fff',
+               border: 'none',
+               borderRadius: '4px',
+               cursor: 'pointer',
+               width: '100%',
+               textAlign: 'center',
+             }}
+           >
+             Next 
+           </button>
+         </form>
+      )}
+      {Step===2 && (
+        <form onSubmit={handleSubmit}
+        style={{
+            
           padding: '0rem 2rem 2.5rem',
           border: '1px solid #ddd',
           borderRadius: '8px',
@@ -133,186 +407,106 @@ const DonationPage: React.FC = () => {
           background: '#fff',
         }}
       >
-        <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'#28A745',color:'white' }}>Donate Now</h2>
-
-      
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Amount (INR) <span style={{ color: 'red' }}>*</span></label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
-            placeholder="Enter amount"
-            style={inputStyle}
-          />
-          {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
-
-          <div style={{ marginTop: '0.5rem' }}>
-            {[500, 1000, 1500, 2000].map((val) => (
-              <button
-                key={val}
-                type="button"
-                onClick={() => handlePresetClick(val)}
-                style={{
-                  margin: '4px',
-                  padding: '8px 12px',
-                  background: '#f0f0f0',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                }}
-              >
-                ₹{val}
-              </button>
-            ))}
-          </div>
-        </div>
-
-
-          <div className='row'>
-
-              
-        <div className='col-md-6' style={{ marginBottom: '1rem', position: 'relative' }}>
-          <label>
-            Country <span style={{ color: 'red' }}>*</span>
-          </label>
-          <select
-            value={country}
-            onChange={handleCountryChange}
-            style={inputStyle}
-          >
-             
-            {data.map((country) => (
-              <option key={country.id} value={country.countryName}>
-                {country.countryName}
-              </option>
-            ))}
-          </select>
-          {errors.countryerr && <p style={{ color: 'red' }}>{errors.countryerr}</p>}
-         
-        </div>
-
-        {/* Donor Name */}
-        <div className='col-md-6' style={{ marginBottom: '1rem' }}>
-          <label>
-            Your Name <span style={{ color: 'red' }}>*</span>
-          </label>
-          <input
-            type="text"
-            value={donorName}
-            onChange={(e) => setDonorName(e.target.value)}
-            placeholder="Enter your name"
-            style={inputStyle}
-          />
-          {errors.donorName && <p style={{ color: 'red' }}>{errors.donorName}</p>}
-        </div>
-          </div>
-        <div className='row'>
-            
-            
-        {/* Phone Number */}
-        <div className='col-md-6' style={{ marginBottom: '1rem', position: 'relative' }}>
-          <label>
-            Phone Number <span style={{ color: 'red' }}>*</span>
-          </label>
-          <div style={{ position: 'relative' }}>
-            <span
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '10px',
-                transform: 'translateY(-50%)',
-                backgroundColor: '#f2f2f2',
-                padding: '4px 8px',
-                borderRadius: '4px',
-                fontSize: '14px',
-                pointerEvents: 'none',
-              }}
-            >
-              {selectedPhoneCode}
-            </span>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="Enter your phone number"
-              style={{
-                width: '100%',
-                padding: '8px 8px 8px 70px', 
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                fontSize: '14px',
-              }}
+          <h2 className='text-center'>Donation details</h2>
+           <div style={{ marginBottom: '1rem',marginTop:'1rem' }}>
+           <div className='row'>
+           <label>Amount (INR) <span style={{ color: 'red' }}>*</span></label>
+             <input
+               type="number"
+               value={amount}
+               onChange={(e) => setAmount(Number(e.target.value))}
+               placeholder="Enter amount"
+               style={inputStyle}
+               className='col-md-6'
+               readOnly
+             />
+           </div>
+             {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
+   
+             {/* <div style={{ marginTop: '0.5rem' }}>
+               {[500, 1000, 1500, 2000].map((val) => (
+                 <button
+                   key={val}
+                   type="button"
+                   onClick={() => handlePresetClick(val)}
+                   style={{
+                     margin: '4px',
+                     padding: '8px 12px',
+                     background: '#f0f0f0',
+                     border: '1px solid #ccc',
+                     borderRadius: '4px',
+                     cursor: 'pointer',
+                   }}
+                 >
+                   ₹{val}
+                 </button>
+               ))}
+             </div> */}
+           </div>
+           <h3>QR Code:</h3>
+           <div style={{display:'flex',justifyContent:'center'}}>
+           
+            <img src="/images/qr/qr.jpg" alt="qr" 
+            style={{height:'300px',width:'300px',}}
             />
-          </div>
-          {errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>}
-        </div>
-
-        {/* Email */}
-        <div className='col-md-6' style={{ marginBottom: '1rem' }}>
-          <label>
-            Email <span style={{ color: 'red' }}>*</span>
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            style={inputStyle}
-          />
-          {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
-        </div>
-        </div>
-
-        {/* Address */}
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Address<span style={{ color: 'red' }}>*</span></label>
-          <textarea
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            placeholder="Enter your address"
-            style={inputStyle}
-          />
-           {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
-        </div>
-
-        {/* PAN */}
-        {isPanRequired && (
-          <div style={{ marginBottom: '1rem' }}>
-            <label>
-              PAN Number <span style={{ color: 'red' }}>*</span>
+           </div>
+           <div className='row '>
+            <label className='form-label'>UPI Transaction Id:
             </label>
-            <input
-              type="text"
-              value={pan}
-              onChange={(e) => setPan(e.target.value)}
-              placeholder="Enter PAN number"
-              style={inputStyle}
+            <input 
+            type="Number" 
+            value={upiNo}
+            className='form-control'
+            onChange={(e) => setUpiNo(e.target.value)}
             />
-            {errors.pan && <p style={{ color: 'red' }}>{errors.pan}</p>}
+         {errors.upiNo && <p style={{ color: 'red' }}>{errors.upiNo}</p>}
+           </div>
+        
+          <div style={{display:'flex',gap:'10px'}}>
+          <button
+             type="submit"
+             className='btn btn-success'
+             style={{
+              marginTop:'15px',
+               padding: '10px 20px',
+              
+               border: 'none',
+               borderRadius: '4px',
+               cursor: 'pointer',
+            
+               textAlign: 'center',
+             }}
+             onClick={handlePrevious}
+           >
+             Previous
+           </button>
+           <button
+             type="submit"
+             style={{
+              marginTop:'15px',
+               padding: '10px 20px',
+               background: '#00A4EF',
+               color: '#fff',
+               border: 'none',
+               borderRadius: '4px',
+               cursor: 'pointer',
+            
+               textAlign: 'center',
+             }}
+           >
+             Donate
+           </button>
           </div>
-        )}
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          style={{
-            padding: '10px 20px',
-            background: '#28a745',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            width: '100%',
-            textAlign: 'center',
-          }}
-        >
-          Donate
-        </button>
-      </form>
+
+
+        </form>
+      )}
     </div>
   </div>
-</div>
+
+  </div>
+
 
       
     

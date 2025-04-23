@@ -56,7 +56,7 @@ const About: React.FC = () => {
                   Welcome to <span className="text-theme-colored">KBM</span>{" "}
                   Please Raise your Helping Hand
                 </h2>
-                <p className="ml-5" style={{ fontSize: "1vw" }}>
+                <p className="ml-5" >
                   The Khatiyani BuddhiJiwi Manch (Intellectual Forum) was
                   started in 2010 from a small village, Nichitpur (Galagi),
                   which is located in the Dumri block of Giridih district in

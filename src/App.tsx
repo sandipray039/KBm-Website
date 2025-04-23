@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import TablesPage from "./pages/TablesPage";
 import VideoGallery from "./pages/VideoGallery";
+import Events from "./pages/Events";
 
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
   
   return (
     <div className="d-flex flex-column min-vh-100">
-      {!isLoginPage && !isTablePage && <Header />} 
+      {!isLoginPage && !isTablePage && <Header />}
       <main style={{ minHeight: '50vh' }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -44,10 +45,11 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tablepage" element={<TablesPage />} />
           <Route path="/videogallery" element={<VideoGallery />} />
+          <Route path="/events" element={<Events/>} />
 
         </Routes>
       </main>
-      {!isLoginPage && !isTablePage && <Footer />} 
+      {!isLoginPage && !isTablePage && <Footer />}
     </div>
   );
 };

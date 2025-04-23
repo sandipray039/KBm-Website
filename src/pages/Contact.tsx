@@ -44,8 +44,8 @@ const Contact: React.FC = () => {
     if (!formData.subject.trim()) errors.subject = 'Subject is required.';
     if (!formData.phoneNo.trim()) {
       errors.phoneNo = 'Phone number is required.';
-    } else if (!/^\d+$/.test(formData.phoneNo)) {
-      errors.phoneNo = 'Phone number must contain only digits.';
+    } else if (!/^\d{10}$/.test(formData.phoneNo)) {
+      errors.phoneNo = 'Phone number must contain exactly 10 digits.';
     }
     if (!formData.message.trim()) errors.message = 'Message is required.';
 
@@ -95,8 +95,8 @@ const Contact: React.FC = () => {
   return (
     <div>
       <Map />
-      <div className="container my-5" style={{ marginTop: '80px' ,}}>
-        <h2 className="text-center fw-bold mt-10 mb-4">CONTACT US</h2>
+      <div className="container my-5">
+        <h2 className="text-center fw-bold mt-10 mb-4 pb-5 pt">Contact Us</h2>
 
         {statusMessage && (
           <div
@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="row mb-3">
-            <div className="col-md-6 mb-3 mb-md-0">
+            <div className="col-md-4 mb-3 mb-md-0">
               <label htmlFor="name" className="form-label">
                 Name <span className="text-danger">*</span>
               </label>
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
               />
               {formErrors.name && <small className="text-danger">{formErrors.name}</small>}
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
               <label htmlFor="email" className="form-label">
                 Email <span className="text-danger">*</span>
               </label>
@@ -151,7 +151,7 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="row mb-3">
-            <div className="col-md-6 mb-3 mb-md-0">
+            <div className="col-md-4 mb-3 mb-md-0">
               <label htmlFor="subject" className="form-label">
                 Subject <span className="text-danger">*</span>
               </label>
@@ -166,7 +166,7 @@ const Contact: React.FC = () => {
               />
               {formErrors.subject && <small className="text-danger">{formErrors.subject}</small>}
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
               <label htmlFor="phoneNo" className="form-label">
                 Phone <span className="text-danger">*</span>
               </label>
@@ -183,7 +183,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="mb-3">
+          <div className="mb-3 col-md-4">
             <label htmlFor="message" className="form-label">
               Message <span className="text-danger">*</span>
             </label>
@@ -199,7 +199,7 @@ const Contact: React.FC = () => {
             {formErrors.message && <small className="text-danger">{formErrors.message}</small>}
           </div>
 
-          <div className="d-flex">
+          <div className="d-flex col-md-4 justify-content-center">
             <button type="submit" className="btn btn-primary px-4 me-2" style={{ borderRadius: 5 }}>
               SEND YOUR MESSAGE
             </button>

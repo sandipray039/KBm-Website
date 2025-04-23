@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { login } from "../Services/ApiService";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+
+
+
 
 interface LoginData {
   UserName: string;
   Password: string;
-}
+};
 
 const Login: React.FC = () => {
   const [Name, setUserName] = useState<string>("");
@@ -23,6 +26,7 @@ const Login: React.FC = () => {
     try {
         const response=await login(data);
         if(response.isSuccess){
+            
             navigate('/tablepage');
         }
 
@@ -35,9 +39,9 @@ const Login: React.FC = () => {
    <div>
      <div
     className="container "
-    style={{ paddingTop: "100px", paddingBottom: "100px",backgroundColor:'aqua', display:'flex',justifyContent:'center',alignItems:'center',width:'100vw',height:'100vh'}}
+    style={{backgroundColor:'aqua', display:'flex',justifyContent:'center',alignItems:'center',width:'100vw',height:'100vh'}}
   >
-       <div className="login-box"  style={{backgroundColor:'white',width:'28vw',height:'40vh',padding:'7px 50px'}}>
+       <div className="login-box col-md-3 col-sm-6 col-xs-12"  style={{backgroundColor:'white',height:'fit-content',padding:'7px 50px',borderRadius:'15px'}}>
         
       <div
         className=" p-4 "

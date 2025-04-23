@@ -1428,6 +1428,13 @@ section > .container-fluid {
 .mg{
   margin-left: 40vw;
 }
+.member-image {
+  width: 100%;
+  height: 250px; 
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
+}
 
 
 @media only screen and (max-width:1200px) {
@@ -6304,6 +6311,11 @@ blockquote p {
  * Shortcode: team.less
  * -----------------------------------------------
 */
+.ac{
+  background-color: #1976d2;
+  color: white;
+}
+
 .team-member {
   overflow: hidden;
   padding-bottom: 35px;

@@ -17,6 +17,7 @@ interface FormData {
   jobLocation: string;
   phone: string;
   whatsapp: string;
+  qualification:string;
 }
 
 const JoinMember: React.FC = () => {
@@ -30,6 +31,7 @@ const JoinMember: React.FC = () => {
     jobLocation: "",
     phone: "",
     whatsapp: "",
+    qualification:"",
   });
 
   const [districts, setDistricts] = useState<any[]>([]);
@@ -37,6 +39,14 @@ const JoinMember: React.FC = () => {
   const [assemblies, setAssemblies] = useState<any[]>([]);
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const qualificationOptions = [
+    "High School",
+    "Diploma",
+    "Bachelor's Degree",
+    "Master's Degree",
+    "Ph.D.",
+    "Other",
+  ];
 
   useEffect(() => {
     const fetchDistricts = async () => {
@@ -76,9 +86,35 @@ const JoinMember: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+  
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.age.trim()) newErrors.age = 'Age field is required';
+    if (!formData.address.trim()) newErrors.address = 'Address is required';
+    if (!formData.assembly.trim()) newErrors.assembly = 'Assembly is required';
+    if (!formData.block.trim()) newErrors.block = 'Block is required';
+    if (!formData.district.trim()) newErrors.district = 'DIstrict is required';
+    if (!formData.jobLocation.trim()) newErrors.jobLocation = 'This field is required';
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone Number is required';
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = 'Phone number must be exactly 10 digits';
+    }
+    if (!formData.qualification.trim()) {
+      newErrors.qualification = "Qualification is required";
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+  
+
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validateForm()) return;
     console.log("form submitted..", formData);
 
     try {
@@ -99,6 +135,7 @@ const JoinMember: React.FC = () => {
         assembly: selectedAssembly?.name || "",
         jobLocation: formData.jobLocation,
         phone: formData.phone,
+        qualification:formData.qualification
       };
       console.log("before submitting..", payload);
 
@@ -117,6 +154,7 @@ const JoinMember: React.FC = () => {
           jobLocation: "",
           phone: "",
           whatsapp: "",
+          qualification:""
         });
         setBlocks([]);
         setAssemblies([]);
@@ -214,15 +252,15 @@ const JoinMember: React.FC = () => {
         </div>
   
       
-        <div className="col-12 col-md-6">
-          <h2 className="text-white bg-primary text-center py-3 rounded">
+        <div className="col-12 col-md-6" style={{padding:'10px 25px',border:'1px solid #80808047',borderRadius:'15px'}}>
+          <h2 className="text-white bg-primary text-center py-3 rounded " style={{borderRadius:'8px'}}>
             Become a Member
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-12 col-md-6 mb-3">
                 <label className="form-label">
-                  Name <span className="text-danger">*</span>
+                 Full Name <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -231,7 +269,7 @@ const JoinMember: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="form-control rounded"
-                  required
+                
                 />
                 {errors.name && <span className="text-danger">{errors.name}</span>}
               </div>
@@ -248,7 +286,7 @@ const JoinMember: React.FC = () => {
                   value={formData.age}
                   onChange={handleChange}
                   className="form-control"
-                  required
+                  
                 />
                 {errors.age && <span className="text-danger">{errors.age}</span>}
               </div>
@@ -266,7 +304,7 @@ const JoinMember: React.FC = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 className="form-control"
-                required
+               
               />
               {errors.phone && <span className="text-danger">{errors.phone}</span>}
             </div>
@@ -274,23 +312,24 @@ const JoinMember: React.FC = () => {
             {/* Job Location Input */}
             <div className="mb-3 col-md-6">
               <label className="form-label">
-                Job with Location <span className="text-danger">*</span>
+                Job  Location <span className="text-danger">*</span>
               </label>
               <input
                 type="text"
                 name="jobLocation"
-                placeholder="Job with Location"
+                placeholder="Job Location"
                 value={formData.jobLocation}
                 onChange={handleChange}
                 className="form-control"
-                required
+              
               />
               {errors.jobLocation && <span className="text-danger">{errors.jobLocation}</span>}
             </div>
             </div>
   
             {/* District Select */}
-            <div className="mb-3">
+           <div className="row">
+           <div className="mb-3 col-md-6">
               <label className="form-label">
                 District <span className="text-danger">*</span>
               </label>
@@ -299,7 +338,7 @@ const JoinMember: React.FC = () => {
                 value={formData.district}
                 onChange={handleChange}
                 className="form-control"
-                required
+                
               >
                 <option value="">Select District</option>
                 {districts.map((d) => (
@@ -310,6 +349,27 @@ const JoinMember: React.FC = () => {
               </select>
               {errors.district && <span className="text-danger">{errors.district}</span>}
             </div>
+            <div className="mb-3 col-md-6">
+  <label className="form-label">
+    Highest Qualification <span className="text-danger">*</span>
+  </label>
+  <select
+    name="qualification"
+    value={formData.qualification}
+    onChange={handleChange}
+    className="form-control"
+  >
+    <option value="">-- Select Qualification --</option>
+    {qualificationOptions.map((option, index) => (
+      <option key={index} value={option}>
+        {option}
+      </option>
+    ))}
+  </select>
+  {errors.qualification && <span className="text-danger">{errors.qualification}</span>}
+</div>
+
+           </div>
   
             {/* Block Select */}
             <div className="mb-3">
@@ -322,7 +382,7 @@ const JoinMember: React.FC = () => {
                 onChange={handleChange}
                 className="form-control"
                 disabled={!formData.district}
-                required
+                
               >
                 <option value="">Select Block</option>
                 {blocks.map((b) => (
@@ -345,7 +405,7 @@ const JoinMember: React.FC = () => {
                 onChange={handleChange}
                 className="form-control"
                 disabled={!formData.block}
-                required
+               
               >
                 <option value="">Select Assembly</option>
                 {assemblies.map((a) => (
@@ -369,7 +429,7 @@ const JoinMember: React.FC = () => {
                 value={formData.address}
                 onChange={handleChange}
                 className="form-control"
-                required
+               
               />
               {errors.address && <span className="text-danger">{errors.address}</span>}
             </div>
