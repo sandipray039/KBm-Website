@@ -49,7 +49,7 @@ const Mission = () => {
                          </div>
                      </div>
                  </div>
-                 <div className="col-xs-12 col-sm-6 col-md-4">
+                 {/* <div className="col-xs-12 col-sm-6 col-md-4">
                      <h3 className="line-bottom border-bottom mt-0">Upcoming Events</h3>
                      <div className="event media sm-maxwidth400 border-bottom mt-5 mb-0 pt-10 pb-15">
                          <div className="row">
@@ -114,7 +114,7 @@ const Mission = () => {
                              </div>
                          </div>
                      </div>
-                 </div>
+                 </div> */}
              </div>
          </div>
      </div>

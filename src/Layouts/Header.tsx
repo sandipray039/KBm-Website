@@ -89,7 +89,7 @@ const Header = () => {
                       {" "}
                       <i className="fa fa-phone text-white"></i>{" "}
                       <a className="text-white" href="#">
-                        91733-3390
+                        6207723381
                       </a>{" "}
                     </li>
                     <li className="text-white m-0 pl-10 pr-10">
@@ -216,17 +216,7 @@ const Header = () => {
                   {/* <li>
                     <Link to="/contact">Contact</Link>
                   </li> */}
-                  <li className="text-white">
-                    <NavLink
-                      to="/donationpage"
-                      className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
-                      }
-                    >
-                      Donate Us
-                    </NavLink>
-                  </li>
-                  <li>
+                    <li>
                     <NavLink
                       to="/events"
                       className={({ isActive }) =>
@@ -236,6 +226,17 @@ const Header = () => {
                       Events
                     </NavLink>
                   </li>
+                  <li className="text-white">
+                    <NavLink
+                      to="/donationpage"
+                      className={({ isActive }) =>
+                        `text-white ${isActive ? "active" : ""}`
+                      }
+                    >
+                      Donate
+                    </NavLink>
+                  </li>
+                
                 </ul>
               </nav>
               {/* <div style={{ position: 'fixed', top: 10, right: 10, zIndex: 999 }}>
