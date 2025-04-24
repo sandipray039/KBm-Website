@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
+
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [sticky, setSticky] = useState<boolean>(false);
@@ -155,14 +156,12 @@ const Header = () => {
                 </Link>
                 <ul className="menuzord-menu onepage-nav">
                   <li className="text-white">
-                    <NavLink
-                      to="/home"
-                      className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
-                      }
-                    >
-                      Home
-                    </NavLink>
+                  <NavLink
+    to="/home"
+    className={({ isActive }) => `text-white ${isActive ? 'active' : ''}`}
+  >
+    Home
+  </NavLink>
                   </li>
                   <li className="text-white">
                     <NavLink

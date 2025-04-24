@@ -76,13 +76,15 @@ const DonationPage: React.FC = () => {
     if (!upiNo.trim()) newErrors.upiNo = 'TransactionId is required';
     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
 
-if (isPanRequired) {
-  if (!pan.trim()) {
-    newErrors.pan = 'This field is required';
-  } else if (!panRegex.test(pan.trim())) {
-    newErrors.pan = 'Enter a valid PAN number (e.g., ABCDE1234F)';
-  }
-}
+    if (isPanRequired) {
+      if (!pan.trim()) {
+        newErrors.pan = 'PAN is required for donations of ₹20,000 or more.';
+      } else if (!panRegex.test(pan.trim().toUpperCase())) {
+        newErrors.pan = 'Enter a valid PAN number (e.g., ABCDE1234F)';
+      }
+    } else if (pan.trim() && !panRegex.test(pan.trim().toUpperCase())) {
+      newErrors.pan = 'Enter a valid PAN number (e.g., ABCDE1234F)';
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -229,6 +231,7 @@ if (isPanRequired) {
                onChange={(e) => setAmount(Number(e.target.value))}
                placeholder="Enter amount"
                style={inputStyle}
+               autoComplete="off"
              />
              {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
    
@@ -370,7 +373,7 @@ if (isPanRequired) {
                <input
                  type="text"
                  value={pan}
-                 onChange={(e) => setPan(e.target.value)}
+                 onChange={(e) => setPan(e.target.value.toUpperCase())}
                  placeholder="Enter PAN number"
                  style={inputStyle}
                />
