@@ -41,6 +41,7 @@ const TablesPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [name,setName]=useState<string>('Member Details');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,7 +85,7 @@ const TablesPage: React.FC = () => {
     currentPage * perPage
   );
 
-  const handleRowsPerPageChange = (newPerPage: number, page: number) => {
+  const handleRowsPerPageChange = (newPerPage: number, ) => {
     setPerPage(newPerPage);
     setCurrentPage(1);
   };
@@ -148,11 +149,11 @@ const TablesPage: React.FC = () => {
               </Link>
 
               <div style={{ width: "35%", display: "flex", alignItems: 'center', gap: '2vw' }}>
-                <button className={`btn ${activeTable === "payment" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("payment"); setSearchText(""); }}>
-                  Show Donation Table
+                <button className={`btn ${activeTable === "payment" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("payment"); setSearchText(""); setName("Donation Details") }}>
+                  Donation Details
                 </button>
-                <button className={`btn ${activeTable === "personal" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("personal"); setSearchText(""); }}>
-                  Show Member Table
+                <button className={`btn ${activeTable === "personal" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("personal"); setSearchText("");setName("Member Details") }}>
+                 Member Details
                 </button>
               </div>
             </nav>
@@ -161,7 +162,14 @@ const TablesPage: React.FC = () => {
       </div>
 
       <div className="container-fluid px-4 py-4" style={{ minHeight: '30vh' }}>
-        <h3 className="mb-4 text-center">Details Page</h3>
+   <div>
+   {name==='Donation Details' &&
+        <h3 className=" text-center" style={{fontSize:'2.5vw'}}>Donation Details</h3>
+       }
+         {name==='Member Details' &&
+        <h3 className=" text-center" style={{fontSize:'2.5vw'}}>Member Details</h3>
+       }
+   </div>
 
         {activeTable && (
           <div style={{ display: "flex", justifyContent: "flex-end" }}>

@@ -120,7 +120,7 @@ const active={
             {filter.charAt(0).toUpperCase() + filter.slice(1)} Events
           </h3>
 
-          <div>
+          <div className="mb-20">
             {filteredEvents.map((event, index) => (
               <div
               

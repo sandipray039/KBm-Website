@@ -1,8 +1,7 @@
-// import React from 'react'
+import  { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-// import GoogleTranslate from "../pages/GoogleTranslate";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -63,22 +62,11 @@ const Header = () => {
                         <i className="fa fa-facebook"></i>
                       </a>
                     </li>
-                    {/* <li>
-                      <a href="#">
-                        <i className="fa fa-twitter"></i>
-                      </a>
-                    </li> */}
                     <li>
-                      <a href="https://www.youtube.com/@KBMcharity">
+                      <a href="https://www.youtube.com/@JLKMJharkhandOfficial/featured">
                         <i className="fa fa-youtube"></i>
                       </a>
                     </li>
-
-                    {/* <li>
-                      <a href="#">
-                        <i className="fa fa-linkedin"></i>
-                      </a>
-                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -86,31 +74,28 @@ const Header = () => {
                 <div className="widget no-border m-0">
                   <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
                     <li className="m-0 pl-10 pr-10">
-                      {" "}
                       <i className="fa fa-phone text-white"></i>{" "}
                       <a className="text-white" href="#">
-                        6207723381
-                      </a>{" "}
+                        91733-3390
+                      </a>
                     </li>
                     <li className="text-white m-0 pl-10 pr-10">
-                      {" "}
                       <i className="fa fa-clock-o text-white"></i> Mon-Sun 8:00
-                      to 8:00{" "}
+                      to 8:00
                     </li>
                     <li className="m-0 pl-10 pr-10">
-                      {" "}
                       <i className="fa fa-envelope-o text-white"></i>{" "}
                       <a className="text-white" href="#">
                         <span
-                          className="__cf_email__"
+                          className="_cf_email_"
                           data-cfemail="71121e1f0510120531081e0403151e1c10181f5f121e1c"
                         >
-                          kbmofficial2024@gmail.com
+                          info@jlkmparty.org
                         </span>
-                      </a>{" "}
+                      </a>
                     </li>
                     <li>
-                    <a
+                      <a
                         className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10"
                         href="memberjoin"
                       >
@@ -120,21 +105,13 @@ const Header = () => {
                   </ul>
                 </div>
               </div>
-              {/* <div className="col-md-2">
-                <div className="widget no-border m-0">
-                  <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
-                    <li className="mt-sm-10 mb-sm-10">
-                   
-                    </li>
-                  </ul>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
-        <div ref={headerRef} className="header-nav ">
+
+        <div ref={headerRef} className="header-nav">
           <div
-            className="header-nav-wrapper navbar-scrolltofixed  scroll-to-fixed-fixed "
+            className="header-nav-wrapper navbar-scrolltofixed scroll-to-fixed-fixed"
             style={{ backgroundColor: "#003C72" }}
           >
             <div className="container">
@@ -144,7 +121,7 @@ const Header = () => {
                 style={{ backgroundColor: "#14468C" }}
               >
                 <Link className="menuzord-brand pull-left flip" to="/">
-                  <div style={{ display: "flex ", gap: "10px" }}>
+                  <div style={{ display: "flex", gap: "10px" }}>
                     <img
                       src="/images/kbm-slider/logo.png.png"
                       alt=""
@@ -174,10 +151,6 @@ const Header = () => {
                       About
                     </NavLink>
                   </li>
-
-                  {/* <li>
-                    <Link to="/causes">Causes</Link>
-                  </li> */}
                   <li className="text-white">
                     <NavLink
                       to="/team"
@@ -188,7 +161,6 @@ const Header = () => {
                       Volunteer
                     </NavLink>
                   </li>
-
                   <li className="text-white">
                     <NavLink
                       to="/gallery"
@@ -199,10 +171,6 @@ const Header = () => {
                       Gallery
                     </NavLink>
                   </li>
-
-                  {/* <li>
-                    <Link to="/blog">Blog</Link>
-                  </li> */}
                   <li className="text-white">
                     <NavLink
                       to="/contact"
@@ -213,10 +181,17 @@ const Header = () => {
                       Contact
                     </NavLink>
                   </li>
-                  {/* <li>
-                    <Link to="/contact">Contact</Link>
-                  </li> */}
-                    <li>
+                  <li className="text-white">
+                    <NavLink
+                      to="/donationpage"
+                      className={({ isActive }) =>
+                        `text-white ${isActive ? "active" : ""}`
+                      }
+                    >
+                      Donate Us
+                    </NavLink>
+                  </li>
+                  <li>
                     <NavLink
                       to="/events"
                       className={({ isActive }) =>
@@ -226,22 +201,8 @@ const Header = () => {
                       Events
                     </NavLink>
                   </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/donationpage"
-                      className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
-                      }
-                    >
-                      Donate
-                    </NavLink>
-                  </li>
-                
                 </ul>
               </nav>
-              {/* <div style={{ position: 'fixed', top: 10, right: 10, zIndex: 999 }}>
-                <GoogleTranslate />
-              </div> */}
             </div>
           </div>
         </div>

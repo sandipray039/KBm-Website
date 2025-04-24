@@ -7,7 +7,8 @@ import Contact from "./Contact";
 import Gallery from "./Gallery";
 import { Outlet } from "react-router-dom";
 import BlackBox from "./BlackBox";
-import MissionSection from "./MissionSection";
+
+import Mission from "./Mission";
 
 
 
@@ -553,9 +554,7 @@ const Home = () => {
             src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
           ></script> */}
 
-          <a className="scrollToTop" href="#">
-            <i className="fa fa-angle-up"></i>
-          </a>
+       
         </div>
       </section>
 
@@ -563,7 +562,7 @@ const Home = () => {
 
       <Volunter />
     <BlackBox/>
-    <MissionSection/>
+    <Mission/>
       <Gallery />
 
       <Contact />

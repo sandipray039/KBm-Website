@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getCountryList, submitDonationForm } from '../Services/ApiService';
 
 const DonationPage: React.FC = () => {
-  const [amount, setAmount] = useState<number | ''>('');
+  const [amount, setAmount] = useState<string>('');
   const [country, setCountry] = useState<string>('India');
   const [pan, setPan] = useState<string>('');
   const [donorName, setDonorName] = useState<string>('');
@@ -13,6 +13,7 @@ const DonationPage: React.FC = () => {
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [Step,setStep]=useState<number>(1);
     const [upiNo,setUpiNo]=useState<string>('');
+    const [isPanRequired, setIsPanRequired] = useState<boolean>(false);
   const [data, setData] = useState<{
     id: number;
     countryCode: string;
@@ -23,7 +24,14 @@ const DonationPage: React.FC = () => {
 
   const [selectedPhoneCode, setSelectedPhoneCode] = useState<string>('+91'); //for India
 
-  const isPanRequired = typeof amount === 'number' && amount >= 20000;
+  useEffect(() => {
+    if (parseInt(amount, 10) >= 20000) {
+      setIsPanRequired(true);
+    } else {
+      setIsPanRequired(false);
+      setPan(''); // Optionally clear PAN if amount is less than ₹20,000
+    }
+  }, [amount]);
 
   useEffect(() => {
     const fetchCountryList = async () => {
@@ -39,7 +47,7 @@ const DonationPage: React.FC = () => {
     fetchCountryList();
   }, []);
 
-  const handlePresetClick = (val: number) => {
+  const handlePresetClick = (val: string) => {
     setAmount(val);
   };
 
@@ -58,7 +66,15 @@ const DonationPage: React.FC = () => {
     if (!address.trim()) newErrors.address = 'This field is required';
     if (!country.trim()) newErrors.countryerr = 'This field is required';
    //if (!upiNo.trim()) newErrors.upiNo = 'This field is required';
-    if (isPanRequired && !pan.trim()) newErrors.pan = 'This field is required';
+   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+
+   if (isPanRequired) {
+     if (!pan.trim()) {
+       newErrors.pan = 'This field is required';
+     } else if (!panRegex.test(pan.trim())) {
+       newErrors.pan = 'Enter a valid PAN number (e.g., ABCDE1234F) and it should be exactly 10 characters';
+     }
+   }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -74,27 +90,19 @@ const DonationPage: React.FC = () => {
     if (!address.trim()) newErrors.address = 'This field is required';
     if (!country.trim()) newErrors.countryerr = 'This field is required';
     if (!upiNo.trim()) newErrors.upiNo = 'TransactionId is required';
-    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
 
-if (isPanRequired) {
-  if (!pan.trim()) {
-    newErrors.pan = 'This field is required';
-  } else if (!panRegex.test(pan.trim())) {
-    newErrors.pan = 'Enter a valid PAN number (e.g., ABCDE1234F)';
-  }
-}
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNext=(e:any)=>{
+  const handleNext = (e: any) => {
     e.preventDefault();
-    if (!validateForm()) return;
-    if(validateForm() &&  Step===1){
+    const isValid = validateForm();
+    if (!isValid) return;
+    if (Step === 1) {
       setStep(2);
     }
-
   };
   const handlePrevious=()=>{
     if(Step===2){
@@ -161,6 +169,14 @@ if (isPanRequired) {
     marginTop: '4px',
   };
 
+  const handleAmountChange = (e:any) => {
+    const value = e.target.value;
+  
+    // Only allow numbers
+    if (/^\d*$/.test(value)) {
+      setAmount(value);
+    }
+  };
 
   return (
     <div className='container-fluid'
@@ -223,17 +239,17 @@ if (isPanRequired) {
          
            <div style={{ marginBottom: '1rem' }}>
              <label>Amount (INR) <span style={{ color: 'red' }}>*</span></label>
-             <input
-               type="number"
-               value={amount}
-               onChange={(e) => setAmount(Number(e.target.value))}
-               placeholder="Enter amount"
-               style={inputStyle}
-             />
+             <input className='form-control'
+  type="text"
+  value={amount}
+  onChange={handleAmountChange}
+  placeholder="Enter amount"
+  inputMode="numeric"
+/>
              {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
    
              <div style={{ marginTop: '0.5rem' }}>
-               {[500, 1000, 1500, 2000].map((val) => (
+               {['500', '1000',' 1500', '2000'].map((val) => (
                  <button
                    key={val}
                    type="button"
@@ -414,7 +430,7 @@ if (isPanRequired) {
              <input
                type="number"
                value={amount}
-               onChange={(e) => setAmount(Number(e.target.value))}
+               onChange={(e) => setAmount((e.target.value))}
                placeholder="Enter amount"
                style={inputStyle}
                className='col-md-6'

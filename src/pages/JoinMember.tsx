@@ -39,6 +39,7 @@ const JoinMember: React.FC = () => {
   const [assemblies, setAssemblies] = useState<any[]>([]);
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
+    const [statusMessage, setStatusMessage] = useState<string>('');
   const qualificationOptions = [
     "High School",
     "Diploma",
@@ -110,6 +111,9 @@ const JoinMember: React.FC = () => {
   };
   
   
+  const handleCloseMessage = () => {
+    setStatusMessage('');
+  };
 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -143,7 +147,7 @@ const JoinMember: React.FC = () => {
       console.log("API response:", res);
 
       if (res?.isSuccess) {
-        alert("Form submitted successfully!");
+        setStatusMessage('Member joined successfully...');
         setFormData({
           name: "",
           age: "",
@@ -159,11 +163,11 @@ const JoinMember: React.FC = () => {
         setBlocks([]);
         setAssemblies([]);
       } else {
-        console.log("Form submission failed", res);
+        setStatusMessage('Form submission failed. Please try again.');
         alert("Form submission failed. Please try again.");
       }
     } catch (err) {
-      alert("Something went wrong during submission.");
+      setStatusMessage('Something went wrong during submission.');
       console.error("Submission error:", err);
     }
   };
@@ -253,6 +257,24 @@ const JoinMember: React.FC = () => {
   
       
         <div className="col-12 col-md-6" style={{padding:'10px 25px',border:'1px solid #80808047',borderRadius:'15px'}}>
+
+        {statusMessage && (
+          <div
+            className={`alert ${statusMessage.includes('success') ? 'alert-success' : 'alert-danger'} position-relative fadeInAlert`}
+            role="alert"
+          >
+            {statusMessage}
+            <button
+              type="button"
+              className="btn-close position-absolute top-0 end-0 m-2"
+              aria-label="Close"
+              onClick={handleCloseMessage}
+              style={{ position: 'absolute', top: '10px', right: '10px' }}
+            >
+              ×
+            </button>
+          </div>
+        )}
           <h2 className="text-white bg-primary text-center py-3 rounded " style={{borderRadius:'8px'}}>
             Become a Member
           </h2>
