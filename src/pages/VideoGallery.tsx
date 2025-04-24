@@ -7,12 +7,13 @@ interface VideoItem {
 
 const VideoGallery: React.FC = () => {
   const videoLinks: VideoItem[] = [
-    { index: 0, link: "https://www.youtube.com/embed/WzsJaumeyTQ" },
-    { index: 1, link: "https://www.youtube.com/embed/VWOwSZWbRKc" },
+    { index: 0, link: "https://www.youtube.com/embed/chPljSnAp4g" }, 
+    { index: 1, link: "https://www.youtube.com/embed/VWOwSZWbRKc" }, 
     { index: 2, link: "https://www.youtube.com/embed/LEFbbRfoD0o" },
-    { index: 3, link: "https://www.youtube.com/embed/chPljSnAp4g" },
+    { index: 3, link: "https://www.youtube.com/embed/xZ1cVceJsNM" },
     { index: 4, link: "https://www.youtube.com/embed/my4ARwrphZU" },
     { index: 5, link: "https://www.youtube.com/embed/eIg9c2F0sRw" },
+    
   ];
 
   return (
@@ -51,7 +52,7 @@ const VideoGallery: React.FC = () => {
                 <div className="fw-semibold">Share this on:</div>
                 <div className="d-flex gap-1">
                   <a
-                    href={`https://www.facebook.com`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(video.link)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary btn-sm "
@@ -60,7 +61,7 @@ const VideoGallery: React.FC = () => {
                     Facebook
                   </a>
                   <a
-                    href={`https://wa.me`}
+                    href={`https://wa.me/?text=${encodeURIComponent(video.link)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-success btn-sm"

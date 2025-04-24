@@ -48,7 +48,7 @@ const MissionSection: React.FC = () => {
             </div>
 
             {/* Upcoming Events */}
-            <div className="col-xs-12 col-sm-6 col-md-4">
+            {/* <div className="col-xs-12 col-sm-6 col-md-4">
               <h3 className="line-bottom border-bottom mt-0">Upcoming Events</h3>
               {[
                 {
@@ -106,7 +106,7 @@ const MissionSection: React.FC = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
