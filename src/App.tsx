@@ -2,6 +2,7 @@ import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
 import { Routes, Route, useLocation } from "react-router-dom";
 
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import BecomeVolenter from "./pages/BecomeVolenter";
@@ -17,6 +18,7 @@ import Dashboard from "./pages/Dashboard";
 import TablesPage from "./pages/TablesPage";
 import VideoGallery from "./pages/VideoGallery";
 import Events from "./pages/Events";
+import './pp.css';
 
 
 const App = () => {

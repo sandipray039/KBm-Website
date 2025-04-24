@@ -1,0 +1,24 @@
+.active {
+    background-color: #007bff; /* Bootstrap blue */
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white !important;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .active:hover {
+    background-color: #2f5f92;
+    transform: scale(1.05);
+    cursor:grab;
+   
+  }
+  .border-bottommm {
+    font-weight: bold;            
+    border-bottom: 3px solid #dce1e6; 
+            
+    display: inline-block;   
+  }
+  
