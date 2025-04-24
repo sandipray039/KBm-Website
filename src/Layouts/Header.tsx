@@ -69,7 +69,7 @@ const Header = () => {
                       </a>
                     </li> */}
                     <li>
-                      <a href="https://www.youtube.com/@JLKMJharkhandOfficial/featured">
+                      <a href="https://www.youtube.com/@KBMcharity">
                         <i className="fa fa-youtube"></i>
                       </a>
                     </li>
@@ -89,7 +89,7 @@ const Header = () => {
                       {" "}
                       <i className="fa fa-phone text-white"></i>{" "}
                       <a className="text-white" href="#">
-                        91733-3390
+                        6207723381
                       </a>{" "}
                     </li>
                     <li className="text-white m-0 pl-10 pr-10">
@@ -105,7 +105,7 @@ const Header = () => {
                           className="__cf_email__"
                           data-cfemail="71121e1f0510120531081e0403151e1c10181f5f121e1c"
                         >
-                          info@jlkmparty.org
+                          kbmofficial2024@gmail.com
                         </span>
                       </a>{" "}
                     </li>
