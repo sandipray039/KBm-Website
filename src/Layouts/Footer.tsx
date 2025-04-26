@@ -1,6 +1,6 @@
 // import React, { useState } from 'react'
 
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
 
@@ -87,15 +87,17 @@ const Footer = () => {
                         <ul className=" border-bottomm  border-white">
                         <li className="clearfix d-flex gap-3">
   <Link
-    className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10"
+    className="btn btn-default btn-flat btn-xs bg-light p-5  pl-10 pr-10"
     to="/donationpage"
+    style={{fontSize:'15px',fontWeight:'600'}}
   >
-    Donate Now
+    Donate 
   </Link>
 
   <Link
-    className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10"
+    className="btn btn-default btn-flat btn-xs bg-light p-5  pl-10 pr-10"
     to="memberjoin"
+    style={{fontSize:'15px',fontWeight:'600'}}
   >
     Join Us
   </Link>

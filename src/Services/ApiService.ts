@@ -119,6 +119,50 @@ const login = async (data: any) => {
   }
 };
 
+const createEvent = async (eventData:any) => {
+  try {
+    const response = await axios.post(`${baseUrl}/Member/create-event`, eventData);
+    console.log("Event created:", response);
+    return response.data;
+  } catch (error) {
+    console.error("error in creating event..", error);
+    throw error;
+  }
+};
+
+const getAllEvents = async () => {
+  try {
+    const response = await axios.get(`${baseUrl}/Member/get-all-events`);
+    console.log("All events:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("error in fetching all events..", error);
+    throw error;
+  }
+};
+
+const getPastEvents = async () => {
+  try {
+    const response = await axios.get(`${baseUrl}/Member/get-past-events`);
+    console.log("Past events:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("error in fetching past events..", error);
+    throw error;
+  }
+};
+
+const getUpcomingEvents = async () => {
+  try {
+    const response = await axios.get(`${baseUrl}/Member/get-upcoming-events`);
+    console.log("Upcoming events:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("error in fetching upcoming events..", error);
+    throw error;
+  }
+};
+
 export {
   getCountryList,
   submitDonationForm,
@@ -131,4 +175,8 @@ export {
   GetMemberDetails,
   login,
   getHistory,
+  createEvent,
+  getAllEvents,
+  getPastEvents,
+  getUpcomingEvents,
 };

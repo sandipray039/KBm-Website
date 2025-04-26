@@ -62,7 +62,7 @@ const Volunter = () => {
               <div key={vol.id} className="col-xs-12 col-sm-6 col-md-4 mb-30">
                 <div className="team-member clearfix">
                
-                  <Link to={`/volunteer/${vol.id}`} style={{ textDecoration: "none" }}>
+                 
                     <div className="team-thumb">
                       <img
                         src={vol.image}
@@ -73,7 +73,7 @@ const Volunter = () => {
                         <div className="content"></div>
                       </div>
                     </div>
-                  </Link>
+               
 
                   <div className=" bg-theme-colored"
                   style={{position:'relative',borderRadius:'20px',marginTop:'-30px',textAlign:'center',padding:'2px 0px'}}

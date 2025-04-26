@@ -3,7 +3,6 @@ import DataTable from "react-data-table-component";
 import { GetDonationDetails, GetMemberDetails } from "../Services/ApiService";
 import { Link } from "react-router-dom";
 import Footer from "../Layouts/Footer";
-import EventForm from "./EventForm"; // Assuming you have an EventForm component
 
 // ---------- Interfaces ----------
 interface PaymentData {
@@ -34,16 +33,15 @@ interface PersonalData {
   qualification: string;
 }
 
-const TablesPage: React.FC = () => {
+const Demo: React.FC = () => {
   const [activeTable, setActiveTable] = useState<"payment" | "personal" | null>(null);
-  const [activeComponent, setActiveComponent] = useState<"table" | "form" | null>(null); // Track the active component (table or form)
   const [paymentData, setPaymentData] = useState<PaymentData[]>([]);
   const [personalData, setPersonalData] = useState<PersonalData[]>([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [name, setName] = useState<string>('Member Details');
+  const [name,setName]=useState<string>('Member Details');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +85,7 @@ const TablesPage: React.FC = () => {
     currentPage * perPage
   );
 
-  const handleRowsPerPageChange = (newPerPage: number) => {
+  const handleRowsPerPageChange = (newPerPage: number, ) => {
     setPerPage(newPerPage);
     setCurrentPage(1);
   };
@@ -151,15 +149,15 @@ const TablesPage: React.FC = () => {
               </Link>
 
               <div style={{ width: "35%", display: "flex", alignItems: 'center', gap: '1vw' }}>
-                <button className={`btn ${activeTable === "payment" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("payment"); setSearchText(""); setActiveComponent("table"); setName("Donation Details") }}>
+                <button className={`btn ${activeTable === "payment" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("payment"); setSearchText(""); setName("Donation Details") }}>
                   Donation Details
                 </button>
-                <button className={`btn ${activeTable === "personal" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("personal"); setSearchText(""); setActiveComponent("table"); setName("Member Details") }}>
-                  Member Details
+                <button className={`btn ${activeTable === "personal" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => { setActiveTable("personal"); setSearchText("");setName("Member Details") }}>
+                 Member Details
                 </button>
-                <button className="btn btn-success" onClick={() => { setActiveComponent("form") }}>
-                  Add an Event
-                </button>
+                <button className="btn btn-success" onClick={() => {}}>
+                 Add an Event
+                </button> 
               </div>
             </nav>
           </div>
@@ -167,12 +165,16 @@ const TablesPage: React.FC = () => {
       </div>
 
       <div className="container-fluid px-4 py-4" style={{ minHeight: '30vh' }}>
-        <div>
-          {name === 'Donation Details' && activeComponent!=='form' && <h3 className=" text-center" style={{ fontSize: '2.5vw' }}>Donation Details</h3>}
-          {name === 'Member Details' && activeComponent!=='form' && <h3 className=" text-center" style={{ fontSize: '2.5vw' }}>Member Details</h3>}
-        </div>
+   <div>
+   {name==='Donation Details' &&
+        <h3 className=" text-center" style={{fontSize:'2.5vw'}}>Donation Details</h3>
+       }
+         {name==='Member Details' &&
+        <h3 className=" text-center" style={{fontSize:'2.5vw'}}>Member Details</h3>
+       }
+   </div>
 
-        {activeComponent === "table" && activeTable && (
+        {activeTable && (
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <div className="d-flex align-items-center">
               <label className="me-2 col-form-label">Search:</label>
@@ -189,97 +191,92 @@ const TablesPage: React.FC = () => {
         )}
 
         <div className="table-responsive">
-          {activeComponent === "table" && activeTable === "payment" && (
+          {activeTable === "payment" && (
             <DataTable
-            // title={<h3 style={{ textAlign: 'center', backgroundColor: 'forestgreen', width: 'fit-content', color: 'white', padding: '10px 20px', borderRadius: '10px' }}>Donation History</h3>}
-             columns={paymentColumns}
-             data={paginatedPaymentData}
-             progressPending={loading}
-             pagination
-             paginationServer
-             paginationTotalRows={filteredPayment.length}
-             paginationPerPage={perPage}
-             onChangePage={(page) => setCurrentPage(page)}
-             onChangeRowsPerPage={handleRowsPerPageChange}
-             striped
-             highlightOnHover
-             customStyles={{
-               headCells: {
-                 style: {
-                   backgroundColor: "#007bff",
-                   color: "#fff",
-                   fontWeight: "bold",
-                   fontSize: "14px",
-                   borderRight: "1px solid #ccc",
-                 },
-               },
-               cells: {
-                 style: {
-                   borderRight: "1px solid #ccc",
-                 },
-               },
-               rows: {
-                 style: {
-                   borderBottom: "1px solid #ccc",
-                 },
-               },
-             }}
-           />
+             // title={<h3 style={{ textAlign: 'center', backgroundColor: 'forestgreen', width: 'fit-content', color: 'white', padding: '10px 20px', borderRadius: '10px' }}>Donation History</h3>}
+              columns={paymentColumns}
+              data={paginatedPaymentData}
+              progressPending={loading}
+              pagination
+              paginationServer
+              paginationTotalRows={filteredPayment.length}
+              paginationPerPage={perPage}
+              onChangePage={(page) => setCurrentPage(page)}
+              onChangeRowsPerPage={handleRowsPerPageChange}
+              striped
+              highlightOnHover
+              customStyles={{
+                headCells: {
+                  style: {
+                    backgroundColor: "#007bff",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    borderRight: "1px solid #ccc",
+                  },
+                },
+                cells: {
+                  style: {
+                    borderRight: "1px solid #ccc",
+                  },
+                },
+                rows: {
+                  style: {
+                    borderBottom: "1px solid #ccc",
+                  },
+                },
+              }}
+            />
           )}
 
-          {activeComponent === "table" && activeTable === "personal" && (
+          {activeTable === "personal" && (
             <DataTable
 
-            columns={personalColumns}
-            data={paginatedPersonalData}
-            progressPending={loading}
-            pagination
-            paginationServer
-            paginationTotalRows={filteredPersonal.length}
-            paginationPerPage={perPage}
-            onChangePage={(page) => setCurrentPage(page)}
-            onChangeRowsPerPage={handleRowsPerPageChange}
-            striped
-            highlightOnHover
-            customStyles={{
-              headCells: {
-                style: {
-                  backgroundColor: "#007bff",
-                  color: "#fff",
-                  fontWeight: "bold",
-                  fontSize: "14px",
-                  borderRight: "1px solid #ccc",
+              columns={personalColumns}
+              data={paginatedPersonalData}
+              progressPending={loading}
+              pagination
+              paginationServer
+              paginationTotalRows={filteredPersonal.length}
+              paginationPerPage={perPage}
+              onChangePage={(page) => setCurrentPage(page)}
+              onChangeRowsPerPage={handleRowsPerPageChange}
+              striped
+              highlightOnHover
+              customStyles={{
+                headCells: {
+                  style: {
+                    backgroundColor: "#007bff",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    borderRight: "1px solid #ccc",
+                  },
                 },
-              },
-              cells: {
-                style: {
-                  borderRight: "1px solid #ccc",
+                cells: {
+                  style: {
+                    borderRight: "1px solid #ccc",
+                  },
                 },
-              },
-              rows: {
-                style: {
-                  borderBottom: "1px solid #ccc",
+                rows: {
+                  style: {
+                    borderBottom: "1px solid #ccc",
+                  },
                 },
-              },
-            }}
-          />
+              }}
+            />
           )}
         </div>
 
-        {activeComponent === "form" && <EventForm />} {/* Render the EventForm component */}
-
-        {!activeTable && activeComponent===null && (
+        {!activeTable && (
           <div className="text-muted mt-4 text-center">
-            <h3 style={{ marginTop: '10vw', color: 'red' }}>Please select anything from navbar to show contents.</h3>
+            <h3 style={{ marginTop: '10vw', color: 'red' }}>Please select a table to view its contents.</h3>
           </div>
-
-          
         )}
       </div>
-
       <Footer />
     </div>
   );
 };
 
-export default TablesPage;
+export default Demo;

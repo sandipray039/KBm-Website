@@ -17,7 +17,7 @@ import Dashboard from "./pages/Dashboard";
 import TablesPage from "./pages/TablesPage";
 import VideoGallery from "./pages/VideoGallery";
 import Events from "./pages/Events";
-import './Nav.css'
+import './pp.css'
 
 
 const App = () => {

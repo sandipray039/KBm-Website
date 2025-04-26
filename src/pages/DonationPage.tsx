@@ -53,8 +53,10 @@ const DonationPage: React.FC = () => {
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-
     if (!amount) newErrors.amount = 'This field is required';
+    else if(Number(amount)>51000) {
+      newErrors.amount=' Donation amount cannot exceed ₹51,000';
+    }
     if (!donorName.trim()) newErrors.donorName = 'This field is required';
     if (!email.trim()) newErrors.email = 'This field is required';
     if (!phone.trim()) {
@@ -83,14 +85,27 @@ const DonationPage: React.FC = () => {
   const validateFormTwo = () => {
     const newErrors: { [key: string]: string } = {};
 
+   
+
     if (!amount) newErrors.amount = 'This field is required';
+    else if(Number(amount)>51000) {
+      newErrors.amount='Maximum donation amount is ₹51,000';
+    }
     if (!donorName.trim()) newErrors.donorName = 'This field is required';
    // if (!email.trim()) newErrors.email = 'This field is required';
     if (!phone.trim()) newErrors.phone = 'This field is required';
     if (!address.trim()) newErrors.address = 'This field is required';
     if (!country.trim()) newErrors.countryerr = 'This field is required';
     if (!upiNo.trim()) newErrors.upiNo = 'TransactionId is required';
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
 
+if (isPanRequired) {
+  if (!pan.trim()) {
+    newErrors.pan = 'This field is required';
+  } else if (!panRegex.test(pan.trim())) {
+    newErrors.pan = 'Enter a valid PAN number (e.g., ABCDE1234F)';
+  }
+}
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -169,14 +184,14 @@ const DonationPage: React.FC = () => {
     marginTop: '4px',
   };
 
-  const handleAmountChange = (e:any) => {
-    const value = e.target.value;
+  // const handleAmountChange = (e:any) => {
+  //   const value = e.target.value;
   
-    // Only allow numbers
-    if (/^\d*$/.test(value)) {
-      setAmount(value);
-    }
-  };
+  //   // Only allow numbers
+  //   if (/^\d*$/.test(value)) {
+  //     setAmount(value);
+  //   }
+  // };
 
   return (
     <div className='container-fluid'
@@ -239,13 +254,13 @@ const DonationPage: React.FC = () => {
          
            <div style={{ marginBottom: '1rem' }}>
              <label>Amount (INR) <span style={{ color: 'red' }}>*</span></label>
-             <input className='form-control'
-  type="text"
-  value={amount}
-  onChange={handleAmountChange}
-  placeholder="Enter amount"
-  inputMode="numeric"
-/>
+             <input
+               type="number"
+               value={amount}
+               onChange={(e) => setAmount((e.target.value))}
+               placeholder="Enter amount"
+               style={inputStyle}
+             />
              {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
    
              <div style={{ marginTop: '0.5rem' }}>
@@ -296,7 +311,7 @@ const DonationPage: React.FC = () => {
        
            <div className='col-md-6' style={{ marginBottom: '1rem' }}>
              <label>
-               Your Name <span style={{ color: 'red' }}>*</span>
+               Full Name <span style={{ color: 'red' }}>*</span>
              </label>
              <input
                type="text"
@@ -333,7 +348,7 @@ const DonationPage: React.FC = () => {
                  {selectedPhoneCode}
                </span>
                <input
-                 type="tel"
+                 type="number"
                  value={phone}
                  onChange={(e) => setPhone(e.target.value)}
                  placeholder="Enter your phone number"
@@ -386,7 +401,7 @@ const DonationPage: React.FC = () => {
                <input
                  type="text"
                  value={pan}
-                 onChange={(e) => setPan(e.target.value)}
+                 onChange={(e) => setPan(e.target.value.toUpperCase())}
                  placeholder="Enter PAN number"
                  style={inputStyle}
                />
