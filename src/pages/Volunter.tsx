@@ -76,7 +76,7 @@ const Volunter = () => {
                
 
                   <div className=" bg-theme-colored"
-                  style={{position:'relative',borderRadius:'20px',marginTop:'-30px',textAlign:'center',padding:'2px 0px'}}
+                  style={{position:'relative',borderRadius:'20px',marginTop:'4px',textAlign:'center',padding:'2px 0px'}}
                   >
                     <h3 className="mt-5 text-white" 
                     

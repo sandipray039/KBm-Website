@@ -37,9 +37,9 @@ Many individuals—especially the elderly, disabled, and homeless—struggle alo
                              <div className="icon-box left media bg-silver-light border-1px border-theme-colored p-15 mb-20">
                                  <a className="media-left pull-left flip" href="#"><i className="flaticon-charity-responsible-use-of-water text-theme-colored"></i></a>
                                  <div className="media-body">
-                                     <h4 className="font-15 text-uppercase">Pure Water For Poor</h4>
+                                     <h4 className="font-15 text-uppercase">EDUCATION</h4>
                                      <p>
-Access to clean water remains a luxury for many poor communities, causing illness and death from waterborne diseases. Our initiative builds wells and filtration systems in areas where safe water is scarce. Your donation helps ensure every person, especially children, can drink, bathe, and cook with clean, life-saving water.
+                                     Remedial education refers to special teaching designed to help students who are falling behind the expected learning standards. It focuses on improving their basic skills so they can succeed in regular classes.Helps prevent students from dropping out.Builds confidence and motivation.
 </p>
                                  </div>
                              </div>

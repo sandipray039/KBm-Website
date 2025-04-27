@@ -102,6 +102,12 @@ const Header = () => {
                       >
                         Join Us
                       </a>
+                      <a
+                        className="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10"
+                        href="donationpage"
+                      >
+                        Donate
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -190,6 +196,16 @@ const Header = () => {
                       Donate
                     </NavLink>
                   </li>
+                  <li className="text-white">
+                    <NavLink
+                      to="/memberjoin"
+                      className={({ isActive }) =>
+                        `text-white ${isActive ? "active" : ""}`
+                      }
+                    >
+                      Join Us
+                    </NavLink>
+                  </li>
                   <li>
                     <NavLink
                       to="/events"
@@ -198,6 +214,16 @@ const Header = () => {
                       }
                     >
                       Events
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/Documents"
+                      className={({ isActive }) =>
+                        `text-white ${isActive ? "active" : ""}`
+                      }
+                    >
+                      Documents
                     </NavLink>
                   </li>
                 </ul>

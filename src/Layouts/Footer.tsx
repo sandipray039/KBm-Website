@@ -179,11 +179,11 @@ const Footer = () => {
     </div>
     <div className="footer-bottomm bg-black-333">
         <div className="container pt-15 pb-10">
-            <div className="row">
-                <div className="col-md-6 p-8">
-                    <p className="font-15 text-black-777 m-0">Copyright &copy;2025 KBM. All Rights Reserved</p>
+            <div className="row"style={{display:'flex',justifyContent:'Center',alignItems:'center'}}>
+                <div >
+                    <p className="font-15 text-black-777 m-0">Copyright &copy;2025 TEKVALLEY. All Rights Reserved</p>
                 </div>
-                <div className="col-md-6 text-right">
+                {/* <div className="col-md-6 text-right">
                     <div className="widget no-border m-0">
                         <ul className="list-inline sm-text-center mt-5 font-12">
                             <li>
@@ -199,7 +199,7 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>

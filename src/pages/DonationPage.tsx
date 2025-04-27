@@ -249,7 +249,7 @@ if (isPanRequired) {
              background: '#fff',
            }}
          >
-           <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'#00A4EF',color:'white',borderRadius:'10px' }}>Personal Details</h2>
+           <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'rgb(8 239 0)',color:'white',borderRadius:'10px' }}>Payment Details</h2>
    
          
            <div style={{ marginBottom: '1rem' }}>
@@ -414,7 +414,7 @@ if (isPanRequired) {
              type="submit"
              style={{
                padding: '10px 20px',
-               background: '#00A4EF',
+               background: 'rgb(8 239 0)',
                color: '#fff',
                border: 'none',
                borderRadius: '4px',

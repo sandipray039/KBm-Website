@@ -116,7 +116,9 @@ const Contact: React.FC = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
+        <div className="row"style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <div className='col-md-8'>
+          <form onSubmit={handleSubmit}>
           <div className="row mb-3">
             <div className="col-md-4 mb-3 mb-md-0">
               <label htmlFor="name" className="form-label">
@@ -205,7 +207,37 @@ const Contact: React.FC = () => {
             </button>
           </div>
         </form>
+            
+            </div>
+            <div className='col-md-4'>
+            <div className="widget dark">
+              <div className="mb-10" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <img alt="" src="/images/kbm-slider/logo.png.png" />
+                <p style={{ fontSize: '1.5vw' }}>खतियानी बुद्धिजीवी मंच</p>
+              </div>
+              <p>Jamtara Masjid Gali,Jamtara panchayat, Jamtara, Giridih, Jharkhand- 825106.</p>
+              <ul className="list-inline mt-5">
+                <li className="m-0 pl-10 pr-10">
+                  <i className="fa fa-phone mr-5"></i>
+                  <a className="text-white" href="#">6207723381</a>
+                </li>
+                <br />
+                <li className="m-0 pl-10 pr-10">
+                  <i className="fa fa-envelope-o mr-5"></i>
+                  <a className="text-white" href="">
+                    <span className="__cf_email__" data-cfemail="63000c0d17020017231a0c1611070c0e020a0d4d000c0e">kbmofficial2024@gmail.com</span>
+                  </a>
+                </li>
+                <li className="m-0 pl-10 pr-10">
+                  <i className="fa fa-globe mr-5"></i>
+                  <a className="text-white" rel="noopener noreferrer" href="/home" target="_blank" data-discover="true">www.kbm.org.in</a>
+                </li>
+              </ul>
+            </div>
+              
+            </div>
       </div>
+    </div>
     </div>
   );
 };

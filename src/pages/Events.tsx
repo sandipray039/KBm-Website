@@ -68,14 +68,14 @@ const Events: React.FC = () => {
               style={filter === "past" ? active : { marginRight: "10px" }}
               onClick={() => setFilter("past")}
             >
-              Past
+              Past Event
             </button>
             <button
               className="btn"
               style={filter === "upcoming" ? active : { marginRight: "10px" }}
               onClick={() => setFilter("upcoming")}
             >
-              Upcoming
+              Upcoming Event
             </button>
           </div>
 
