@@ -42,9 +42,9 @@ const Gallery = () => {
           <h2 style={{ textTransform: "uppercase", marginBottom: "10px" }}>
             <span style={{ color: "#00A4EF", fontWeight: "600" }}>Photo Gallery</span>
           </h2>
-          <div>
-            <i className="flaticon-charity-hand-holding-a-heart"></i>
-          </div>
+          <div className="title-icon">
+              <i className="flaticon-charity-hand-holding-a-heart"></i>
+            </div>
         </div>
 
         <div

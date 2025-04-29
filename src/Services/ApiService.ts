@@ -163,6 +163,19 @@ const getUpcomingEvents = async () => {
   }
 };
 
+const getContactDetails=async ()=>{
+  try{
+    const response=await axios.get(`${baseUrl}/Member/Get-contact-Details`);
+    console.log("contact details-->",response.data);
+    return response.data;
+
+  }
+  catch(error){
+    console.error("error in fetching upcoming events..", error);
+    throw error;
+  }
+}
+
 export {
   getCountryList,
   submitDonationForm,
@@ -179,4 +192,5 @@ export {
   getAllEvents,
   getPastEvents,
   getUpcomingEvents,
+  getContactDetails
 };

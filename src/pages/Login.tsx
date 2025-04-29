@@ -64,6 +64,12 @@ const Login: React.FC = () => {
     try {
       const response = await login(data);
       if (response.isSuccess) {
+        const expiryTime = new Date().getTime() + 60 * 60 * 1000; 
+        const authData = {
+          value: "true",
+          expiry: expiryTime
+        };
+        localStorage.setItem("isAuthenticated", JSON.stringify(authData));
         navigate('/tablepage');
       } else {
         setError("Invalid username or password, please try again.");

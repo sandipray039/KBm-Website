@@ -1,8 +1,6 @@
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import gsap from "gsap";
-
-
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -77,7 +75,7 @@ const Header = () => {
                     <li className="m-0 pl-10 pr-10">
                       <i className="fa fa-phone text-white"></i>{" "}
                       <a className="text-white" href="#">
-                      6207723381
+                        6207723381
                       </a>
                     </li>
                     <li className="text-white m-0 pl-10 pr-10">
@@ -115,30 +113,49 @@ const Header = () => {
             className="header-nav-wrapper navbar-scrolltofixed scroll-to-fixed-fixed"
             style={{ backgroundColor: "#003C72" }}
           >
-            <div className="container">
+            <div className="container-fluid" style={{padding:'0px 100px'}}>
               <nav
                 id="menuzord-right"
                 className="menuzord default no-bg"
                 style={{ backgroundColor: "#14468C" }}
               >
-                <Link className="menuzord-brand pull-left flip" to="/">
+                <Link className=" pull-left flip" to="/">
                   <div style={{ display: "flex", gap: "10px" }}>
                     <img
                       src="/images/kbm-slider/logo.png.png"
                       alt=""
-                      style={{ height: "60px" }}
+                      style={{
+                        height: "85px",
+                        padding: "5px 0px",
+                        marginTop: "5px",
+                      }}
                     />
-                    <p className="text-white">खतियानी बुद्धिजीवी मंच</p>
+                    <p
+                      className="text-white "
+                      style={{
+                        marginTop: "27px",
+                        marginRight: "40px",
+                        fontSize: "27px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      खतियानी बुद्धिजीवी मंच
+                    </p>
                   </div>
                 </Link>
-                <ul className="menuzord-menu onepage-nav">
+                <ul
+                  className="menuzord-menu onepage-nav"
+                  style={{ marginTop: "15px" }}
+                >
                   <li className="text-white">
-                  <NavLink
-    to="/home"
-    className={({ isActive }) => `text-white ${isActive ? 'active' : ''}`}
-  >
-    Home
-  </NavLink>
+                    <NavLink
+                      to="/home"
+                      className={({ isActive }) =>
+                        `text-white ${isActive ? "active" : ""}`
+                      }
+                    >
+                      Home
+                    </NavLink>
                   </li>
                   <li className="text-white">
                     <NavLink
@@ -180,14 +197,15 @@ const Header = () => {
                       Contact
                     </NavLink>
                   </li>
+
                   <li className="text-white">
                     <NavLink
-                      to="/donationpage"
+                      to="/memberjoin"
                       className={({ isActive }) =>
                         `text-white ${isActive ? "active" : ""}`
                       }
                     >
-                      Donate
+                      Join Us
                     </NavLink>
                   </li>
                   <li>
@@ -198,6 +216,27 @@ const Header = () => {
                       }
                     >
                       Events
+                    </NavLink>
+                  </li>
+                  <li className="text-white">
+                    <NavLink
+                      to="/donationpage"
+                      className={({ isActive }) =>
+                        `text-white ${isActive ? "active" : ""}`
+                      }
+                    >
+                      Donate
+                    </NavLink>
+                  </li>
+
+                  <li className="text-white">
+                    <NavLink
+                      to="/documnet"
+                      className={({ isActive }) =>
+                        `text-white ${isActive ? "active" : ""}`
+                      }
+                    >
+                      Document
                     </NavLink>
                   </li>
                 </ul>

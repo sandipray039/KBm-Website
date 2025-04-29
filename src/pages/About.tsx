@@ -56,8 +56,8 @@ const About: React.FC = () => {
                   Welcome to <span className="text-theme-colored">KBM</span>{" "}
                   Please Raise your Helping Hand
                 </h2>
-                <p className="ml-5" >
-                  The Khatiyani BuddhiJiwi Manch (Intellectual Forum) was
+                <p className="ml-5 font-18 text-black" >
+                  The Khatiyani Budhijeevi Manch (Intellectual Forum) was
                   started in 2010 from a small village, Nichitpur (Galagi),
                   which is located in the Dumri block of Giridih district in
                   Jharkhand. The environment of this village was very poor. The
@@ -75,12 +75,10 @@ const About: React.FC = () => {
                   social evils. The collective vow was taken to transform this
                   village into an ideal village.
                 </p>
-                <div className="singnature mt-20">
-                  <img src="images/signature.png" alt="Signature" />
-                </div>
+             
                 <Link
                   to="/about/details"
-                  className="btn btn-flat btn-colored btn-theme-colored mt-15 mr-15"
+                  className="btn btn-flat btn-colored btn-theme-colored mt-15 mr-15 p-15 font-16" style={{borderRadius:'10px'}}
                 >
                   Read More
                 </Link>

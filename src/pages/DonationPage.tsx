@@ -3,6 +3,7 @@ import { getCountryList, submitDonationForm } from '../Services/ApiService';
 
 const DonationPage: React.FC = () => {
   const [amount, setAmount] = useState<string>('');
+  const [amt, setAmt] = useState<string>('');
   const [country, setCountry] = useState<string>('India');
   const [pan, setPan] = useState<string>('');
   const [donorName, setDonorName] = useState<string>('');
@@ -54,6 +55,8 @@ const DonationPage: React.FC = () => {
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
     if (!amount) newErrors.amount = 'This field is required';
+    else if (Number(amount) < 10) {
+      newErrors.amount = 'Minimum donation amount is ₹10';}
     else if(Number(amount)>51000) {
       newErrors.amount=' Donation amount cannot exceed ₹51,000';
     }
@@ -116,6 +119,7 @@ if (isPanRequired) {
     const isValid = validateForm();
     if (!isValid) return;
     if (Step === 1) {
+      setAmt(amount);
       setStep(2);
     }
   };
@@ -183,6 +187,14 @@ if (isPanRequired) {
     borderRadius: '4px',
     marginTop: '4px',
   };
+    useEffect(() => {
+      if (statusMessage && statusMessage.includes('success')) {
+        const timer = setTimeout(() => {
+          setStatusMessage('');
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }, [statusMessage]);
 
   // const handleAmountChange = (e:any) => {
   //   const value = e.target.value;
@@ -249,7 +261,7 @@ if (isPanRequired) {
              background: '#fff',
            }}
          >
-           <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'#00A4EF',color:'white',borderRadius:'10px' }}>Personal Details</h2>
+           <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'rgb(0, 164, 70)',color:'white',borderRadius:'10px' }}>Personal Details</h2>
    
          
            <div style={{ marginBottom: '1rem' }}>
@@ -257,6 +269,7 @@ if (isPanRequired) {
              <input
                type="number"
                value={amount}
+               min="0"
                onChange={(e) => setAmount((e.target.value))}
                placeholder="Enter amount"
                style={inputStyle}
@@ -350,6 +363,7 @@ if (isPanRequired) {
                <input
                  type="number"
                  value={phone}
+                 min="0"
                  onChange={(e) => setPhone(e.target.value)}
                  placeholder="Enter your phone number"
                  style={{
@@ -414,12 +428,13 @@ if (isPanRequired) {
              type="submit"
              style={{
                padding: '10px 20px',
-               background: '#00A4EF',
+               background: 'rgb(0, 164, 70)',
                color: '#fff',
                border: 'none',
                borderRadius: '4px',
                cursor: 'pointer',
                width: '100%',
+               fontSize:'22px',
                textAlign: 'center',
              }}
            >
@@ -438,21 +453,22 @@ if (isPanRequired) {
           background: '#fff',
         }}
       >
-          <h2 className='text-center'>Donation details</h2>
+          <h2 style={{ marginBottom: 'rem', textAlign: 'center',backgroundColor:'rgb(0, 164, 70)',color:'white',borderRadius:'10px' }} className='text-center'>Payment Details</h2>
            <div style={{ marginBottom: '1rem',marginTop:'1rem' }}>
            <div className='row'>
            <label>Amount (INR) <span style={{ color: 'red' }}>*</span></label>
              <input
                type="number"
-               value={amount}
-               onChange={(e) => setAmount((e.target.value))}
-               placeholder="Enter amount"
-               style={inputStyle}
+               value={amt}
+             
+               style={{...inputStyle,cursor:'not-allowed',backgroundColor:'#80808033'}}
                className='col-md-6'
-               readOnly
+               disabled
              />
+            
            </div>
-             {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
+           <span className="text-danger"><span style={{fontSize:'25px'}}>•</span> If you want to change amount, return to previous page.</span>
+
    
              {/* <div style={{ marginTop: '0.5rem' }}>
                {[500, 1000, 1500, 2000].map((val) => (
@@ -504,7 +520,8 @@ if (isPanRequired) {
                border: 'none',
                borderRadius: '4px',
                cursor: 'pointer',
-            
+             width:'50%',
+             fontSize:'20px',
                textAlign: 'center',
              }}
              onClick={handlePrevious}
@@ -521,7 +538,8 @@ if (isPanRequired) {
                border: 'none',
                borderRadius: '4px',
                cursor: 'pointer',
-            
+               width:'50%',
+               fontSize:'20px',
                textAlign: 'center',
              }}
            >

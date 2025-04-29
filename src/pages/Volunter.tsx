@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 
 interface Volunteer {
   id: number;
@@ -76,40 +76,12 @@ const Volunter = () => {
                
 
                   <div className=" bg-theme-colored"
-                  style={{position:'relative',borderRadius:'20px',marginTop:'-30px',textAlign:'center',padding:'2px 0px'}}
+                  style={{position:'relative',borderRadius:'20px',marginTop:'3px',textAlign:'center',padding:'2px',}}
                   >
                     <h3 className="mt-5 text-white" 
                     
                     >{vol.name}</h3>
-                    {/* <ul className="styled-icons icon-circled icon-theme-colored">
-                      <li>
-                        <a
-                          href="https://facebook.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fa fa-facebook"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://twitter.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fa fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://dribbble.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fa fa-dribbble"></i>
-                        </a>
-                      </li>
-                    </ul> */}
+              
                   </div>
                 </div>
               </div>

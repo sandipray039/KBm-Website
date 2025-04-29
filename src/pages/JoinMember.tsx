@@ -244,10 +244,10 @@ const JoinMember: React.FC = () => {
     
   // };
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row">
         
-        <div className="col-12 col-md-6 mt-30" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <div className="col-12 col-md-5 mt-30" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
           <img
             src="/images/photos/v1.png"
             alt="Volunteer"
@@ -256,7 +256,7 @@ const JoinMember: React.FC = () => {
         </div>
   
       
-        <div className="col-12 col-md-6" style={{padding:'10px 25px',border:'1px solid #80808047',borderRadius:'15px'}}>
+        <div className="col-12 col-md-6" style={{padding:'10px 25px',border:'1px solid #80808047',borderRadius:'15px',marginRight:'10px'}}>
 
         {statusMessage && (
           <div
@@ -275,7 +275,7 @@ const JoinMember: React.FC = () => {
             </button>
           </div>
         )}
-          <h2 className="text-white bg-primary text-center py-3 rounded " style={{borderRadius:'8px'}}>
+          <h2 className="text-white  text-center py-3 rounded " style={{borderRadius:'8px',backgroundColor:'rgb(0, 164, 70)'}}>
             Become a Member
           </h2>
           <form onSubmit={handleSubmit}>
@@ -458,7 +458,7 @@ const JoinMember: React.FC = () => {
   
             {/* Submit Button */}
             <div className="mb-3">
-              <button type="submit" className="btn btn-primary w-100 col-12 mt-5 border-gray" style={{width:'100%'}}>
+              <button type="submit" className="btn w-100 col-12 mt-5 border-gray" style={{width:'100%',backgroundColor:'rgb(0, 164, 70)',color:'white',fontSize:'20px'}}>
                 Join Now
               </button>
             </div>

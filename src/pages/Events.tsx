@@ -55,27 +55,27 @@ const Events: React.FC = () => {
     <div className="container">
       <div className="row">
         <div className="col-12 col-md-10">
-          <div className="d-flex justify-content-between my-3 text-center">
+          <div className="d-flex justify-content-between my-3 text-center" style={{marginTop:'30px'}}>
             <button
-              className="btn"
-              style={filter === "all" ? active : { marginRight: "15px" }}
+              className="btn "
+              style={filter === "all" ? active : { marginRight: "15px",padding:'10px 15px' }}
               onClick={() => setFilter("all")}
             >
-              All
+              All Events
             </button>
             <button
               className="btn"
               style={filter === "past" ? active : { marginRight: "10px" }}
               onClick={() => setFilter("past")}
             >
-              Past
+              Past Events
             </button>
             <button
               className="btn"
               style={filter === "upcoming" ? active : { marginRight: "10px" }}
               onClick={() => setFilter("upcoming")}
             >
-              Upcoming
+              Upcoming Events
             </button>
           </div>
 
@@ -92,10 +92,12 @@ const Events: React.FC = () => {
                     <div className="row">
                       <div className="col-3 col-md-2 d-flex justify-content-center align-items-center">
                         <div className="event-date text-center bg-theme-colored p-2">
-                          <ul className="list-unstyled">
+                        
+                         <ul className="list-unstyled" >
                             <li className="h4 text-white font-weight-bold">{day}</li>
                             <li className="font-20 text-white text-uppercase">{month}</li>
                           </ul>
+                      
                         </div>
                       </div>
                       <div className="col-12 col-md-8">

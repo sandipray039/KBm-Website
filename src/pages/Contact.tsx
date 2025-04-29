@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ContactFormData } from '../Services/ApiService';
 import Map from './Map';
+import { Link } from 'react-router-dom';
 
 interface FormData {
   name: string;
@@ -115,10 +116,11 @@ const Contact: React.FC = () => {
             </button>
           </div>
         )}
-
-        <form onSubmit={handleSubmit}>
+  <div style={{display:'flex'}}>
+      <div className='col-md-9'>
+      <form >
           <div className="row mb-3">
-            <div className="col-md-4 mb-3 mb-md-0">
+            <div className="col-md-6 mb-3 mb-md-0">
               <label htmlFor="name" className="form-label">
                 Name <span className="text-danger">*</span>
               </label>
@@ -151,7 +153,7 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="row mb-3">
-            <div className="col-md-4 mb-3 mb-md-0">
+            <div className="col-md-6 mb-3 mb-md-0">
               <label htmlFor="subject" className="form-label">
                 Subject <span className="text-danger">*</span>
               </label>
@@ -183,14 +185,15 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="mb-3 col-md-4">
+          <div className="mb-3 col-md-6">
             <label htmlFor="message" className="form-label">
               Message <span className="text-danger">*</span>
             </label>
             <textarea
               className="form-control border border-1 rounded-5 mb-15"
               id="message"
-              rows={5}
+              rows={3}
+              style={{marginLeft:'-15px'}}
               placeholder="Enter Message"
               name="message"
               value={formData.message}
@@ -199,12 +202,77 @@ const Contact: React.FC = () => {
             {formErrors.message && <small className="text-danger">{formErrors.message}</small>}
           </div>
 
-          <div className="d-flex col-md-4 justify-content-center">
+          {/* <div className="d-flex col-md-4 justify-content-center">
             <button type="submit" className="btn btn-primary px-4 me-2" style={{ borderRadius: 5 }}>
               SEND YOUR MESSAGE
             </button>
-          </div>
+          </div> */}
         </form>
+       
+      </div>
+        <div className=" col-md-3">
+              <div className="widget dark">
+                <div
+                  className="mb-10"
+                  style={{
+                    display: "flex ",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <img src="/images/kbm-slider/logo.png.png" alt="" />
+                  <p style={{ fontSize: "1.5vw",color:'black' }}>खतियानी बुद्धिजीवी मंच</p>
+                </div>
+                <p style={{color:'black'}}>
+                  Jamtara Masjid Gali,Jamtara panchayat, Jamtara, Giridih,
+                  Jharkhand- 825106.
+                </p>
+                <ul className="list-inline mt-5">
+                  <li className="m-0 pl-10 pr-10">
+                    {" "}
+                    <i className="fa fa-phone mr-5 black"></i>{" "}
+                    <a className="text-black" href="#">
+                      6207723381
+                    </a>{" "}
+                  </li>{" "}
+                  <br></br>
+                  <li className="m-0 pl-10 pr-10 black">
+                    {" "}
+                    <i className="fa fa-envelope-o mr-5 black"></i>{" "}
+                    <a className="text-black" href="">
+                      <span
+                        className="__cf_email__"
+                        data-cfemail="63000c0d17020017231a0c1611070c0e020a0d4d000c0e"
+                      >
+                        kbmofficial2024@gmail.com
+                      </span>
+                    </a>{" "}
+                  </li>
+                  <li className="m-0 pl-10 pr-10 black">
+                    {" "}
+                    <i className="fa fa-globe mr-5 black"></i>{" "}
+                    <Link
+                      className="text-black"
+                      to="/home"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      www.kbm.org.in
+                    </Link>{" "}
+                  </li>
+                </ul>
+              </div>
+            </div>
+    <div>
+  
+
+    </div>
+
+
+        </div>
+        <button onClick={handleSubmit} className="btn btn-primary px-4 me-2 mb-5 ml-15" style={{ borderRadius: 5 }}>
+              SEND YOUR MESSAGE
+            </button>
       </div>
     </div>
   );
