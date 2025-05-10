@@ -52,11 +52,9 @@ const MemberCard: React.FC<MemberCardProps> = ({
             </div>
             <div style={{ width: "112%", fontSize: "11px", paddingLeft: "3px" }}>
               <b>JHARKHAND LOKTANTRIK KRANTIKARI MORCHA </b>
-              
-                Indrapuri Colony, Badhraibera,
-                <br />
-                Sec-12,Bokaro - 82701 (Jharkhand)
-            
+              Indrapuri Colony, Badhraibera,
+              <br />
+              Sec-12, Bokaro - 82701 (Jharkhand)
             </div>
           </div>
         </div>
@@ -75,7 +73,14 @@ const MemberCard: React.FC<MemberCardProps> = ({
         >
           <div style={{ padding: "2px", fontWeight: 700 }}>{name}</div>
           <hr />
-          <div style={{ display: "flex", alignItems: "center", padding: "0 5px",height:"25px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "0 5px",
+              height: "25px",
+            }}
+          >
             <div
               style={{
                 width: "16%",
@@ -90,9 +95,12 @@ const MemberCard: React.FC<MemberCardProps> = ({
               />
             </div>
             <div style={{ width: "57%", paddingLeft: "5px" }}>
-              Membership ID: <b>{id}</b>
-              <br />
-              Vidhan Sabha: <b>{assembly}</b>
+              <div>
+                <b>Membership ID:</b> {id}
+              </div>
+              <div>
+                <b>Vidhan Sabha:</b> {assembly}
+              </div>
             </div>
             <div style={{ width: "22%" }}>
               <img

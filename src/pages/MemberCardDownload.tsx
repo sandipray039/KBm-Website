@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MemberCard from "./MemberCard";
 import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const MemberCardDownload: React.FC = () => {
   const location = useLocation();
@@ -17,9 +18,8 @@ const MemberCardDownload: React.FC = () => {
 
   React.useEffect(() => {
     if (!location.state) {
-      // Redirect or show a fallback message
       alert("No member data found. Redirecting...");
-      navigate("/"); // or any fallback route
+      navigate("/");
     }
   }, [location.state, navigate]);
 
@@ -32,10 +32,20 @@ const MemberCardDownload: React.FC = () => {
     if (!cardElement) return;
 
     const canvas = await html2canvas(cardElement);
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png");
-    link.download = "MemberCard.png";
-    link.click();
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+    });
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imgData, "PNG", 0, 10, pdfWidth, pdfHeight);
+    pdf.save("MemberCard.pdf");
   };
 
   return (
@@ -61,7 +71,7 @@ const MemberCardDownload: React.FC = () => {
           cursor: "pointer",
         }}
       >
-        Download Your Member Card
+        Download Your Member Card as PDF
       </button>
     </div>
   );

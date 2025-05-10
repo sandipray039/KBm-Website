@@ -119,63 +119,50 @@ const JoinMember: React.FC = () => {
   };
 
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    console.log("form submitted..", formData);
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  if (!validateForm()) return;
 
-    try {
-      const selectedDistrict = districts.find(
-        (d) => d.id === Number(formData.district)
-      );
-      const selectedBlock = blocks.find((b) => b.id === Number(formData.block));
-      const selectedAssembly = assemblies.find(
-        (a) => a.id === Number(formData.assembly)
-      );
+  try {
+    const selectedDistrict = districts.find(
+      (d) => d.id === Number(formData.district)
+    );
+    const selectedBlock = blocks.find((b) => b.id === Number(formData.block));
+    const selectedAssembly = assemblies.find(
+      (a) => a.id === Number(formData.assembly)
+    );
 
-      const payload = {
-        name: formData.name,
-        age: Number(formData.age),
-        address: formData.address,
-        district: selectedDistrict?.name || "",
-        block: selectedBlock?.name || "",
-        assembly: selectedAssembly?.name || "",
-        jobLocation: formData.jobLocation,
-        phone: formData.phone,
-        qualification:formData.qualification
+    const payload = {
+      name: formData.name,
+      age: Number(formData.age),
+      address: formData.address,
+      district: selectedDistrict?.name || "",
+      block: selectedBlock?.name || "",
+      assembly: selectedAssembly?.name || "",
+      jobLocation: formData.jobLocation,
+      phone: formData.phone,
+      qualification: formData.qualification,
+    };
+
+    const res = await submitJoinMemberForm(payload);
+
+    if (res?.isSuccess) {
+      const memberData = {
+        ...payload,
+        id: res.data.id, // Include the actual database ID
+        photoUrl: res.data.photoUrl || "", // Ensure photoUrl is included
+        qrCode: res.data.qrCode || "", // Ensure qrCode is included
       };
-      console.log("before submitting..", payload);
 
-      const res = await submitJoinMemberForm(payload);
-      console.log("API response:", res);
-
-      if (res?.isSuccess) {
-        setStatusMessage('Member joined successfully...');
-        navigate("/download", { state: payload });
-        setFormData({
-          name: "",
-          age: "",
-          address: "",
-          district: "",
-          block: "",
-          assembly: "",
-          jobLocation: "",
-          phone: "",
-          whatsapp: "",
-          qualification:""
-        });
-        setBlocks([]);
-        setAssemblies([]);
-      } else {
-        setStatusMessage('Form submission failed. Please try again.');
-        alert("Form submission failed. Please try again.");
-      }
-    } catch (err) {
-      setStatusMessage('Something went wrong during submission.');
-      console.error("Submission error:", err);
+      navigate("/download", { state: memberData });
+    } else {
+      setStatusMessage("Form submission failed. Please try again.");
     }
-  };
-
+  } catch (err) {
+    setStatusMessage("Something went wrong during submission.");
+    console.error("Submission error:", err);
+  }
+};
   // const styles = {
   //   wrapper: {
   //     display: "grid",
