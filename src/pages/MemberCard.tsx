@@ -5,7 +5,7 @@ interface MemberCardProps {
   id: string;
   assembly: string;
   photoUrl: string;
-  qrCode: string;
+
 }
 
 const MemberCard: React.FC<MemberCardProps> = ({
@@ -13,7 +13,6 @@ const MemberCard: React.FC<MemberCardProps> = ({
   id,
   assembly,
   photoUrl,
-  qrCode,
 }) => {
   return (
     <div
@@ -29,7 +28,7 @@ const MemberCard: React.FC<MemberCardProps> = ({
       <div
         style={{
           borderRadius: "8px",
-          width: "350px",
+          width: "65%",
           overflow: "hidden",
         }}
       >
@@ -37,25 +36,23 @@ const MemberCard: React.FC<MemberCardProps> = ({
         <div
           style={{
             width: "100%",
-            height: "80px",
-            backgroundColor: "#229954",
+            height: "68px",
+            backgroundColor: "royalblue",
             color: "white",
           }}
         >
           <div style={{ display: "flex", height: "100%" }}>
             <div style={{ width: "30%" }}>
               <img
-                src="/images/gallery/2.jpg"
+                src="/images/kbm-slider/logo.png.png"
                 alt="Logo"
-                style={{ height: "80px" }}
+                style={{ height: "65px" }}
               />
             </div>
             <div style={{ width: "112%", fontSize: "11px", paddingLeft: "3px" }}>
-              <b>JHARKHAND LOKTANTRIK KRANTIKARI MORCHA </b>
-              
-                Indrapuri Colony, Badhraibera,
+              <b>Khatiyani Budhijeevi Manch </b>
                 <br />
-                Sec-12,Bokaro - 82701 (Jharkhand)
+                Jamtara Masjid Gali,Jamtara panchayat, Jamtara, Giridih, Jharkhand- 825106.
             
             </div>
           </div>
@@ -73,30 +70,16 @@ const MemberCard: React.FC<MemberCardProps> = ({
             position: "relative",
           }}
         >
-          <div style={{ padding: "2px", fontWeight: 700 }}>{name}</div>
-          <hr />
-          <div style={{ display: "flex", alignItems: "center", padding: "0 5px",height:"25px" }}>
-            <div
-              style={{
-                width: "16%",
-                borderRadius: "14%",
-                padding: "4px",
-              }}
-            >
-              <img
-                src={photoUrl}
-                alt="Member"
-                style={{ height: "43px", width: "60px" }}
-              />
-            </div>
-            <div style={{ width: "57%", paddingLeft: "5px" }}>
-              Membership ID: <b>{id}</b>
-              <br />
+          <div style={{  fontWeight: 700 ,textAlign:'center',marginBottom:'15px',}}>{name}</div>
+          <div style={{ display: "flex", alignItems: "center", padding: "0 2px",height:"fit-content" }}>
+            <div style={{ width: "70%", }}>
+              Membership ID:{id}
+            <br />
               Vidhan Sabha: <b>{assembly}</b>
             </div>
             <div style={{ width: "22%" }}>
               <img
-                src={qrCode}
+                src={photoUrl}
                 alt="QR Code"
                 style={{ width: "70px", height: "70px" }}
               />

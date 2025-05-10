@@ -64,10 +64,12 @@ const getAssemblies = async (districtId: Number) => {
   }
 };
 
-const submitJoinMemberForm = async (formData: any) => {
+const submitJoinMemberForm = async (payload: FormData) => {
   try {
-    const response = await axios.post(`${baseUrl}/Member/JoinMember`, formData);
-    console.log(response);
+    const response = await axios.post(
+      `${baseUrl}/Member/JoinMember`,
+      payload
+    );
     return response.data;
   } catch (error) {
     console.error("error in submitting form..", error);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
+import React, { useEffect, useState, ChangeEvent, FormEvent, useRef } from "react";
 import {
   getDistrict,
   getBlocks,
@@ -6,8 +6,15 @@ import {
   submitJoinMemberForm,
 } from "../Services/ApiService";
 import './JoinMember.css';
-import { useNavigate } from "react-router-dom";
-import { use } from "i18next";
+import { Link,   } from "react-router-dom";
+import { jsPDF } from "jspdf";
+import gsap from "gsap";
+
+import html2canvas from "html2canvas";
+import MemberCard from "./MemberCard";
+
+
+
 
 interface FormData {
   name: string;
@@ -18,9 +25,10 @@ interface FormData {
   assembly: string;
   jobLocation: string;
   phone: string;
-  whatsapp: string;
+  photo: string;
   qualification:string;
 }
+
 
 const JoinMember: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -32,14 +40,24 @@ const JoinMember: React.FC = () => {
     assembly: "",
     jobLocation: "",
     phone: "",
-    whatsapp: "",
+    photo: "",
     qualification:"",
   });
-  const navigate = useNavigate();       
 
   const [districts, setDistricts] = useState<any[]>([]);
   const [blocks, setBlocks] = useState<any[]>([]);
   const [assemblies, setAssemblies] = useState<any[]>([]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string>("");
+  const [page,setPage]=useState<"one"|"two">("one");
+  const [memberData, setMemberData] = useState<{
+  name: string ;
+  id: string;
+  assembly: string;
+  photoUrl: File | null;
+
+} | null>(null);
+
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
     const [statusMessage, setStatusMessage] = useState<string>('');
@@ -51,6 +69,10 @@ const JoinMember: React.FC = () => {
     "Ph.D.",
     "Other",
   ];
+
+
+  gsap.registerPlugin();
+  const hiddenRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchDistricts = async () => {
@@ -83,6 +105,69 @@ const JoinMember: React.FC = () => {
     }
   }, [formData.block]);
 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0] ?? null;
+  setSelectedFile(file);
+  if (file) {
+   
+    setPhotoPreview(URL.createObjectURL(file));
+      console.log("🖼 blob URL =", URL.createObjectURL(file));
+  } else {
+    setPhotoPreview("");
+  }
+};
+const handleDownloadCard = async () => {
+  if (!hiddenRef.current) {
+    console.warn('Card ref not found');
+    return;
+  }
+
+  // wait for images to paint…
+  const imgs = hiddenRef.current.querySelectorAll('img');
+  await Promise.all(
+    Array.from(imgs).map((img) =>
+      img.complete
+        ? Promise.resolve()
+        : new Promise((res) => (img.onload = res))
+    )
+  );
+
+  try {
+
+    const canvas = await html2canvas(hiddenRef.current, { scale: 2, useCORS: true });
+    const imgData = canvas.toDataURL('image/png');
+
+ 
+    const pdf = new jsPDF({
+      unit: 'px',
+      format: 'a4',    
+      orientation: 'portrait'
+    });
+
+
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+
+   
+    const imgW = pageW * 1;
+    const imgH = pageH * .35;
+
+   
+    const x = (pageW - imgW) / 2;
+    const y = (pageH - imgH) / 2;
+
+  
+    pdf.addImage(imgData, 'PNG', x, y, imgW, imgH);
+
+ 
+    pdf.save('member-card.pdf');
+  } catch (err) {
+    console.error('Error generating PDF', err);
+    alert('Unable to download card. Please try again or contact support.');
+  }
+};
+
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -98,8 +183,11 @@ const JoinMember: React.FC = () => {
     if (!formData.address.trim()) newErrors.address = 'Address is required';
     if (!formData.assembly.trim()) newErrors.assembly = 'Assembly is required';
     if (!formData.block.trim()) newErrors.block = 'Block is required';
-    if (!formData.district.trim()) newErrors.district = 'DIstrict is required';
+    if (!formData.district.trim()) newErrors.district = 'District is required';
     if (!formData.jobLocation.trim()) newErrors.jobLocation = 'This field is required';
+      if (!selectedFile) {
+    newErrors.photo = 'Please upload a photo for member card creation';
+  }
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone Number is required';
     } else if (!/^\d{10}$/.test(formData.phone)) {
@@ -132,26 +220,35 @@ const JoinMember: React.FC = () => {
       const selectedAssembly = assemblies.find(
         (a) => a.id === Number(formData.assembly)
       );
-
-      const payload = {
-        name: formData.name,
-        age: Number(formData.age),
-        address: formData.address,
-        district: selectedDistrict?.name || "",
-        block: selectedBlock?.name || "",
-        assembly: selectedAssembly?.name || "",
-        jobLocation: formData.jobLocation,
-        phone: formData.phone,
-        qualification:formData.qualification
-      };
+const payload = new FormData();
+payload.append("Name", formData.name);
+payload.append("Age", formData.age);
+payload.append("Address", formData.address);
+payload.append("District", selectedDistrict?.name || "");
+payload.append("Block", selectedBlock?.name || "");
+payload.append("Assembly", selectedAssembly?.name || "");
+payload.append("JobLocation", formData.jobLocation);
+payload.append("Phone", formData.phone);
+payload.append("Qualification", formData.qualification);
+if (selectedFile) {
+  payload.append("Photo", selectedFile);
+}
       console.log("before submitting..", payload);
 
       const res = await submitJoinMemberForm(payload);
       console.log("API response:", res);
 
       if (res?.isSuccess) {
-        setStatusMessage('Member joined successfully...');
-        navigate("/download", { state: payload });
+        setPage("two");
+
+         const selected = assemblies.find(a => a.id === Number(formData.assembly));
+         console.log("assembly--->",selected)
+          setMemberData({
+    name: formData.name,
+    id: formData.phone,        
+    assembly: selected ? selected.name : "",
+    photoUrl:selectedFile,
+  });
         setFormData({
           name: "",
           age: "",
@@ -161,9 +258,10 @@ const JoinMember: React.FC = () => {
           assembly: "",
           jobLocation: "",
           phone: "",
-          whatsapp: "",
+          photo: "",
           qualification:""
         });
+        setSelectedFile(null);
         setBlocks([]);
         setAssemblies([]);
       } else {
@@ -176,79 +274,8 @@ const JoinMember: React.FC = () => {
     }
   };
 
-  // const styles = {
-  //   wrapper: {
-  //     display: "grid",
-  //     gridTemplateColumns: "1fr 1fr",
-  //     gap: "20px",
-  //     maxWidth: "1200px",
-  //     margin: "40px auto",
-  //     alignItems: "flex-start" as const,
-  //   },
-  //   formContainer: {
-  //     backgroundColor: "#fff",
-  //     padding: " 30px",
-  //     borderRadius: "8px",
-  //     boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-  //   },
-  //   heading: {
-  //     textAlign: "center" as const,
-  //     color: "white",
-  //     backgroundColor: "#00A4EF",
-  //     borderRadius: "10px",
-  //   },
-  //   form: {
-  //     display: "grid",
-  //     gridTemplateColumns: "1fr 1fr",
-  //     gap: "10px 20px",
-  //   },
-  //   fullWidth: {
-  //     gridColumn: "1 / -1",
-  //   },
-  //   fieldWrapper: {
-  //     display: "flex",
-  //     flexDirection: "column" as const,
-  //   },
-  //   input: {
-  //     padding: "12px",
-  //     border: "1px solid #ccc",
-  //     borderRadius: "6px",
-  //     fontSize: "16px",
-  //   },
-  //   errorText: {
-  //     color: "red",
-  //     fontSize: "13px",
-  //     marginTop: "4px",
-  //   },
-  //   button: {
-  //     backgroundColor: "#00A4EF",
-  //     color: "#fff",
-  //     padding: "14px",
-  //     border: "none",
-  //     fontSize: "16px",
-  //     borderRadius: "6px",
-  //     cursor: "pointer",
-  //     width: "100%",
-  //   },
-  //   image: {
-  //     width: "100%",
-  //     height: "auto",
-  //     borderRadius: "10px",
-  //     boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-  //   },
-  //   label: {
-  //     fontWeight: "bold" as const,
-  //     marginBottom: "5px",
-  //   },
-  //   required: {
-  //     color: "red",
-  //     fontSize: "18px",
-  //   },
-    
-    
-  // };
   return (
-    <div className="container-fluid">
+    <div  className="container-fluid">
       <div className="row">
         
         <div className="col-12 col-md-5 mt-30" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -279,7 +306,9 @@ const JoinMember: React.FC = () => {
             </button>
           </div>
         )}
-          <h2 className="text-white  text-center py-3 rounded " style={{borderRadius:'8px',backgroundColor:'rgb(0, 164, 70)'}}>
+        {page==="one" && (
+          <>
+            <h2 className="text-white  text-center py-3 rounded " style={{borderRadius:'8px',backgroundColor:'rgb(0, 164, 70)'}}>
             Become a Member
           </h2>
           <form onSubmit={handleSubmit}>
@@ -317,6 +346,20 @@ const JoinMember: React.FC = () => {
                 {errors.age && <span className="text-danger">{errors.age}</span>}
               </div>
             </div>
+            <div className="mb-3">
+  <label className="form-label">
+    Upload Photo <span className="text-danger">*</span>
+  </label>
+  <input
+    type="file"
+    name="photo"
+    
+    accept="image/*"
+    className="form-control"
+    onChange={handleFileChange}
+  />
+   {errors.photo && <span className="text-danger">{errors.photo}</span>}
+</div>
   
       <div className="row">
             <div className="mb-3 col-md-6">
@@ -467,6 +510,52 @@ const JoinMember: React.FC = () => {
               </button>
             </div>
           </form>
+          </>
+        )}
+
+        {page==="two" && (
+          <>
+           <div  className="row" style={{marginTop:'30px'}}>
+                <div className="row" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem' }}>
+                  <h1 className="stagger-item welcome-title" style={{ fontSize: '2.8rem', fontWeight: 700, color: '#003366', marginBottom: '1.5rem' }}>
+                    🎊 Welcome New Member 🎉
+                  </h1>
+                  <p className="stagger-item welcome-text" style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>
+                    You’ve successfully joined our community! 🥳
+                  </p>
+                  <p className="stagger-item welcome-text" style={{ fontSize: '1.2rem', marginBottom: '1rem', }}>
+                    Need help? Visit our support center or reach out to our team anytime. We’re here to assist you every step of the way.
+                  </p>
+                  <div className="welcome-actions" style={{ marginTop: '2rem' }}>
+                <Link to="/" className="btn btn-primary btn-secondary btn-one" style={{fontSize:'1.5vw'}}>Go to Home </Link>
+                    <button   onClick={handleDownloadCard}  className="btn btn-success btn-two" style={{ fontSize: '1.5vw',marginLeft:'10px' }}>
+                      Download your Membership Card
+                    </button>
+                  </div>
+                </div>
+       <div
+        ref={hiddenRef}
+        style={{
+          position: "absolute",
+          top: "-9999px",     // move far out of viewport
+          left: "-9999px",
+          // OR use opacity instead:
+          // opacity: 0,
+          // pointerEvents: 'none',
+        }}
+      >
+        <MemberCard
+          name ={memberData?.name}
+          id:string={memberData?.id}
+          assembly:string={memberData?.assembly}
+          photoUrl={photoPreview}
+          
+        />
+      </div>
+              </div>
+          </>
+        )}
+
         </div>
       </div>
     </div>

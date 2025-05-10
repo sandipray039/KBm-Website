@@ -56,13 +56,13 @@ const Header = () => {
               <div className="col-md-2">
                 <div className="widget no-border m-0">
                   <ul className="styled-icons icon-dark icon-theme-colored icon-sm sm-text-center">
-                    <li>
-                      <a href="https://www.facebook.com/">
+                    <li >
+                      <a style={{fontSize:'22px'}} href="https://www.facebook.com/">
                         <i className="fa fa-facebook"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.youtube.com/@KBMcharity">
+                      <a style={{fontSize:'22px'}} href="https://www.youtube.com/@KBMcharity">
                         <i className="fa fa-youtube"></i>
                       </a>
                     </li>
@@ -78,10 +78,7 @@ const Header = () => {
                         6207723381
                       </a>
                     </li>
-                    <li className="text-white m-0 pl-10 pr-10">
-                      <i className="fa fa-clock-o text-white"></i> Mon-Sun 8:00
-                      to 8:00
-                    </li>
+                 
                     <li className="m-0 pl-10 pr-10">
                       <i className="fa fa-envelope-o text-white"></i>{" "}
                       <a className="text-white" href="#">

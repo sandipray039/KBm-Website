@@ -22,6 +22,8 @@ import Events from "./pages/Events";
 import './pp.css';
 import MemberCardDownload from "./pages/MemberCardDownload";
 import MemberCard from "./pages/MemberCard";
+import WelcomeMember from "./pages/WelcomeMember";
+import ThankYouPage from "./pages/ThankYou";
 
 const App = () => {
   const location = useLocation();
@@ -85,8 +87,12 @@ const App = () => {
           <Route path="/tablepage" element={isAuthenticated ? <TablesPage /> : <Navigate to="/login" replace />} />
           <Route path="/videogallery" element={<VideoGallery />} />
           <Route path="/events" element={<Events />} />
+           <Route path="/welcome" element={<WelcomeMember/>} />
            <Route path="/download" element={<MemberCardDownload />} />
-          <Route path="/membercard" element={<MemberCard name="John Doe" id="123" assembly="Assembly A"  photoUrl="/images/gallery/2.jpg"qrCode="/path/to/qrcode.png" />} 
+            <Route path="/thankyou" element={<ThankYouPage />} />
+          <Route path="/membercard" element={<MemberCard name="dummy" id="dummy" assembly="dummy"  photoUrl="dummy" />} 
+          
+          
           />
         </Routes>
       </main>

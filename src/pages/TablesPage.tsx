@@ -3,7 +3,6 @@ import DataTable from "react-data-table-component";
 import { getContactDetails, GetDonationDetails, GetMemberDetails } from "../Services/ApiService";
 import { Link } from "react-router-dom";
 import Footer from "../Layouts/Footer";
-import EventForm from "./EventForm";
 import * as XLSX from 'xlsx';
 import {saveAs} from "file-saver"
 
@@ -22,6 +21,7 @@ interface PaymentData {
   createdDate: string;
   createdBy: string;
   modifiedBy: string;
+  paymentMethod:string;
   modifiedDate?: string;
 }
 
@@ -124,13 +124,14 @@ const TablesPage: React.FC = () => {
     },
     { name: "Name", selector: (row: PaymentData) => row.name, sortable: true },
     { name: "Amount", selector: (row: PaymentData) => row.amount, sortable: true },
+      { name: " Payment Method", selector: (row: PaymentData) => row.paymentMethod, sortable: true },
     { name: "Mobile", selector: (row: PaymentData) => row.mobileNo, sortable: true },
     { name: "Country", selector: (row: PaymentData) => row.countryName, sortable: true },
     { name: "Email", selector: (row: PaymentData) => row.email || "-", sortable: true },
     { name: "Address", selector: (row: PaymentData) => row.address || "-", sortable: true },
     { name: "PAN No", selector: (row: PaymentData) => row.panNo || "-", sortable: true },
     { name: "Status", selector: (row: PaymentData) => row.paymentStatus, sortable: true },
-    { name: "Created By", selector: (row: PaymentData) => row.createdBy, sortable: true },
+   // { name: "Created By", selector: (row: PaymentData) => row.createdBy, sortable: true },
     {
       name: "Created Date",
       selector: (row: PaymentData) => new Date(row.createdDate).toLocaleString(),

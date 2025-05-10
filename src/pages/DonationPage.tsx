@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { getCountryList, submitDonationForm } from '../Services/ApiService';
+import { useNavigate } from 'react-router-dom';
+
+export interface DonationFormPayload {
+  amount: number;
+  countryName: string;
+  name: string;
+  mobileNo: string;
+  email: string;
+  address: string;
+  panNo: string | null;
+  TransactionId: string;
+  method: string;
+}
 
 const DonationPage: React.FC = () => {
   const [amount, setAmount] = useState<string>('');
@@ -15,6 +28,7 @@ const DonationPage: React.FC = () => {
     const [Step,setStep]=useState<number>(1);
     const [upiNo,setUpiNo]=useState<string>('');
     const [isPanRequired, setIsPanRequired] = useState<boolean>(false);
+    const [selectedMethod, setSelectedMethod] = useState("");
   const [data, setData] = useState<{
     id: number;
     countryCode: string;
@@ -22,7 +36,7 @@ const DonationPage: React.FC = () => {
     phoneCode: string;
   }[]>([]);
  
-
+const navigate=useNavigate();
   const [selectedPhoneCode, setSelectedPhoneCode] = useState<string>('+91'); //for India
 
   useEffect(() => {
@@ -134,7 +148,7 @@ if (isPanRequired) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateFormTwo()) return;
-    const formData = {
+    const payload:DonationFormPayload = {
       amount: Number(amount),
       countryName: country,
       name: donorName,
@@ -142,15 +156,17 @@ if (isPanRequired) {
       email,
       address,
       panNo: isPanRequired ? pan : null,
-      TransactionId:upiNo
+      TransactionId:upiNo,
+      method:selectedMethod
     };
+    console.log("data to send to api",payload);
 
     try {
-      console.log("formdata-->",formData);
-      const response = await submitDonationForm(formData);
+      console.log(" just before api formdata-->",payload);
+      const response = await submitDonationForm(payload);
       console.log(response);
       if (response?.isSuccess) {
-        setStatusMessage('Donation made successfully! We will reach out to you soon.');
+      
         setAmount('');
         setCountry('India');
         setDonorName('');
@@ -160,6 +176,8 @@ if (isPanRequired) {
         setPan('');
         setUpiNo('');
         setErrors({});
+
+          navigate('/thankyou');
       } else { setStatusMessage('Form submission failed. Please try again.');
       }
     } catch (err: any) {
@@ -175,9 +193,6 @@ if (isPanRequired) {
     if (countryData) {
       setSelectedPhoneCode(countryData.phoneCode);
     }
-  };
-  const handleCloseMessage = () => {
-    setStatusMessage('');
   };
 
   const inputStyle = {
@@ -196,14 +211,7 @@ if (isPanRequired) {
       }
     }, [statusMessage]);
 
-  // const handleAmountChange = (e:any) => {
-  //   const value = e.target.value;
-  
-  //   // Only allow numbers
-  //   if (/^\d*$/.test(value)) {
-  //     setAmount(value);
-  //   }
-  // };
+
 
   return (
     <div className='container-fluid'
@@ -232,7 +240,7 @@ if (isPanRequired) {
     <div className="col-md-8  col-md-6   "
    //
   >
-     {statusMessage && (
+     {/* {statusMessage && (
           <div
             className={`alert ${statusMessage.includes('success') ? 'alert-success' : 'alert-danger'} position-relative fadeInAlert mt-10`}
             role="alert"
@@ -248,7 +256,7 @@ if (isPanRequired) {
               ×
             </button>
           </div>
-        )}
+        )} */}
       {Step===1 && (
            <form
            onSubmit={handleNext}
@@ -497,6 +505,45 @@ if (isPanRequired) {
             style={{height:'100%',width:'100%',}}
             />
            </div>
+<div className="row mb-3">
+  <label className="form-label" style={{fontSize:'20px',marginTop:'15px',color:"black"}}>Choose Payment Method: <span style={{ color: 'red' }}>*</span></label>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+    {[
+      { name: "Google Pay", img: "/images/payment/gpay.webp" },
+      { name: "PhonePe", img: "/images/payment/phonepe.webp" },
+      { name: "Paytm", img: "/images/payment/paytm.webp" },
+      { name: "Bank Transfer", img: "/images/payment/bank.webp" },
+      { name: "Other", img: "/images/payments/other.png" },
+    ].map(({ name, img }) => (
+      <label
+        key={name}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '5px 10px',
+          border: selectedMethod === name ? '2px solid green' : '1px solid #ccc',
+          borderRadius: '6px',
+          cursor: 'pointer',
+        }}
+      >
+        <input
+          type="radio"
+          name="paymentMethod"
+          value={name}
+          checked={selectedMethod === name}
+          onChange={(e) => setSelectedMethod(e.target.value)}
+          style={{width:'25px',height:"25px"}}
+        />
+         {name !== "Other" && <img src={img} alt={name} style={{ width: 30, height: 30 }} />}
+        {name}
+      </label>
+    ))}
+  </div>
+  {!selectedMethod && <p style={{ color: 'red' }}>Please select a payment method.</p>}
+</div>
+
+
            <div className='row '>
             <label className='form-label'>UPI Transaction Id:
             </label>
