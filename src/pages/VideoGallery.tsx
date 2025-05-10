@@ -3,17 +3,19 @@ import React from "react";
 interface VideoItem {
   index: number;
   link: string;
+  event: string;
+  date: string;
+  place: string;
 }
 
 const VideoGallery: React.FC = () => {
   const videoLinks: VideoItem[] = [
-    { index: 0, link: "https://www.youtube.com/embed/chPljSnAp4g" }, 
-    { index: 1, link: "https://www.youtube.com/embed/VWOwSZWbRKc" }, 
-    { index: 2, link: "https://www.youtube.com/embed/LEFbbRfoD0o" },
-    { index: 3, link: "https://www.youtube.com/embed/xZ1cVceJsNM" },
-    { index: 4, link: "https://www.youtube.com/embed/my4ARwrphZU" },
-    { index: 5, link: "https://www.youtube.com/embed/eIg9c2F0sRw" },
-    
+    { index: 0, link: "https://www.youtube.com/embed/chPljSnAp4g", event: "Health Check", date: "8 October, 2024", place: "Barmasiya Birni" },
+    { index: 1, link: "https://www.youtube.com/embed/VWOwSZWbRKc", event: "Online Counselling", date: "25 July, 2024", place: "Online " },
+    { index: 2, link: "https://www.youtube.com/embed/LEFbbRfoD0o", event: "Meeting", date: "8 October, 2024", place: "Dumri" },
+    { index: 3, link: "https://www.youtube.com/embed/xZ1cVceJsNM", event: "Education ", date: "8 June, 2024", place: "Dumri" },
+    { index: 4, link: "https://www.youtube.com/embed/my4ARwrphZU", event: "Remedial Class", date: "23 September, 2024", place: "Bhendra" },
+    { index: 5, link: "https://www.youtube.com/embed/eIg9c2F0sRw", event: "New Office", date: "20 November, 2024", place: "Dumri" },
   ];
 
   return (
@@ -46,17 +48,17 @@ const VideoGallery: React.FC = () => {
                   style={{ height: "40vh", width: "100%" }}
                 ></iframe>
               </div>
-
-              <div className="d-flex justify-content-between align-items-center mt-2 px-2">
-                <div className="d-flex justify-content-between align-items-center">
-                <div className="fw-semibold">Share this on:</div>
-                <div className="d-flex gap-1">
+              <div className="bg-greywhite p-4" style={{ fontFamily: 'monospace' }}>
+                <h4>Event: <span style={{ fontWeight: '100' }}>{video.event}</span></h4>
+                <h4>Date: <span style={{ fontWeight: '100' }}>{video.date}</span></h4>
+                <h4>Place: <span style={{ fontWeight: '100' }}>{video.place}</span></h4>
+                <div className="d-flex mt-2 align-items-center gap-2">
+                  <span className="black">Share this on:</span>
                   <a
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(video.link)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary btn-sm "
-                    style={{marginRight:'7px'}}
+                    className="btn btn-primary btn-sm"
                   >
                     Facebook
                   </a>
@@ -65,10 +67,10 @@ const VideoGallery: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-success btn-sm"
+                style={{ margin: "5px" }}
                   >
                     WhatsApp
                   </a>
-                </div>
                 </div>
               </div>
             </div>

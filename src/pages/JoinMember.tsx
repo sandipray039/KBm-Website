@@ -6,6 +6,8 @@ import {
   submitJoinMemberForm,
 } from "../Services/ApiService";
 import './JoinMember.css';
+import { useNavigate } from "react-router-dom";
+import { use } from "i18next";
 
 interface FormData {
   name: string;
@@ -33,6 +35,7 @@ const JoinMember: React.FC = () => {
     whatsapp: "",
     qualification:"",
   });
+  const navigate = useNavigate();       
 
   const [districts, setDistricts] = useState<any[]>([]);
   const [blocks, setBlocks] = useState<any[]>([]);
@@ -148,6 +151,7 @@ const JoinMember: React.FC = () => {
 
       if (res?.isSuccess) {
         setStatusMessage('Member joined successfully...');
+        navigate("/download", { state: payload });
         setFormData({
           name: "",
           age: "",

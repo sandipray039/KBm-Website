@@ -195,6 +195,56 @@ const Aboutpage = () => {
   <li>🚨 Raise awareness on social issues like dowry, addiction, disputes, black magic, and mutual hatred to eliminate these harmful beliefs and practices.</li>
   <li>👩‍💼 Create women empowerment teams in every village to resolve internal issues and stand against any kind of exploitation.</li>
 </ol>
+<h2 style={{borderBottom:'2px dotted black',width:'fit-content'}}>Founder Of KBM</h2>
+<div style={{ marginTop: "40px", display: 'flex', alignItems: 'center', gap: '20px' }}>
+  {/* Image section */}
+  <img 
+    src="/images/about/pradeep1.jpg" // replace with actual path or URL
+    alt="Mission Team" 
+    style={{ width: '300px', height: 'auto', borderRadius: '10px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
+  />
+
+  {/* Text details */}
+  <div style={{ fontSize: '17px', lineHeight: '2.6', maxWidth: '581px', marginTop: '-166px' }}>
+  <h3 style={{
+    marginBottom: '10px',
+    borderBottom: '2px solid #4CAF50',
+    width: 'fit-content',
+    color: '#2E7D32'
+  }}>
+    
+  </h3>
+  
+  <table style={{
+    width: '100%',
+    borderCollapse: 'collapse',
+    fontSize: '16px',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+  }}>
+    <tbody>
+      <tr style={{ backgroundColor: '#E8F5E9' }}>
+        <td style={{ padding: '10px', fontWeight: 'bold', border: '1px solid #C8E6C9', color: '#1B5E20' }}>Name</td>
+        <td style={{ padding: '10px', border: '1px solid #C8E6C9' }}>Mr.Pradeep Kumar</td>
+      </tr>
+      <tr style={{ backgroundColor: '#F1F8E9' }}>
+        <td style={{ padding: '10px', fontWeight: 'bold', border: '1px solid #C8E6C9', color: '#33691E' }}>Role</td>
+        <td style={{ padding: '10px', border: '1px solid #C8E6C9' }}>Social Activist (Since 2010)</td>
+      </tr>
+      <tr style={{ backgroundColor: '#E8F5E9' }}>
+        <td style={{ padding: '10px', fontWeight: 'bold', border: '1px solid #C8E6C9', color: '#1B5E20' }}>Current Working</td>
+        <td style={{ padding: '10px', border: '1px solid #C8E6C9' }}>Indian Railway</td>
+      </tr>
+      <tr style={{ backgroundColor: '#F1F8E9' }}>
+        <td style={{ padding: '10px', fontWeight: 'bold', border: '1px solid #C8E6C9', color: '#33691E' }}>Contact</td>
+        <td style={{ padding: '10px', border: '1px solid #C8E6C9' }}>6207723381</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</div>
+
 
           </div>
         </div>

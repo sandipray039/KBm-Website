@@ -189,12 +189,12 @@ const Header = () => {
                   </li>
                   <li className="text-white">
                     <NavLink
-                      to="/contact"
+                      to="/donationpage"
                       className={({ isActive }) =>
                         `text-white ${isActive ? "active" : ""}`
                       }
                     >
-                      Contact
+                      Donate
                     </NavLink>
                   </li>
 
@@ -220,23 +220,23 @@ const Header = () => {
                   </li>
                   <li className="text-white">
                     <NavLink
-                      to="/donationpage"
+                      to="/contact"   
                       className={({ isActive }) =>
                         `text-white ${isActive ? "active" : ""}`
                       }
                     >
-                      Donate
+                      Contact             
                     </NavLink>
                   </li>
 
                   <li className="text-white">
                     <NavLink
-                      to="/documnet"
+                      to="/Documents"
                       className={({ isActive }) =>
                         `text-white ${isActive ? "active" : ""}`
                       }
                     >
-                      Document
+                      Documents
                     </NavLink>
                   </li>
                 </ul>

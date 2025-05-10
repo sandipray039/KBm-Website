@@ -61,7 +61,7 @@ const DonationPage: React.FC = () => {
       newErrors.amount=' Donation amount cannot exceed ₹51,000';
     }
     if (!donorName.trim()) newErrors.donorName = 'This field is required';
-    if (!email.trim()) newErrors.email = 'This field is required';
+    // if (!email.trim()) newErrors.email = 'This field is required';
     if (!phone.trim()) {
       newErrors.phone = 'Phone number is required.';
     } else if (!/^\d{10}$/.test(phone)) {
@@ -490,11 +490,11 @@ if (isPanRequired) {
                ))}
              </div> */}
            </div>
-           <h3>QR Code:</h3>
+         { /* <h3>QR Code:</h3>*/}
            <div style={{display:'flex',justifyContent:'center'}}>
            
-            <img src="/images/qr/qr.jpg" alt="qr" 
-            style={{height:'300px',width:'300px',}}
+            <img src="/images/about/Bank.jpg" alt="qr" 
+            style={{height:'100%',width:'100%',}}
             />
            </div>
            <div className='row '>
