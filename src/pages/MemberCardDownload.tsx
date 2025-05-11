@@ -8,11 +8,8 @@ const MemberCardDownload: React.FC = () => {
   const navigate = useNavigate();
 
   const memberData = location.state as {
-    name: string;
-    id: string;
-    assembly: string;
-    photoUrl: string;
-    qrCode: string;
+number:string
+   photoUrl:string; 
   } | null;
 
   React.useEffect(() => {
@@ -42,11 +39,9 @@ const MemberCardDownload: React.FC = () => {
     <div style={{ textAlign: "center", marginTop: "20px" }}>
       <div id="member-card">
         <MemberCard
-          name={memberData.name}
-          id={memberData.id}
-          assembly={memberData.assembly}
+          number={memberData.number}
           photoUrl={memberData.photoUrl}
-         // qrCode={memberData.qrCode}
+   
         />
       </div>
       <button

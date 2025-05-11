@@ -178,6 +178,19 @@ const getContactDetails=async ()=>{
   }
 }
 
+const getMemberByPhone = async (phone: string) => {
+  try {
+    const response = await axios.get(`${baseUrl}/Member/GetMemberByPhone`, {
+      params: { phone },
+    });
+    console.log("Fetched member:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching member by phone:", error);
+    throw error;
+  }
+};
+
 export {
   getCountryList,
   submitDonationForm,
@@ -194,5 +207,6 @@ export {
   getAllEvents,
   getPastEvents,
   getUpcomingEvents,
-  getContactDetails
+  getContactDetails,
+  getMemberByPhone
 };

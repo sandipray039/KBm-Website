@@ -51,12 +51,13 @@ const JoinMember: React.FC = () => {
   const [photoPreview, setPhotoPreview] = useState<string>("");
   const [page,setPage]=useState<"one"|"two">("one");
   const [memberData, setMemberData] = useState<{
-  name: string ;
-  id: string;
-  assembly: string;
+phone:string;
   photoUrl: File | null;
+  
 
 } | null>(null);
+
+const [PhoneErr,setPhoneErr]=useState<string|null>(null);
 
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
@@ -172,6 +173,9 @@ const handleDownloadCard = async () => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
+      if (name === "phone") {
+    setPhoneErr("");
+  }
     setFormData((prevData) => ({ ...prevData, [name]: value }));
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
@@ -244,9 +248,7 @@ if (selectedFile) {
          const selected = assemblies.find(a => a.id === Number(formData.assembly));
          console.log("assembly name--->",selected.name)
           setMemberData({
-    name: formData.name,
-    id: formData.phone,        
-    assembly: selected.name,
+phone:formData.phone,
     photoUrl:selectedFile,
   });
   console.log( "membar assembly-->",selected.assembly);
@@ -270,10 +272,23 @@ if (selectedFile) {
         setStatusMessage('Form submission failed. Please try again.');
         alert("Form submission failed. Please try again.");
       }
-    } catch (err) {
-      setStatusMessage('Something went wrong during submission.');
-      console.error("Submission error:", err);
-    }
+    } catch (err: any) {
+  console.error("Submission error:", err);
+  const errorMessage =
+    err?.response?.data?.message || "Something went wrong during submission.";
+    console.log("phone error message->",errorMessage);
+
+  if (
+   errorMessage.includes("Phone number already registered")
+  ) {
+   setPhoneErr("Phone number already registered with a different account.Please use a diffrent number");
+   console.log(PhoneErr);
+  } else {
+    setStatusMessage('Something went wrong during submission.');
+    alert(errorMessage);
+  }
+}
+
   };
 
   return (
@@ -343,6 +358,8 @@ if (selectedFile) {
                   value={formData.age}
                   onChange={handleChange}
                   className="form-control"
+                    min={18}
+    max={75}
                   
                 />
                 {errors.age && <span className="text-danger">{errors.age}</span>}
@@ -377,7 +394,11 @@ if (selectedFile) {
                 className="form-control"
                
               />
-              {errors.phone && <span className="text-danger">{errors.phone}</span>}
+            {(PhoneErr || errors.phone) && (
+  <span className="text-danger">
+    {PhoneErr || errors.phone}
+  </span>
+)}
             </div>
   
             {/* Job Location Input */}
@@ -547,9 +568,7 @@ if (selectedFile) {
         }}
       >
         <MemberCard
-         name={memberData?.name || ""}
-  id={memberData?.id || ""}
-  assembly={memberData?.assembly || ""}
+  number={memberData?.phone || ""}
   photoUrl={photoPreview || ""}
           
         />

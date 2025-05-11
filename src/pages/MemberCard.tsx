@@ -1,19 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getMemberByPhone } from "../Services/ApiService";
 
 interface MemberCardProps {
-  name: string;
-  id: string;
-  assembly: string;
-  photoUrl: string;
-
+  number: string;
+    photoUrl:string; 
 }
 
-const MemberCard: React.FC<MemberCardProps> = ({
-  name,
-  id,
-  assembly,
-  photoUrl,
-}) => {
+interface Member {
+  id: number;
+  name: string;
+  phone: string;
+  age: number;
+  address: string;
+  district: string;
+  block: string;
+  assembly: string;
+  jobLocation: string;
+  qualification: string;
+  photo: string;
+}
+
+const MemberCard: React.FC<MemberCardProps> = ({ number,photoUrl }) => {
+  const [member, setMember] = useState<Member | null>(null);
+
+  useEffect(() => {
+    const fetchMember = async () => {
+      try {
+        const response = await getMemberByPhone(number);
+        console.log("Fetched member:", response.data);
+
+        if (response.isSuccess && response.data) {
+          const memberData: Member = {
+            id: response.data.id,
+            name: response.data.name,
+            phone: response.data.phone,
+            age: response.data.age,
+            address: response.data.address,
+            district: response.data.district,
+            block: response.data.block,
+            assembly: response.data.assembly,
+            jobLocation: response.data.jobLocation,
+            qualification: response.data.qualification,
+            photo: response.data.photo,
+          };
+
+          setMember(memberData);
+        }
+      } catch (error) {
+        console.error("Failed to fetch member", error);
+      }
+    };
+
+    if (number) {
+      fetchMember();
+    }
+  }, [number]);
+
   return (
     <div
       style={{
@@ -51,9 +93,8 @@ const MemberCard: React.FC<MemberCardProps> = ({
             </div>
             <div style={{ width: "112%", fontSize: "11px", paddingLeft: "3px" }}>
               <b>Khatiyani Budhijeevi Manch </b>
-                <br />
-                Jamtara Masjid Gali,Jamtara panchayat, Jamtara, Giridih, Jharkhand- 825106.
-            
+              <br />
+              Jamtara Masjid Gali, Jamtara panchayat, Jamtara, Giridih, Jharkhand- 825106.
             </div>
           </div>
         </div>
@@ -70,17 +111,19 @@ const MemberCard: React.FC<MemberCardProps> = ({
             position: "relative",
           }}
         >
-          <div style={{  fontWeight: 700 ,textAlign:'center',marginBottom:'15px',}}>{name}</div>
-          <div style={{ display: "flex", alignItems: "center", padding: "0 2px",height:"fit-content" }}>
-            <div style={{ width: "70%", }}>
-              Membership ID:{id}
-            <br />
-              Vidhan Sabha: <b>{assembly}</b>
+          <div style={{ fontWeight: 700, textAlign: 'center', marginBottom: '15px' }}>
+            {member?.name}
+          </div>
+          <div style={{ display: "flex", alignItems: "center", padding: "0 2px", height: "fit-content" }}>
+            <div style={{ width: "70%" }}>
+              Membership ID: <b>{member?.id}</b>
+              <br />
+              Vidhan Sabha: <b>{member?.assembly}</b>
             </div>
             <div style={{ width: "22%" }}>
               <img
                 src={photoUrl}
-                alt="QR Code"
+                alt="Member"
                 style={{ width: "70px", height: "70px" }}
               />
             </div>
