@@ -122,7 +122,7 @@ const handleDownloadCard = async () => {
     return;
   }
 
-  // wait for images to paint…
+
   const imgs = hiddenRef.current.querySelectorAll('img');
   await Promise.all(
     Array.from(imgs).map((img) =>
@@ -242,13 +242,15 @@ if (selectedFile) {
         setPage("two");
 
          const selected = assemblies.find(a => a.id === Number(formData.assembly));
-         console.log("assembly--->",selected)
+         console.log("assembly name--->",selected.name)
           setMemberData({
     name: formData.name,
     id: formData.phone,        
-    assembly: selected ? selected.name : "",
+    assembly: selected.name,
     photoUrl:selectedFile,
   });
+  console.log( "membar assembly-->",selected.assembly);
+   console.log( "membar id-->",selected.id);
         setFormData({
           name: "",
           age: "",
@@ -545,10 +547,10 @@ if (selectedFile) {
         }}
       >
         <MemberCard
-          name ={memberData?.name}
-          id:string={memberData?.id}
-          assembly:string={memberData?.assembly}
-          photoUrl={photoPreview}
+         name={memberData?.name || ""}
+  id={memberData?.id || ""}
+  assembly={memberData?.assembly || ""}
+  photoUrl={photoPreview || ""}
           
         />
       </div>
