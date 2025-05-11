@@ -46,7 +46,7 @@ const MemberCardDownload: React.FC = () => {
           id={memberData.id}
           assembly={memberData.assembly}
           photoUrl={memberData.photoUrl}
-          qrCode={memberData.qrCode}
+         // qrCode={memberData.qrCode}
         />
       </div>
       <button
