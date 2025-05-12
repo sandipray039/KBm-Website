@@ -94,7 +94,12 @@ const JoinMember: React.FC = () => {
     const newErrors: { [key: string]: string } = {};
   
     if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.age.trim()) newErrors.age = 'Age field is required';
+   if (!formData.age.trim()) {
+  newErrors.age = 'Age field is required';
+} else if (parseInt(formData.age) < 18) {
+  newErrors.age = 'Age must be at least 18';
+};
+
     if (!formData.address.trim()) newErrors.address = 'Address is required';
     if (!formData.assembly.trim()) newErrors.assembly = 'Assembly is required';
     if (!formData.block.trim()) newErrors.block = 'Block is required';

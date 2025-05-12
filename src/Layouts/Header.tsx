@@ -69,7 +69,7 @@ const Header = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-md-8">
+              <div className="col-md-8" style={{marginLeft:'195px'}}>
                 <div className="widget no-border m-0">
                   <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
                     <li className="m-0 pl-10 pr-10">
@@ -78,10 +78,10 @@ const Header = () => {
                         6207723381
                       </a>
                     </li>
-                    <li className="text-white m-0 pl-10 pr-10">
+                    {/* <li className="text-white m-0 pl-10 pr-10">
                       <i className="fa fa-clock-o text-white"></i> Mon-Sun 8:00
                       to 8:00
-                    </li>
+                    </li> */}
                     <li className="m-0 pl-10 pr-10">
                       <i className="fa fa-envelope-o text-white"></i>{" "}
                       <a className="text-white" href="#">
@@ -147,7 +147,7 @@ const Header = () => {
                   className="menuzord-menu onepage-nav"
                   style={{ marginTop: "15px" }}
                 >
-                  <li className="text-white">
+                  <li className="text-white" style={{ fontSize: "20px" }}>
                     <NavLink
                       to="/home"
                       className={({ isActive }) =>
@@ -231,7 +231,7 @@ const Header = () => {
 
                   <li className="text-white">
                     <NavLink
-                      to="/Documents"
+                      to="/documents"
                       className={({ isActive }) =>
                         `text-white ${isActive ? "active" : ""}`
                       }
