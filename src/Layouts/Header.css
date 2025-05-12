@@ -1,0 +1,34 @@
+.menuzord-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menuzord-menu li {
+  margin-right: 15px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .menuzord-menu {
+    display: none;
+    flex-direction: column;
+  }
+
+  .menuzord-menu.menu-open {
+    display: flex;
+  }
+
+  .menuzord-menu li {
+    margin: 10px 0;
+  }
+}

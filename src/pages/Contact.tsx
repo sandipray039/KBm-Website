@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
       <div className='col-md-9'>
       <form >
           <div className="row mb-3">
-            <div className="col-md-6 mb-3 mb-md-0">
+            <div className="col-md-6 col-12 mb-3 mb-md-0">
               <label htmlFor="name" className="form-label">
                 Name <span className="text-danger">*</span>
               </label>
@@ -135,7 +135,7 @@ const Contact: React.FC = () => {
               />
               {formErrors.name && <small className="text-danger">{formErrors.name}</small>}
             </div>
-            <div className="col-md-4">
+            <div className="col-12 col-md-6 mb-3">
               <label htmlFor="email" className="form-label">
                 Email <span className="text-danger">*</span>
               </label>
@@ -153,7 +153,7 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="row mb-3">
-            <div className="col-md-6 mb-3 mb-md-0">
+            <div className="col-12 col-md-6 mb-3">
               <label htmlFor="subject" className="form-label">
                 Subject <span className="text-danger">*</span>
               </label>
@@ -168,7 +168,7 @@ const Contact: React.FC = () => {
               />
               {formErrors.subject && <small className="text-danger">{formErrors.subject}</small>}
             </div>
-            <div className="col-md-4">
+            <div className="col-12 col-md-6 mb-3">
               <label htmlFor="phoneNo" className="form-label">
                 Phone <span className="text-danger">*</span>
               </label>
@@ -185,15 +185,15 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="mb-3 col-md-6">
+          <div className="mb-3 w-100">
             <label htmlFor="message" className="form-label">
               Message <span className="text-danger">*</span>
             </label>
             <textarea
               className="form-control border border-1 rounded-5 mb-15"
               id="message"
-              rows={3}
-              style={{marginLeft:'-15px'}}
+              rows={4}
+              style={{marginLeft:'-1px'}}
               placeholder="Enter Message"
               name="message"
               value={formData.message}
@@ -210,7 +210,7 @@ const Contact: React.FC = () => {
         </form>
        
       </div>
-        <div className=" col-md-3">
+        <div className=" col-12 col-md-4">
               <div className="widget dark">
                 <div
                   className="mb-10"

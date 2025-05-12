@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import gsap from "gsap";
+import "./Header.css"; // Custom CSS for styling
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [sticky, setSticky] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false); // Default to false for mobile toggle
 
   useEffect(() => {
     const header = headerRef.current;
@@ -47,6 +49,10 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sticky]);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); // Toggle menu visibility
+  };
+
   return (
     <div>
       <header className="header">
@@ -69,7 +75,7 @@ const Header = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-md-8" style={{marginLeft:'195px'}}>
+              <div className="col-md-8" style={{ marginLeft: "195px" }}>
                 <div className="widget no-border m-0">
                   <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
                     <li className="m-0 pl-10 pr-10">
@@ -78,19 +84,10 @@ const Header = () => {
                         6207723381
                       </a>
                     </li>
-                    {/* <li className="text-white m-0 pl-10 pr-10">
-                      <i className="fa fa-clock-o text-white"></i> Mon-Sun 8:00
-                      to 8:00
-                    </li> */}
                     <li className="m-0 pl-10 pr-10">
                       <i className="fa fa-envelope-o text-white"></i>{" "}
                       <a className="text-white" href="#">
-                        <span
-                          className="_cf_email_"
-                          data-cfemail="71121e1f0510120531081e0403151e1c10181f5f121e1c"
-                        >
-                          kbmofficial2024@gmail.com
-                        </span>
+                        kbmofficial2024@gmail.com
                       </a>
                     </li>
                     <li>
@@ -110,16 +107,12 @@ const Header = () => {
 
         <div ref={headerRef} className="header-nav">
           <div
-            className="header-nav-wrapper navbar-scrolltofixed scroll-to-fixed-fixed"
+            className="header-nav-wrapper"
             style={{ backgroundColor: "#003C72" }}
           >
-            <div className="container-fluid" style={{padding:'0px 100px'}}>
-              <nav
-                id="menuzord-right"
-                className="menuzord default no-bg"
-                style={{ backgroundColor: "#14468C" }}
-              >
-                <Link className=" pull-left flip" to="/">
+            <div className="container-fluid">
+              <nav className="navbar">
+                <Link className="navbar-brand" to="/">
                   <div style={{ display: "flex", gap: "10px" }}>
                     <img
                       src="/images/kbm-slider/logo.png.png"
@@ -131,7 +124,7 @@ const Header = () => {
                       }}
                     />
                     <p
-                      className="text-white "
+                      className="text-white"
                       style={{
                         marginTop: "27px",
                         marginRight: "40px",
@@ -143,9 +136,23 @@ const Header = () => {
                     </p>
                   </div>
                 </Link>
+                <button
+                  className="menu-toggle"
+                  onClick={toggleMenu}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "white",
+                    fontSize: "24px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <i className="fa fa-bars"></i>
+                </button>
                 <ul
-                  className="menuzord-menu onepage-nav"
-                  style={{ marginTop: "15px" }}
+                  className={`menuzord-menu onepage-nav ${
+                    menuOpen ? "menu-open" : "menu-closed"
+                  }`}
                 >
                   <li className="text-white" style={{ fontSize: "20px" }}>
                     <NavLink
@@ -197,7 +204,6 @@ const Header = () => {
                       Donate
                     </NavLink>
                   </li>
-
                   <li className="text-white">
                     <NavLink
                       to="/memberjoin"
@@ -220,15 +226,14 @@ const Header = () => {
                   </li>
                   <li className="text-white">
                     <NavLink
-                      to="/contact"   
+                      to="/contact"
                       className={({ isActive }) =>
                         `text-white ${isActive ? "active" : ""}`
                       }
                     >
-                      Contact             
+                      Contact
                     </NavLink>
                   </li>
-
                   <li className="text-white">
                     <NavLink
                       to="/documents"
