@@ -23,6 +23,7 @@ import './pp.css';
 import MemberCardDownload from "./pages/MemberCardDownload";
 import MemberCard from "./pages/MemberCard";
 import DocumentGallary from "./pages/DocumentGallary";
+import Header2 from "./Layouts/Header2";
 
 const App = () => {
   const location = useLocation();
@@ -87,6 +88,7 @@ const App = () => {
           <Route path="/videogallery" element={<VideoGallery />} />
           <Route path="/events" element={<Events />} />
            <Route path="/documents" element={<DocumentGallary />} />
+            <Route path="/hh" element={<Header2 />} />
            <Route path="/download" element={<MemberCardDownload />} />
           <Route path="/membercard" element={<MemberCard name="John Doe" id="123" assembly="Assembly A"  photoUrl="/images/gallery/2.jpg"qrCode="/path/to/qrcode.png" />} 
           />

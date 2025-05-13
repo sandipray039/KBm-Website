@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import gsap from "gsap";
 import "./Header.css"; // Custom CSS for styling
+import Header2 from "./Header2";
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -105,7 +106,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div ref={headerRef} className="header-nav">
+        {/* <div ref={headerRef} className="header-nav">
           <div
             className="header-nav-wrapper"
             style={{ backgroundColor: "#003C72" }}
@@ -248,7 +249,8 @@ const Header = () => {
               </nav>
             </div>
           </div>
-        </div>
+        </div> */}
+        <Header2 />
       </header>
     </div>
   );

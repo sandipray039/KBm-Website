@@ -1,0 +1,81 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 120px;
+  padding: 10px 0px;
+     
+  margin-top: 0%;
+  background-color: rgb(0, 60, 114);
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu .menu-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 15px;
+  margin: 0;
+  font-size: 1rem; /* Use relative units */
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+}
+
+.menu-list a {
+  color: white;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 1.5rem; /* Use relative units */
+  font-weight: bold;
+  color: white; /* Updated for better contrast */
+  margin: 0;
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1000px) {
+  .menu {
+    position: absolute;
+    top: 100%; /* Align menu directly below the header */
+    right: 0;
+    width: 60%;
+    background-color: rgb(0, 60, 114);
+    display: none;
+    height: auto; /* Adjust height dynamically */
+    padding: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+  }
+
+  .menu.open {
+    display: block;
+  }
+
+  .menu-list {
+    flex-direction: column;
+    gap: 15px; /* Reduced gap for better spacing */
+    font-size: 1.2rem; /* Adjust font size for smaller screens */
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .navbar {
+    flex-direction: row;
+  }
+}
