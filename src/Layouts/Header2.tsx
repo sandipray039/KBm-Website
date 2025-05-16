@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./Header2.css";
 import gsap from "gsap";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header2 = () => {
   const headerRef = useRef<HTMLDivElement | null>(null); // Define headerRef
@@ -61,14 +61,15 @@ const Header2 = () => {
         style={{ height: "13vh", backgroundColor: "rgb(0, 60, 114)", }}
       >
         <div className="containers navbar" >
-          <div className="img-container col-3" >
+          <Link to="/">  <div className="img-container col-3" >
             <div className="img" style={{ maxWidth: "67px" }}>
               <img src="/images/kbm-slider/logo.png.png" alt="Logo" />
             </div>
             <h1 className="title" style={{ marginTop: "10px" }}>
               खतियानी बुद्धिजीवी मंच
             </h1>
-          </div>
+          </div></Link>
+        
           <div className="hamburger" onClick={toggleMenu}>
             {isMenuOpen ? "✖" : "☰"}
           </div>
@@ -144,8 +145,7 @@ const Header2 = () => {
                   href="/documents/kbmDocument.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="menu-item "
-                 
+                  className="menu-item " 
                 >
                    <span style={{color:'white'}}>Document</span>
                 </a>

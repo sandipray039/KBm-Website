@@ -5,7 +5,7 @@ import Header2 from "./Header2";
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [sticky, setSticky] = useState<boolean>(false);
-  const [menuOpen, setMenuOpen] = useState<boolean>(false); // Default to false for mobile toggle
+  const [menuOpen, setMenuOpen] = useState<boolean>(false); 
 
   useEffect(() => {
     const header = headerRef.current;
@@ -49,7 +49,7 @@ const Header = () => {
   }, [sticky]);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen); // Toggle menu visibility
+    setMenuOpen(!menuOpen);
   };
 
   return (
@@ -62,12 +62,12 @@ const Header = () => {
                 <div className="widget no-border m-0">
                   <ul className="styled-icons icon-dark icon-theme-colored icon-sm sm-text-center">
                     <li>
-                      <a href="https://www.facebook.com/people/%E0%A4%9D%E0%A4%BE%E0%A4%B0%E0%A4%96%E0%A4%82%E0%A4%A1-%E0%A4%96%E0%A4%A4%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%E0%A5%80-%E0%A4%AC%E0%A5%81%E0%A4%A6%E0%A5%8D%E0%A4%A7%E0%A4%BF%E0%A4%9C%E0%A5%80%E0%A4%B5%E0%A5%80-%E0%A4%AE%E0%A4%82%E0%A4%9A-Jkbm/61556886564542/">
+                      <a style={{fontSize:'1.5vw'}} href="https://www.facebook.com/people/%E0%A4%9D%E0%A4%BE%E0%A4%B0%E0%A4%96%E0%A4%82%E0%A4%A1-%E0%A4%96%E0%A4%A4%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%E0%A5%80-%E0%A4%AC%E0%A5%81%E0%A4%A6%E0%A5%8D%E0%A4%A7%E0%A4%BF%E0%A4%9C%E0%A5%80%E0%A4%B5%E0%A5%80-%E0%A4%AE%E0%A4%82%E0%A4%9A-Jkbm/61556886564542/">
                         <i className="fa fa-facebook"></i>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.youtube.com/@KBMcharity">
+                      <a style={{fontSize:'1.5vw'}} href="https://www.youtube.com/@KBMcharity">
                         <i className="fa fa-youtube"></i>
                       </a>
                     </li>
@@ -103,151 +103,6 @@ const Header = () => {
             </div>
           </div>
         </div>
-
-        {/* <div ref={headerRef} className="header-nav">
-          <div
-            className="header-nav-wrapper"
-            style={{ backgroundColor: "#003C72" }}
-          >
-            <div className="container-fluid">
-              <nav className="navbar">
-                <Link className="navbar-brand" to="/">
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    <img
-                      src="/images/kbm-slider/logo.png.png"
-                      alt=""
-                      style={{
-                        height: "85px",
-                        padding: "5px 0px",
-                        marginTop: "5px",
-                      }}
-                    />
-                    <p
-                      className="text-white"
-                      style={{
-                        marginTop: "27px",
-                        marginRight: "40px",
-                        fontSize: "27px",
-                        fontWeight: "600",
-                      }}
-                    >
-                      खतियानी बुद्धिजीवी मंच
-                    </p>
-                  </div>
-                </Link>
-                <button
-                  className="menu-toggle"
-                  onClick={toggleMenu}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "white",
-                    fontSize: "24px",
-                    cursor: "pointer",
-                  }}
-                >
-                  <i className="fa fa-bars"></i>
-                </button>
-                <ul
-                  className={`menuzord-menu onepage-nav ${
-                    menuOpen ? "menu-open" : "menu-closed"
-                  }`}
-                >
-                  <li className="text-white" style={{ fontSize: "20px" }}>
-                    <NavLink
-                      to="/home"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Home
-                    </NavLink>
-                  </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/about"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      About
-                    </NavLink>
-                  </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/team"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Volunteer
-                    </NavLink>
-                  </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/gallery"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Gallery
-                    </NavLink>
-                  </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/donationpage"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Donate
-                    </NavLink>
-                  </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/memberjoin"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Join Us
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/events"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Events
-                    </NavLink>
-                  </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/contact"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Contact
-                    </NavLink>
-                  </li>
-                  <li className="text-white">
-                    <NavLink
-                      to="/documents"
-                      className={({ isActive }) =>
-                        text-white ${isActive ? "active" : ""}
-                      }
-                    >
-                      Documents
-                    </NavLink>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div> */}
         <Header2 />
       </header>
     </div>
