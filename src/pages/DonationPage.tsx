@@ -238,6 +238,7 @@ if (isPanRequired) {
 
 
     <div className="col-md-8  col-md-6   "
+    style={{marginTop:'1.8vw'}}
    //
   >
      {/* {statusMessage && (
@@ -285,7 +286,7 @@ if (isPanRequired) {
              {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
    
              <div style={{ marginTop: '0.5rem' }}>
-               {['500', '1000',' 1500', '2000'].map((val) => (
+               {['500', '1000','2000', '2500'].map((val) => (
                  <button
                    key={val}
                    type="button"

@@ -78,7 +78,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ number,photoUrl }) => {
         <div
           style={{
             width: "100%",
-            height: "68px",
+            height: "fit-content",
             backgroundColor: "royalblue",
             color: "white",
           }}
@@ -95,6 +95,8 @@ const MemberCard: React.FC<MemberCardProps> = ({ number,photoUrl }) => {
               <b>Khatiyani Budhijeevi Manch </b>
               <br />
               Jamtara Masjid Gali, Jamtara panchayat, Jamtara, Giridih, Jharkhand- 825106.
+              <br />
+              <p style={{fontSize:'8px',marginTop:'-6px'}}>(Ngo,Regd.No.2024/BOK/3551/BK4/242)</p>
             </div>
           </div>
         </div>
@@ -103,29 +105,31 @@ const MemberCard: React.FC<MemberCardProps> = ({ number,photoUrl }) => {
         <div
           style={{
             width: "100%",
-            height: "110px",
+            height: "120px",
             border: "1px solid #ccc",
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-            backgroundColor: "yellow",
+            backgroundColor: "forestgreen",
             overflow: "hidden",
             position: "relative",
+            padding:"2px 0px"
           }}
         >
-          <div style={{ fontWeight: 700, textAlign: 'center', marginBottom: '15px' }}>
+          <div style={{ fontWeight: 700, textAlign: 'center', marginBottom: '15px',color:'white' }}>
             {member?.name}
           </div>
-          <div style={{ display: "flex", alignItems: "center", padding: "0 2px", height: "fit-content" }}>
-            <div style={{ width: "70%" }}>
-              Membership ID: <b>{member?.id}</b>
-              <br />
-              Vidhan Sabha: <b>{member?.assembly}</b>
-            </div>
-            <div style={{ width: "22%" }}>
+          <div style={{ display: "flex", alignItems: "center", padding: "3px 2px", height: "fit-content" }}>
+         
+            <div style={{ width: "22%",marginRight:'20px' }}>
               <img
                 src={photoUrl}
                 alt="Member"
                 style={{ width: "70px", height: "70px" }}
               />
+            </div>
+               <div style={{ width: "70%",color:'white' }}>
+              Membership ID: <b style={{color:'white'}}>{member?.id}</b>
+              <br />
+              Block: <b style={{color:'white'}}>{member?.block}</b>
             </div>
           </div>
         </div>

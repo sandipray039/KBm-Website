@@ -196,17 +196,18 @@ const Aboutpage = () => {
   <li>👩‍💼 Create women empowerment teams in every village to resolve internal issues and stand against any kind of exploitation.</li>
 </ol>
 <h2 style={{borderBottom:'2px dotted black',width:'fit-content'}}>Founder Of KBM</h2>
-<div style={{ marginTop: "40px", display: 'flex', alignItems: 'center', gap: '20px' }}>
+<div style={{ marginTop: "40px", display: 'flex', alignItems: 'center',justifyContent:'center',flexWrap:'wrap', gap: '20px' }}>
   {/* Image section */}
-  <img 
+  <img className="col-md-3 col-sm-12"
     src="/images/about/pradeep1.jpg" // replace with actual path or URL
     alt="Mission Team" 
     style={{ width: '300px', height: 'auto', borderRadius: '10px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
   />
 
   {/* Text details */}
-  <div style={{ fontSize: '17px', lineHeight: '2.6', maxWidth: '581px', marginTop: '-166px' }}>
-  <h3 style={{
+  <div className="col-md-6 col-sm-12" style={{ fontSize: '17px', lineHeight: '2.6', maxWidth: '581px', }}>
+  <h3
+   style={{
     marginBottom: '10px',
     borderBottom: '2px solid #4CAF50',
     width: 'fit-content',

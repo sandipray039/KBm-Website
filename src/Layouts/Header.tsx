@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 import gsap from "gsap";
+import Header2 from "./Header2";
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [sticky, setSticky] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false); // Default to false for mobile toggle
 
   useEffect(() => {
     const header = headerRef.current;
@@ -47,29 +48,33 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sticky]);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); // Toggle menu visibility
+  };
+
   return (
     <div>
       <header className="header">
         <div className="header-top bg-theme-colored sm-text-center">
           <div className="container">
-            <div className="row">
-              <div className="col-md-2">
+            <div className="row" style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+              <div className="col-md-2 col-sm-12">
                 <div className="widget no-border m-0">
                   <ul className="styled-icons icon-dark icon-theme-colored icon-sm sm-text-center">
-                    <li >
-                      <a style={{fontSize:'22px'}} href="https://www.facebook.com/">
+                    <li>
+                      <a href="https://www.facebook.com/people/%E0%A4%9D%E0%A4%BE%E0%A4%B0%E0%A4%96%E0%A4%82%E0%A4%A1-%E0%A4%96%E0%A4%A4%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%E0%A5%80-%E0%A4%AC%E0%A5%81%E0%A4%A6%E0%A5%8D%E0%A4%A7%E0%A4%BF%E0%A4%9C%E0%A5%80%E0%A4%B5%E0%A5%80-%E0%A4%AE%E0%A4%82%E0%A4%9A-Jkbm/61556886564542/">
                         <i className="fa fa-facebook"></i>
                       </a>
                     </li>
                     <li>
-                      <a style={{fontSize:'22px'}} href="https://www.youtube.com/@KBMcharity">
+                      <a href="https://www.youtube.com/@KBMcharity">
                         <i className="fa fa-youtube"></i>
                       </a>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="col-md-8">
+              <div className="col-md-8 col-sm-12" style={{display:'flex',alignItems:'center',justifyContent:'center' }}>
                 <div className="widget no-border m-0">
                   <ul className="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
                     <li className="m-0 pl-10 pr-10">
@@ -78,16 +83,10 @@ const Header = () => {
                         6207723381
                       </a>
                     </li>
-                 
                     <li className="m-0 pl-10 pr-10">
                       <i className="fa fa-envelope-o text-white"></i>{" "}
                       <a className="text-white" href="#">
-                        <span
-                          className="_cf_email_"
-                          data-cfemail="71121e1f0510120531081e0403151e1c10181f5f121e1c"
-                        >
-                          kbmofficial2024@gmail.com
-                        </span>
+                        kbmofficial2024@gmail.com
                       </a>
                     </li>
                     <li>
@@ -105,18 +104,14 @@ const Header = () => {
           </div>
         </div>
 
-        <div ref={headerRef} className="header-nav">
+        {/* <div ref={headerRef} className="header-nav">
           <div
-            className="header-nav-wrapper navbar-scrolltofixed scroll-to-fixed-fixed"
+            className="header-nav-wrapper"
             style={{ backgroundColor: "#003C72" }}
           >
-            <div className="container-fluid" style={{padding:'0px 100px'}}>
-              <nav
-                id="menuzord-right"
-                className="menuzord default no-bg"
-                style={{ backgroundColor: "#14468C" }}
-              >
-                <Link className=" pull-left flip" to="/">
+            <div className="container-fluid">
+              <nav className="navbar">
+                <Link className="navbar-brand" to="/">
                   <div style={{ display: "flex", gap: "10px" }}>
                     <img
                       src="/images/kbm-slider/logo.png.png"
@@ -128,7 +123,7 @@ const Header = () => {
                       }}
                     />
                     <p
-                      className="text-white "
+                      className="text-white"
                       style={{
                         marginTop: "27px",
                         marginRight: "40px",
@@ -140,15 +135,29 @@ const Header = () => {
                     </p>
                   </div>
                 </Link>
-                <ul
-                  className="menuzord-menu onepage-nav"
-                  style={{ marginTop: "15px" }}
+                <button
+                  className="menu-toggle"
+                  onClick={toggleMenu}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "white",
+                    fontSize: "24px",
+                    cursor: "pointer",
+                  }}
                 >
-                  <li className="text-white">
+                  <i className="fa fa-bars"></i>
+                </button>
+                <ul
+                  className={`menuzord-menu onepage-nav ${
+                    menuOpen ? "menu-open" : "menu-closed"
+                  }`}
+                >
+                  <li className="text-white" style={{ fontSize: "20px" }}>
                     <NavLink
                       to="/home"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       Home
@@ -158,7 +167,7 @@ const Header = () => {
                     <NavLink
                       to="/about"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       About
@@ -168,7 +177,7 @@ const Header = () => {
                     <NavLink
                       to="/team"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       Volunteer
@@ -178,7 +187,7 @@ const Header = () => {
                     <NavLink
                       to="/gallery"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       Gallery
@@ -188,18 +197,17 @@ const Header = () => {
                     <NavLink
                       to="/donationpage"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       Donate
                     </NavLink>
                   </li>
-
                   <li className="text-white">
                     <NavLink
                       to="/memberjoin"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       Join Us
@@ -209,7 +217,7 @@ const Header = () => {
                     <NavLink
                       to="/events"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       Events
@@ -217,20 +225,19 @@ const Header = () => {
                   </li>
                   <li className="text-white">
                     <NavLink
-                      to="/contact"   
+                      to="/contact"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
-                      Contact             
+                      Contact
                     </NavLink>
                   </li>
-
                   <li className="text-white">
                     <NavLink
-                      to="/Documents"
+                      to="/documents"
                       className={({ isActive }) =>
-                        `text-white ${isActive ? "active" : ""}`
+                        text-white ${isActive ? "active" : ""}
                       }
                     >
                       Documents
@@ -240,7 +247,8 @@ const Header = () => {
               </nav>
             </div>
           </div>
-        </div>
+        </div> */}
+        <Header2 />
       </header>
     </div>
   );

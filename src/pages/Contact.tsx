@@ -116,9 +116,10 @@ const Contact: React.FC = () => {
             </button>
           </div>
         )}
-  <div style={{display:'flex'}}>
-      <div className='col-md-9'>
-      <form >
+  <div className='row'>
+      <div className='col-md-9 col-sm-12'>
+    <div>
+        <form >
           <div className="row mb-3">
             <div className="col-md-6 mb-3 mb-md-0">
               <label htmlFor="name" className="form-label">
@@ -202,15 +203,16 @@ const Contact: React.FC = () => {
             {formErrors.message && <small className="text-danger">{formErrors.message}</small>}
           </div>
 
-          {/* <div className="d-flex col-md-4 justify-content-center">
-            <button type="submit" className="btn btn-primary px-4 me-2" style={{ borderRadius: 5 }}>
+        </form>
+    </div>
+        <div>
+             <button onClick={handleSubmit} className="btn btn-primary px-4 me-2 mb-5 ml-15" style={{ borderRadius: 5 }}>
               SEND YOUR MESSAGE
             </button>
-          </div> */}
-        </form>
+        </div>
        
       </div>
-        <div className=" col-md-3">
+        <div className=" col-md-3 col-sm-12" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
               <div className="widget dark">
                 <div
                   className="mb-10"
@@ -270,9 +272,7 @@ const Contact: React.FC = () => {
 
 
         </div>
-        <button onClick={handleSubmit} className="btn btn-primary px-4 me-2 mb-5 ml-15" style={{ borderRadius: 5 }}>
-              SEND YOUR MESSAGE
-            </button>
+       
       </div>
     </div>
   );
