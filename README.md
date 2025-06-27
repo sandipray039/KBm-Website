@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# KBM – खतियानी बुद्धिजीवी मंच  
+A Full-Stack Donation & Volunteer Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Website Link:  https://kbm.org.in/
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Project Overview
 
-## Expanding the ESLint configuration
+**KBM** is a production-grade NGO platform built to streamline donation drives, volunteer registrations, and public outreach for the organization "खतियानी बुद्धिजीवी मंच". The site is live and fully functional, serving real users, and includes a powerful admin dashboard for backend data management.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Built as a team of three developers, this project showcases practical implementation of a scalable full-stack web application using modern frontend and backend technologies.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧩 Key Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🌍 Public Website
+- **Join as Volunteer** – With dynamic cascading selections (District → Block → Assembly)
+- **Donation Form** – Accepts UPI payments with optional PAN input for ₹20,000+
+- **Contact Us** – Captures public queries and feedback
+- **About, Mission & Team Sections** – Explain the NGO’s vision and efforts
+- **News & Activities** – Organization updates (if enabled)
+- **Mobile-Responsive UI** – Fully optimized for desktop and mobile
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### 🛠️ Admin Panel
+- **Session-Based Authentication** (not JWT)
+- **View Total Volunteers** – Paginated volunteer list with full details
+- **Track Donations** – With filtering and sorting
+- **View Contact Reports** – All user messages in one place
+- **Export to Excel** – Volunteers and Donations can be downloaded as `.xlsx` via EPPlus
+
+---
+
+## ⚙️ Tech Stack
+
+### 🖥️ Frontend
+- React.js (with TypeScript)
+- Bootstrap 5 for layout & responsiveness
+- Axios for API calls
+
+### 🗄️ Backend
+- ASP.NET Core Web API (C#)
+- Repository Pattern & Dependency Injection
+- Entity Framework Core (EF Core)
+- SQL Server
+
+  ## 📸 Screenshots
+
+  ![Screenshot 2025-06-27 234715](https://github.com/user-attachments/assets/bca7336f-6629-4d9c-a191-3bf84ffaf0cd)
+  ![Screenshot 2025-06-27 234313](https://github.com/user-attachments/assets/015257e8-35e5-402f-a667-3b9c95976336)
+  ![Screenshot 2025-06-27 234339](https://github.com/user-attachments/assets/b62dd3d7-ff2e-4849-92a8-9fd853aefea3)
+  ![Screenshot 2025-06-27 234428](https://github.com/user-attachments/assets/8d142f0c-b495-4f8b-b25a-ce1508cceac4)
+  ![Screenshot 2025-06-27 234543](https://github.com/user-attachments/assets/9c915e13-b638-41c9-99cc-9aa91dcd19b4)
+
+
+
+
